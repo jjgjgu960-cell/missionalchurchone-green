@@ -27,7 +27,7 @@
 }
 
 /* ============================================================
-   Missional Church One — Give page
+   First McKinney — Give page
    Brand colors and rhythm live here at the top.
    ============================================================ */
 /* ---------- layout ---------- */
@@ -597,7 +597,7 @@ line-height: 40px;
   overflow: hidden;
 }
 .yellow-btn-fmk a::after {
-    background: var( --mco-tertiary);
+    background: #378F9D;
     width: 0;
     height: 100%;
     top: 0;
@@ -919,7 +919,7 @@ max-width: 1200px;
     flex-direction: column;
     min-height: 300px;
     padding: 38px 34px 32px;
-    background: var( --mco-primary);
+    background: #0b4666;
     border: 1px solid rgba(18, 48, 70, 0.08);
     border-radius: 18px;
     overflow: hidden;

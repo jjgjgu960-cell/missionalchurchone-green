@@ -786,7 +786,7 @@
   overflow: hidden;
 }
 .serve-bnt-hover::after {
-    background: var( --mco-tertiary);
+    background: #378F9D;
     width: 0;
     height: 100%;
     top: 0;

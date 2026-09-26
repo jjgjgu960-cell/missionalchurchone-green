@@ -1,5 +1,5 @@
 /* =========================================================================
-   Missional Church One — Ministries page interactions
+   First McKinney — Ministries page interactions
    -------------------------------------------------------------------------
    initMarquee()    03 · continuous category card carousel
    initDirectory()  04 · ministry directory panel/photo switcher

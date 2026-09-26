@@ -5,16 +5,6 @@
     text-align: center;
     width: 100%;
 }
-
-
-.firstorder{
-    order:1;
-}
-
-
-
-
-
 .playnow a {
     padding: 16px 22px;
     font-size: 15px;
@@ -60,10 +50,16 @@ button.steps-next {
 .about-hading {
     margin-bottom: 30px;
 }
-
-
+.satisfied {
+    padding: 24px;
+    height: auto;
+    margin-bottom: 30px;
+}
+.genuinelot {
+    padding: 20px;
+}
 .members-text p {
-    font-size: 17px;
+    font-size: 21px;
     line-height: 27px;
 }
 .member-list p {
@@ -370,8 +366,14 @@ button.steps-next {
 .contact-image {
     bottom: -10px;
 }
-
-
+.genuinelot {
+    padding: 24px;
+}
+.satisfied {
+    padding: 30px;
+    height: auto;
+    margin-bottom: 30px;
+}
 .member-list p {
     font-size: 20px;
     line-height: 26px;
@@ -630,7 +632,7 @@ h2 {
 }
 
 .navigation button.navbar-toggler {
-    background: var(--mco-secondary);
+    background: #EA9822;
     padding: 8px 8px 0px 8px;
     outline: none;
     color: #fff;
@@ -832,7 +834,10 @@ p.text-fit {
 .love-image{
     margin-bottom: 20px;
 }
-
+.next-step {
+    max-width: 100%;
+    margin: 0px auto 0px;
+}
 .next-step h2 {
     font-size: 24px;
     line-height: 30px;
@@ -1046,10 +1051,6 @@ margin-top: 0;
 
    
 }
-
-
-
-
 	.accordion-body {
     font-size: 16px;
     line-height: 26px;
@@ -1162,29 +1163,6 @@ margin-top: 0;
     gap: 10px;
     flex-wrap: wrap;
 }
-
-
-
-.reviews i {
-    font-size: 16px;
-    color: #1A1A1A;
-}
-
-
-.satisfied-images img {
-    max-width: 100%;
-    width: 33px;
-}
-
-
-.genuinelot {
-    padding: 20px;
-}
-
-
-
-
-
 }
 @media (min-width: 768px) and (max-width: 991px) {
 	.look-card {
@@ -1483,7 +1461,7 @@ left: -13px;
     top: -80px;
 }
 .navigation button.navbar-toggler {
-    background: var(--mco-secondary);
+    background: #EA9822;
     padding: 8px 8px 0px 8px;
     outline: none;
     box-shadow: none !important;
@@ -1580,7 +1558,9 @@ h1 {
     font-size: 16px;
     line-height: 26px;
 }
-
+.next-step {
+    margin: 0px auto 0px;
+}
 .next-step p {
     margin-bottom: 0;
 }
@@ -1747,6 +1727,7 @@ button.steps-next {
     margin: 15px 0px;
 }
 .satisfied {
+    height: auto;
     margin-bottom: 50px;
 }
 .from-style input {
@@ -1931,10 +1912,6 @@ button.steps-next {
     font-size: 16px;
     line-height: 26px;
 }
-
-
-
-
 .contact-image {
     bottom: -20px;
 }
@@ -1965,13 +1942,6 @@ button.steps-next {
     height: 160px;
 
 }
-
-
-
-
-
-
-
 	
 	h1 {
     font-size: 44px !important;
@@ -2345,13 +2315,18 @@ a.messagebtn {
     font-size: 24px;
     line-height: 28px;
 }
-
+.satisfied {
+    padding: 15px;
+}
 .member-list p {
     font-size: 16px;
     line-height: 26px;
     margin-top: 30px;
 }
-
+.genuinelot {
+    padding: 15px;
+    min-height: 350px;
+}
 .members-text p {
     font-size: 16px;
     line-height: 24px;
@@ -2377,7 +2352,9 @@ a.messagebtn {
     font-size: 20px;
     line-height: 28px;
 }
-
+.satisfied {
+    height: auto;
+}
 .members h3 {
     font-size: 42px;
     line-height: 52px;
@@ -2385,7 +2362,9 @@ a.messagebtn {
 .reviews {
     margin: 10px 0px 10px;
 }
-
+.next-step {
+    margin: -65px auto 0px;
+}
 .slide-arrow {
     bottom: 30px;
     left: 30px;
@@ -2464,7 +2443,7 @@ a.messagebtn {
     height: 99px;
 }
 .navigation button.navbar-toggler {
-    background: var(--mco-secondary);
+    background: #EA9822;
     padding: 8px 8px 0px 8px;
     outline: none;
     color: #fff;
@@ -2550,7 +2529,9 @@ a.messagebtn {
 .about-saying .member-list__body p {
     margin-top: 12px;
 }
-
+.profilesection {
+    min-height: 380px;
+}
 .stepsSwiper {
     margin-top: 30px;
 }
@@ -2613,24 +2594,6 @@ a.messagebtn {
     font-size: 38px !important;
   
 }
-
-.reviews i {
-    font-size: 16px;
-    color: #1A1A1A;
-}
-
-
-.satisfied-images img {
-    max-width: 100%;
-    width: 33px;
-}
-
-
-.genuinelot {
-    padding: 15px;
-}
-
-
 	.teaching__title {
     font-size: 38px !important;
 }
@@ -3022,7 +2985,10 @@ p.text-fit {
    font-size: 18px;
         line-height: 28px;
 }
-
+.satisfied {
+    padding: 40px;
+    height: 372px;
+}
 .members-text p {
     font-size: 18px;
         line-height: 28px;
@@ -3117,7 +3083,9 @@ p.text-fit {
     display: flex;
     flex-direction: column;
 }
-
+.profilesection {
+    min-height: 377px;
+}
 .serve-card__text {
     font-size: 16px;
     line-height: 25px;
@@ -3456,7 +3424,10 @@ a.messagebtn {
     width: 48px;
     height: 48px;
 }
-
+.satisfied {
+    padding: 20px;
+    height: 433px;
+}
 .about-hading {
     max-width: 850px;
     margin: 0 auto 50px;
@@ -3529,7 +3500,9 @@ p.text-fit {
 		max-width: 400px;
 		border-radius: 20px;
 	}
-
+.next-step {
+    margin: -100px auto 35px;
+}
 .great-heading h2 {
     font-size: 52px;
     line-height: 62px;

@@ -59,7 +59,7 @@
   var TRACKS = [
     {
       img: "serve-main/images/tracks/track-01-serve-the-church.jpg",
-      alt: "Hospitality volunteers welcoming guests at Missional Church One Baptist Church",
+      alt: "Hospitality volunteers welcoming guests at First McKinney Baptist Church",
       title: "Sunday ministry teams",
       icon: "fas fa-church",
       badge: "01 · Serve the Church",
@@ -69,8 +69,8 @@
     },
     {
       img: "serve-main/images/tracks/track-02-serve-local.jpg",
-      alt: "Church volunteers serving the Missional Church One community through local outreach",
-      title: "Outreach across Missional Church One ",
+      alt: "Church volunteers serving the McKinney community through local outreach",
+      title: "Outreach across McKinney",
       icon: "fas fa-hands-helping",
       badge: "02 · Serve Local",
       desc: "The warming shelter, Finch Elementary, neighbors facing housing insecurity, and Seniors Helping Seniors",
@@ -79,7 +79,7 @@
     },
     {
       img: "serve-main/images/tracks/track-03-serve-global.jpg",
-      alt: "Missional Church One Baptist Church mission team serving through global missions",
+      alt: "First McKinney Baptist Church mission team serving through global missions",
       title: "Missions &amp; mission trips",
       icon: "fas fa-globe-americas",
       badge: "03 · Serve Global",
@@ -93,9 +93,9 @@
     {
       title: "Pray for the nations",
       icon: "fas fa-hands",
-      desc: "Throughout the year, Missional Church One partners with missionaries, church planters, and trusted ministry partners around the world while sending teams to serve alongside them through mission trips.",
+      desc: "Throughout the year, First McKinney partners with missionaries, church planters, and trusted ministry partners around the world while sending teams to serve alongside them through mission trips.",
       img: "serve-main/images/global/global-01-pray.jpg",
-      alt: "The Missional Church One choir and worship team leading worship",
+      alt: "The First McKinney choir and worship team leading worship",
       pos: "center 30%"
     },
     {
@@ -103,7 +103,7 @@
       icon: "fas fa-gift",
       desc: "Each November, our Beyond emphasis invites our church family to look beyond ourselves through three simple words: Pray. Give. Go.",
       img: "serve-main/images/global/global-02-give.jpg",
-      alt: "A young family at a Missional Church One gathering",
+      alt: "A young family at a First McKinney gathering",
       pos: "center 30%"
     },
     {
@@ -111,7 +111,7 @@
       icon: "fas fa-plane-departure",
       desc: "Whether you're called to pray, give, or go, we'll help you discover how you can be part of what God is doing around the world.",
       img: "serve-main/images/global/global-03-go.png",
-      alt: "A Missional Church One mission team in front of a Hope Brings Change mural",
+      alt: "A First McKinney mission team in front of a Hope Brings Change mural",
       pos: "center 40%"
     }
   ];
@@ -576,7 +576,7 @@
 
   /* =======================================================================
      8. REDUCED MOTION — the SVG ribbon
-     The ribbon in Serve → "Serve at Missional Church One" travels along a
+     The ribbon in Serve → "Serve at First McKinney" travels along a
      textPath, which only SMIL can animate; no CSS media query can reach an
      <animate> element. Pausing the document's SMIL timeline stops it, and
      it is the only SMIL on either page.

@@ -1104,7 +1104,7 @@ line-height: 45px;*/
 }
 
 /* =========================================================================
-   13  BIG IMAGE LINK CARDS  (Life at Missional Church One / Families)
+   13  BIG IMAGE LINK CARDS  (Life at First McKinney / Families)
    ========================================================================= */
 .fmk-cards { display: flex; flex-wrap: wrap; gap: clamp(18px, 2vw, 34px); margin-top: clamp(32px, 3.5vw, 60px); }
 .fmk-card {
@@ -1599,7 +1599,7 @@ line-height: 45px;*/
 
 
 .inner-page-btn a::after {
-    background: var( --mco-primary);
+    background: #054766;
     width: 0;
     height: 100%;
     top: 0;
@@ -1762,7 +1762,7 @@ line-height: 45px;
 /*   font-weight: 600;*/
 }
 .fmk-btn--border:hover, .fmk-btn--border:focus-visible{
-   border: 1.5px solid var( --mco-primary) !important;
+   border: 1.5px solid #054766 !important;
 }
 .fmk-hero__doodle {
    transform: none;
@@ -1780,7 +1780,7 @@ line-height: 45px;
 color: unset;
 }
 .btn-hover-inner::after{
-   background: var( --mco-primary);
+   background: #054766;
     width: 0;
     height: 100%;
     top: 0;
@@ -1802,7 +1802,7 @@ color: unset;
     margin: 20px 0px;
 }
 .btn-one-give::after{
- background: var( --mco-primary);
+ background: #054766;
     width: 0;
     height: 100%;
     top: 0;
@@ -1821,7 +1821,7 @@ color: unset;
   width: 100%;
 }
 .btn-tow-give::after{
- background: var( --mco-primary);
+ background: #054766;
     width: 0;
     height: 100%;
     top: 0;
@@ -1845,7 +1845,7 @@ color: unset;
   transition: width 0.3s ease-in-out;
 }
 .blue-btn-about::after {
-    background: var( --mco-tertiary);
+    background: #378F9D;
     width: 0;
     height: 100%;
     top: 0;
@@ -1860,7 +1860,7 @@ color: unset;
     width: 100%;
 }
 .fmk-blue-border:hover, .fmk-blue-border:focus-visible{
-   border: 1.5px solid var( --mco-tertiary) !important;
+   border: 1.5px solid #378F9D !important;
 }
 .top-header-section{
   padding: 80px 0px 80px;

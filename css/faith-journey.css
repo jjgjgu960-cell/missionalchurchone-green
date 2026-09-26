@@ -1,0 +1,830 @@
+/* =========================================================================
+   faith-journey.css — Faith Journey page components
+   ------------------------------------------------------------------------
+   Ported from faith-journey/css/style.css. That file's own nav, footer,
+   global resets and :root brand block are gone — the shared site header /
+   footer and the --fmk-* tokens in inner-pages.css provide those instead.
+
+   Mechanical changes applied to the source:
+     1. tokens remapped:  --blue -> --fmk-navy,  --navy -> --fmk-navy-deep,
+        --orange -> --fmk-orange, --rust -> --fmk-rust, --cream -> --fmk-cream
+     2. EVERY class carries an `fj-` prefix. The export shipped bare names
+        (.btn, .section, .hero, .split, .chip, .pill, .footer, .topic ...)
+        that all collide with bootstrap.min.css and style.css, so rather than
+        rename only the clashes, the whole namespace moved. BEM elements and
+        modifiers moved with it: .step-card__go -> .fj-step-card__go.
+     3. every selector scoped under .inner-page, so nothing here can reach
+        the shared header, the footer, or index.html
+     4. image urls repointed at the export folder, which stays where it is —
+        ../faith-journey/images/... — so no asset is duplicated.
+
+   .rv is NOT redefined here: style.css already styles it and js/app.js
+   observes it, flipping it to .is-in. The export's second reveal class
+   .rvf is folded into .rv in the markup — app.js observes only .rv, and an
+   unobserved reveal would stay invisible forever.
+
+   The hero's own entrance animations do not depend on .rv, so the export's
+   @keyframes rvUp survives here, renamed fjUp so it cannot collide with the
+   keyframes already declared in style.css.
+
+   This file is self-contained: the component breakpoints sit at the foot of
+   each section exactly where the export kept them, and the page-wide ones
+   are collected at the bottom.
+   ========================================================================= */
+
+.inner-page {
+  --fj-muted:   #6E6355;   /* eyebrows, captions on light */
+  --fj-faint:   #9A8C74;   /* de-emphasised captions      */
+  --fj-r-sm:    12px;
+  --fj-r-md:    18px;
+  --fj-r-lg:    24px;
+  --fj-pad:     80px;      /* vertical rhythm between every section */
+
+  /* ---- TYPE SCALE, taken from the main site ----------------------------
+     style.css sets bare h1 at 64/80 and bare h2 at 96/100, and responsive.css
+     steps h2 down 65 → 54 → 46 → 38 → 32 across the breakpoints. The site's
+     own section headings (.outreach__title, .story__title, .teaching__title,
+     .next-step h2) all sit at 55px/1.1, its card titles at 36px and its
+     sub-headings at 30px, and body copy runs 20/30 stepping to 18/28 and
+     16/26.
+
+     The export was much smaller than all of that — its headings topped out
+     at 46px and its body text at 18px — so this page read as a different
+     site. These tokens put it on the same scale, and every component below
+     draws from them instead of carrying its own clamp().
+     -------------------------------------------------------------------- */
+  --fj-h1:      64px;   /* hero — matches style.css h1 */
+  --fj-h2:      55px;   /* section heading             */
+  --fj-h3:      36px;   /* card title                  */
+  --fj-sub:     30px;   /* small heading / sub-heading  */
+  --fj-text:    20px;   /* body copy                   */
+  --fj-text-lh: 30px;
+  --fj-lead:    24px;   /* section lede, a step above body */
+}
+
+@media (max-width: 1399px) {
+  .inner-page { --fj-h1: 58px; --fj-h2: 54px; --fj-h3: 32px; --fj-sub: 28px;
+                --fj-text: 18px; --fj-text-lh: 28px; --fj-lead: 21px; }
+}
+@media (max-width: 1199px) {
+  .inner-page { --fj-h1: 50px; --fj-h2: 46px; --fj-h3: 30px; --fj-sub: 26px;
+                --fj-text: 16px; --fj-text-lh: 26px; --fj-lead: 19px; }
+}
+@media (max-width: 991px) {
+  .inner-page { --fj-h1: 42px; --fj-h2: 38px; --fj-h3: 28px; --fj-sub: 24px;
+                --fj-lead: 18px; }
+}
+@media (max-width: 767px) {
+  .inner-page { --fj-h1: 34px; --fj-h2: 32px; --fj-h3: 24px; --fj-sub: 21px;
+                --fj-text-lh: 26px; --fj-lead: 17px; }
+}
+
+@keyframes fjUp { from { opacity: 0; transform: translateY(38px); } to { opacity: 1; transform: none; } }
+
+/* =========================================================================
+   LAYOUT HELPERS
+   ========================================================================= */
+/*.inner-page .fj-sec { padding: var(--fj-pad) 0; }*/
+.inner-page .fj-sec--light  { background: var(--fmk-cream); }
+.inner-page .fj-sec--dark   { background: var(--fmk-navy); }
+.inner-page .fj-sec--anchor { scroll-margin-top: 110px; }
+
+/* ------------------------------------------------------------------------
+   WIDTH comes from Bootstrap's own `.container`, which every fj-shell
+   element also carries in the markup. index.html and the other converted
+   pages (about-us, watch, give, events) all lay out on plain `.container`,
+   so this page now measures the same as the rest of the site at every
+   breakpoint: 1320 / 1140 / 960 / 720 / 540, then fluid.
+
+   The export's private shells were 1500px wide and 1040px "narrow". The
+   narrow one was the real problem — it put the Three Circles fan in a
+   ~444px column, far too tight for the artwork. On `.container` that same
+   column is ~620px and the cards run at close to their design size.
+
+   These classes therefore set no width of their own. They stay in the
+   markup as the hook the components below are written against, and as the
+   place to put a genuinely narrower measure if one is ever wanted.
+   ------------------------------------------------------------------------ */
+.inner-page .fj-shell,
+.inner-page .fj-shell--narrow,
+.inner-page .fj-shell--cta { width: 100%; }
+
+/* Numbered section rule:  05 ————————————— GROW THROUGH DISCIPLESHIP */
+.inner-page .fj-eyebrow { display: flex; align-items: center; gap: 14px; }
+.inner-page .fj-eyebrow__num {
+    font-weight: 600;
+    color: var(--fmk-rust);
+}
+.inner-page .fj-eyebrow__rule  { flex: 1; height: 1px; background: rgba(11, 36, 56, 0.15); }
+.inner-page .fj-eyebrow__label {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--fj-muted);
+}
+
+.inner-page .fj-eyebrow--onDark .fj-eyebrow__num   { color: var(--fmk-orange); }
+.inner-page .fj-eyebrow--onDark .fj-eyebrow__rule  { background: rgba(255, 255, 255, 0.22); }
+.inner-page .fj-eyebrow--onDark .fj-eyebrow__label { color: rgba(248, 242, 230, 0.7); }
+.inner-page .fj-eyebrow--onDark .fj-eyebrow__num--rust { color: var(--fmk-rust); }
+
+/* style.css sets bare h1 at 64px and bare h2 at 96px, so every heading on
+   this page carries its own class and never relies on the tag default. */
+.inner-page .fj-title { margin-top:10px; font-weight: 700; color: #000; max-width: 1000px; }
+.inner-page .fj-title--onDark { color: var(--fmk-white); }
+.inner-page .fj-lede {
+    margin: 20px 0 0;
+    max-width: 1000px;
+}
+.inner-page .fj-lede--onDark { color: rgba(248, 242, 230, 0.85); }
+.inner-page .fj-accent { color: var(--fmk-orange); }
+.inner-page .fj-script { font-family: "alkaline", sans-serif; font-weight: 700; color: var(--fmk-orange); font-size: 1.15em; line-height: 1; }
+
+/* =========================================================================
+   BUTTONS — every button turns rust (#B04825) on hover
+   ========================================================================= */
+.inner-page .fj-btn {
+  display: inline-flex; 
+  align-items: center; gap: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 14px 24px !important;
+    font-size: 14px;
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+  transition: transform .25s, background .25s, color .25s, border-color .25s;
+}
+.inner-page .fj-btn i { font-size: 12px; }
+.inner-page .fj-btn--primary:hover {color: var(--fmk-white); transform: translateY(-2px); }
+.inner-page .fj-btn--outline { background: transparent; border-color: rgba(255, 255, 255, 0.5); color: var(--fmk-white); }
+.inner-page .fj-btn--outline:hover {border-color: var(--fmk-rust); color: var(--fmk-white); transform: translateY(-2px); }
+.inner-page .fj-btn--lg { font-size: 15px; padding: 15px 30px; }
+
+.inner-page .fj-link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--fmk-rust);
+    font-weight: 600;
+    font-size: 16px;
+}
+.inner-page .fj-link-arrow:hover { color: var(--fmk-orange); }
+
+.inner-page .fj-pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+/*.inner-page .fj-pill {
+  background: var(--fmk-white); border: 1px solid rgba(176, 72, 37, 0.2);
+  border-radius: 999px; padding: 8px 16px; font-weight: 600; font-size: 13px; color: var(--fmk-rust);
+}*/
+.inner-page .fj-pill {
+    background: var(--fmk-white);
+    border: 1px solid rgba(176, 72, 37, 0.2);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 500;
+    color: var(--fmk-rust);
+}
+.inner-page .fj-btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px, 2.4vw, 38px); }
+.inner-page .fj-btn-row--center { justify-content: center; }
+
+/* =========================================================================
+   01 · HERO
+   photo → faith-journey/images/01-hero/hero-background.jpg
+   ========================================================================= */
+.inner-page .fj-hero {
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(102deg, rgba(11,36,56,.94) 0%, rgba(11,36,56,.78) 38%, rgba(11,36,56,.44) 68%, rgba(11,36,56,.2) 100%),
+    url("../faith-journey/images/01-hero/hero-background.jpg") center 22% / cover no-repeat;
+}
+/* the export's own nav was sticky; the shared site header is position:fixed,
+   so the first band has to clear it by hand — same trick index.html uses. */
+/* width + inline padding from `.container` in the markup */
+.inner-page .fj-hero__inner {
+ /* min-height: clamp(540px, 64vw, 780px);
+  padding-top: calc(var(--fmk-header-h) + 40px); padding-bottom: 80px;*/
+  display: flex; flex-direction: column; justify-content: center;
+/*  padding: 150px 12px 80px;*/
+}
+.inner-page .fj-hero__content { max-width: 820px; }
+.inner-page .fj-hero__crumbs { display: flex; align-items: center; gap: 9px; color: rgba(248,242,230,.75); animation: fjUp .6s ease both; }
+.inner-page .fj-hero__crumbs a { color: rgba(248,242,230,.75); }
+.inner-page .fj-hero__crumbs a:hover { color: var(--fmk-orange); }
+.inner-page .fj-hero__crumbs span { opacity: .5; }
+.inner-page .fj-hero__crumbs .is-current { color: var(--fmk-yellow); font-weight: 600; opacity: 1; }
+.inner-page .fj-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    color: var(--fmk-orange);
+    font-weight: 600;
+    animation: fjUp .7s ease .04s both;
+}
+.inner-page .fj-hero__eyebrow i { width: 26px; height: 2px; background: var(--fmk-orange); display: inline-block; }
+.inner-page .fj-hero__title {
+    margin: 10px 0px 20px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    color: var(--fmk-white);
+    animation: fjUp .8s ease .08s both;
+}
+.inner-page .fj-hero__script {animation: fjUp .8s ease .14s both; }
+.inner-page .fj-hero .fj-btn-row { animation: fjUp .8s ease .22s both; }
+
+/* =========================================================================
+   02 · AT A GLANCE (fanned collage)
+   ========================================================================= */
+.inner-page .fj-glance__intro { text-align: center; }
+.inner-page .fj-glance__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    color: var(--fj-muted);
+    font-weight: 600;
+}
+.inner-page .fj-glance__kicker b { color: var(--fmk-rust); font-weight: 600; }
+.inner-page .fj-glance__kicker i { width: 22px; height: 1.5px; background: rgba(11,36,56,.25); display: inline-block; }
+.inner-page .fj-glance__title { margin-top: 10px; letter-spacing: -0.02em; color: #000; }
+.inner-page .fj-glance__lede {
+    margin: clamp(16px, 1.6vw, 24px) auto 0;
+    max-width: 1000px;
+    color: var(--fmk-body-soft);
+    text-wrap: pretty;
+}
+
+.inner-page .fj-glance__stage { position: relative; margin-top: clamp(30px, 3.2vw, 54px); }
+.inner-page .fj-glance__float {
+  position: absolute; width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; z-index: 5;
+}
+.inner-page .fj-glance__float--left  { left: clamp(4px, 6vw, 120px); top: -14px; background: var(--fmk-rust);   box-shadow: 0 10px 24px rgba(176,72,37,.35); }
+.inner-page .fj-glance__float--right { right: clamp(4px, 6vw, 120px); top: 6px;  background: var(--fmk-orange); box-shadow: 0 10px 24px rgba(234,152,34,.4); }
+.inner-page .fj-glance__float--left i  { color: var(--fmk-white); font-size: 15px; }
+.inner-page .fj-glance__float--right i { color: var(--fmk-navy-deep); font-size: 15px; }
+
+.inner-page .fj-glance__cards { display: flex; justify-content: center; align-items: center; gap: clamp(10px, 1.2vw, 18px); }
+.inner-page .fj-glance-card {
+  flex: 0 0 auto; position: relative; aspect-ratio: 7 / 10; overflow: hidden; text-decoration: none;
+  transition: transform .35s, box-shadow .35s, opacity .35s;
+}
+.inner-page .fj-glance-card__photo { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.inner-page .fj-glance-card__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,36,56,.05) 45%, rgba(11,36,56,.84) 100%); }
+.inner-page .fj-glance-card__label { position: absolute; left: 12px; right: 12px; bottom: 12px; color: var(--fmk-white); font-weight: 600; letter-spacing: -.01em; }
+.inner-page .fj-glance-card__label i { font-size: 9px; opacity: .8; }
+.inner-page .fj-glance-card__badge {
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%); white-space: nowrap;
+  background: rgba(11,36,56,.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  color: var(--fmk-white); border-radius: 999px; padding: 5px 12px;
+  font-family: var(--fmk-font-ui);
+}
+.inner-page .fj-glance-card__badge i { color: var(--fmk-orange); margin-right: 6px; font-size: 9px; }
+
+.inner-page .fj-glance-card--sm { width: clamp(120px, 12vw, 165px); border-radius: var(--fj-r-md); opacity: .55; transform: translateY(6px); box-shadow: 0 18px 44px rgba(11,36,56,.18); }
+.inner-page .fj-glance-card--md { width: clamp(150px, 15vw, 205px); border-radius: 20px;            opacity: .85; transform: translateY(2px); box-shadow: 0 22px 52px rgba(11,36,56,.22); }
+.inner-page .fj-glance-card--lg { width: clamp(180px, 18vw, 250px); border-radius: 22px; z-index: 3; box-shadow: 0 30px 70px rgba(11,36,56,.3); }
+.inner-page .fj-glance-card--lg .fj-glance-card__label { left: 16px; right: 16px; bottom: 16px; font-size: 18px; }
+.inner-page .fj-glance-card--lg .fj-glance-card__badge { top: 12px; padding: 6px 14px; }
+.inner-page .fj-glance-card--lg .fj-glance-card__note {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;
+  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.25); border-radius: 999px;
+  padding: 5px 11px; font-size: 12px; color: var(--fmk-white);
+}
+.inner-page .fj-glance-card:hover {
+  transform: translateY(-10px); opacity: 1;
+  box-shadow: 0 0 0 1.5px rgba(234,152,34,.7), 0 0 30px rgba(234,152,34,.4), 0 34px 74px rgba(11,36,56,.35);
+}
+
+@media (max-width: 760px) {
+  .inner-page .fj-glance__cards { flex-wrap: wrap; }
+  .inner-page .fj-glance-card { opacity: 1; transform: none; }
+  .inner-page .fj-glance__float { display: none; }
+}
+
+/* =========================================================================
+   03 · FIVE NEXT STEPS
+   ========================================================================= */
+.inner-page .fj-steps { position: relative; overflow: hidden; scroll-margin-top: 110px; }
+.inner-page .fj-steps__glow { position: absolute; inset: 0; background: radial-gradient(80% 100% at 85% 0%, rgba(234,152,34,.14), transparent 55%); }
+.inner-page .fj-steps__inner { position: relative; z-index: 2; }
+.inner-page .fj-steps__head {
+    margin: 10px 0px 20px;
+    max-width: 1000px;
+}
+.inner-page .fj-steps__head .fj-title { margin-top: 0; }
+/* the 1 / 2 / 3 / 5 ladder is Bootstrap's row-cols-* in the markup */
+.inner-page .fj-steps__grid { margin-top: clamp(28px, 2.8vw, 44px); --bs-gutter-x: clamp(14px, 1.4vw, 22px); --bs-gutter-y: clamp(14px, 1.4vw, 22px); }
+
+.inner-page .fj-step-card {
+  position: relative; display: flex; flex-direction: column; overflow: hidden; text-decoration: none;
+  border: 1px solid rgba(255,255,255,.1); border-radius: var(--fj-r-md);
+  min-height: clamp(340px, 25vw, 420px);
+  transition: transform .3s, border-color .3s, background .3s, box-shadow .3s;
+}
+.inner-page .fj-step-card__photo { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; transition: transform .55s cubic-bezier(.22,1,.36,1); }
+.inner-page .fj-step-card__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,36,56,.18) 0%, rgba(11,36,56,.22) 38%, rgba(11,36,56,.78) 66%, rgba(11,36,56,.97) 100%); }
+.inner-page .fj-step-card__body { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 12px; flex: 1 1 auto; padding: 20px 20px; }
+.inner-page .fj-step-card__icon { width: 60px; height: 60px; border-radius: 11px; background: var(--fmk-white); box-shadow: 0 6px 18px rgba(0,0,0,.25); display: flex; align-items: center; justify-content: center; margin-bottom: auto; }
+.inner-page .fj-step-card__icon i { color: var(--fmk-rust); font-size: 30px; }
+.inner-page .fj-step-card__step { font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(248,242,230,.7); margin-top: clamp(90px, 9vw, 140px); }
+.inner-page .fj-step-card__title {   color: var(--fmk-white); transition: color .25s; font-weight:700; }
+.inner-page .fj-step-card__sub { color: rgba(248,242,230,.85);}
+.inner-page .fj-step-card__foot { margin-top: 6px; padding-top: 8px; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; }
+.inner-page .fj-step-card__explore {
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(248,242,230,.75);
+}
+.inner-page .fj-step-card__go {
+  flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.3);
+  display: flex; align-items: center; justify-content: center; color: var(--fmk-white); font-size: 12px;
+  transition: background .25s, border-color .25s, color .25s;
+}
+.inner-page .fj-step-card:hover {
+  transform: translateY(-6px); border-color: rgba(234,152,34,.8); background: rgba(255,255,255,.06);
+  box-shadow: 0 0 0 1.5px rgba(234,152,34,.7), 0 0 30px rgba(234,152,34,.45), 0 18px 44px rgba(0,0,0,.3);
+}
+.inner-page .fj-step-card:hover .fj-step-card__title { color: var(--fmk-orange); }
+.inner-page .fj-step-card:hover .fj-step-card__photo { transform: scale(1.08); }
+.inner-page .fj-step-card:hover .fj-step-card__go { background: var(--fmk-rust); border-color: var(--fmk-rust); color: var(--fmk-white); }
+
+@media (max-width: 1100px) { .inner-page .fj-steps__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 820px)  { .inner-page .fj-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 540px)  { .inner-page .fj-steps__grid { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   04 · THREE CIRCLES (fanned cards)
+   ========================================================================= */
+/* columns + gutter come from Bootstrap's .row/.col-lg-* in the markup —
+   this only supplies the top margin and a wider gutter than the default */
+.inner-page .fj-split { margin-top: clamp(22px, 2.2vw, 36px); --bs-gutter-x: clamp(28px, 3vw, 56px); }
+.inner-page .fj-split > * { min-width: 0; }
+.inner-page .fj-split .fj-title { margin-top: 10px; }
+
+/* The fan is sized against ITS OWN COLUMN, not the viewport.
+   The export used clamp(158px, 15.5vw, 212px) — fine when the fan owns the
+   full page width, wrong here, where it sits in one half of a split. In
+   viewport units the cards hit their 212/226/212 maximums on any desktop
+   regardless of how much room the column actually had, overflowed it, and
+   flex centring spilled the excess out both sides — which is what put card
+   1 on top of the copy to its left.
+
+   Percentages resolve against .fj-circles, so the fan tracks its column and
+   can never outgrow it. On `.container` that column is ~620px at full
+   width, which puts the cards at roughly 205/223/205 — essentially the
+   size the artwork was drawn at.
+
+   The overlap is clamp(-32px, -5%, -14px): it tracks the column like the
+   widths do, but is capped at the design's own -32px so a wide column does
+   not pile the cards further over each other than they were drawn, and
+   floored at -14px so a narrow one keeps them readable.
+
+   Remember the rotations when touching any of this: a card sweeps out more
+   width than its own box, ~17px a side here, and the overlap is what pays
+   for that. The tightest step clears by only a few px. */
+.inner-page .fj-circles {
+  display: flex; justify-content: center; align-items: flex-start; min-width: 0;
+  padding: clamp(8px, 1vw, 20px) clamp(6px, 2%, 16px) clamp(18px, 2vw, 34px);
+}
+.inner-page .fj-circle-card {
+  flex: 0 1 auto; background: var(--fmk-white); border-radius: 20px; padding: 9px;
+  display: flex; flex-direction: column; text-decoration: none;
+  transition: transform .35s, box-shadow .35s;
+}
+.inner-page .fj-circle-card--1 { width: clamp(140px, 32%, 212px); box-shadow: 0 24px 56px rgba(11,36,56,.22); transform: rotate(-8deg) translateY(18px); margin-right: clamp(-32px, -5%, -14px); z-index: 1; }
+.inner-page .fj-circle-card--2 { width: clamp(150px, 35%, 226px); box-shadow: 0 28px 64px rgba(11,36,56,.28); transform: rotate(-1deg); z-index: 3; position: relative; }
+.inner-page .fj-circle-card--3 { width: clamp(140px, 32%, 212px); box-shadow: 0 24px 56px rgba(11,36,56,.22); transform: rotate(7deg) translateY(24px); margin-left: clamp(-32px, -5%, -14px); z-index: 2; }
+.inner-page .fj-circle-card--1:hover { transform: rotate(-2deg) translateY(6px) scale(1.04); }
+.inner-page .fj-circle-card--2:hover { transform: rotate(0deg) translateY(-8px) scale(1.04); }
+.inner-page .fj-circle-card--3:hover { transform: rotate(2deg) translateY(10px) scale(1.04); }
+.inner-page .fj-circle-card:hover { box-shadow: 0 0 0 1.5px rgba(234,152,34,.7), 0 0 26px rgba(234,152,34,.4), 0 32px 70px rgba(11,36,56,.34); }
+
+.inner-page .fj-circles-card-new{
+  border-radius: 20px;
+  box-shadow: 0 30px 70px rgba(11, 36, 56, .22);
+  transition: transform .35s, box-shadow .35s;
+}
+.inner-page .fj-circles-card-new img{
+  max-width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(180deg, transparent 52%, rgba(11, 36, 56, .88) 100%);
+}
+.inner-page .fj-circles-card-new:hover { transform: rotate(0deg) translateY(-8px) scale(1.04); }
+
+.inner-page .fj-circle-card__media { position: relative; display: block; border-radius: 13px; overflow: hidden; aspect-ratio: 9 / 10; }
+.inner-page .fj-circle-card__photo { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.inner-page .fj-circle-card__tag {
+  position: absolute; top: 9px; left: 9px; background: rgba(11,36,56,.78);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); color: var(--fmk-white);
+  border-radius: 999px; padding: 5px 11px;
+  font-size: 12px;  letter-spacing: .6px; white-space: nowrap;
+}
+.inner-page .fj-circle-card__icon { position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border-radius: 50%; background: var(--fmk-navy-deep); display: flex; align-items: center; justify-content: center; }
+.inner-page .fj-circle-card__icon i { color: var(--fmk-white); font-size: 11px; }
+.inner-page .fj-circle-card__title {
+    display: block;
+    padding: 10px 6px 0;
+    font-weight: 700;
+    color: var(--fmk-navy-deep);
+    letter-spacing: -.01em;
+}
+/*.inner-page .fj-circle-card--2 .fj-circle-card__title { font-size: 15px; }*/
+/* orange by default, rust on hover */
+.inner-page .fj-circle-card__cta {
+    display: block;
+    margin: 9px 6px 5px;
+    background: var(--fmk-orange);
+    color: var(--fmk-white);
+    border-radius: 999px;
+    padding: 9px;
+    text-align: center;
+    font-weight: 600;
+    /* font-size: 11px; */
+    transition: background .25s;
+}
+.inner-page .fj-circle-card--2 .fj-circle-card__cta { padding: 10px; }
+.inner-page .fj-circle-card:hover .fj-circle-card__cta { background: var(--fmk-rust); }
+
+/* Below 992 the split stacks on its own — the columns are col-lg-*, so
+   Bootstrap drops them to full width there. That is also what keeps the fan
+   workable: `.container` falls from 960 to 720 at that breakpoint, which
+   would leave a two-column fan far too little room. */
+@media (max-width: 620px) {
+  .inner-page .fj-circles { flex-direction: column; align-items: center; }
+  .inner-page .fj-circle-card { transform: none !important; margin: 0 0 18px !important; width: min(300px, 86%) !important; }
+}
+
+/* =========================================================================
+   05 · BAPTISM (full-bleed banner)
+   photo → faith-journey/images/05-baptism/baptism-background.jpg
+   ========================================================================= */
+.inner-page .fj-baptism {
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(94deg, rgba(11,36,56,.96) 0%, rgba(11,36,56,.88) 34%, rgba(11,36,56,.55) 62%, rgba(11,36,56,.18) 100%),
+    url("../faith-journey/images/05-baptism/baptism-background.jpg") center 38% / cover no-repeat;
+}
+.inner-page .fj-baptism__body {
+    max-width: 1000px;
+    margin-top: 0px;
+}
+.inner-page .fj-baptism__title { margin: 0; font-weight: 700; letter-spacing: -0.02em; color: var(--fmk-white);margin-top:10px; }
+.inner-page .fj-baptism__title .fj-script { font-size: 1.18em; }
+.inner-page .fj-baptism__lede { margin: 20px 0 0; color: rgba(248,242,230,.9); }
+.inner-page .fj-stat-chip {
+  margin-top: clamp(22px, 2.2vw, 32px); display: inline-flex; flex-direction: column; gap: 6px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border-radius: 14px; padding: 14px 18px;
+}
+.inner-page .fj-stat-chip__head { display: inline-flex; align-items: center; gap: 8px; color: var(--fmk-white); }
+.inner-page .fj-stat-chip__head i { font-size: 11px; color: var(--fmk-orange); }
+.inner-page .fj-stat-chip__note {  color: rgba(248,242,230,.7); }
+
+/* =========================================================================
+   06 · DISCIPLESHIP PATHWAY (auto-advancing spotlight)
+   ========================================================================= */
+.inner-page .fj-pathway { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(18px, 2vw, 32px); margin-top: clamp(24px, 2.4vw, 36px); align-items: stretch; }
+.inner-page .fj-pathway__stage { position: relative; border-radius: 20px; overflow: hidden; min-height: clamp(280px, 30vw, 460px); box-shadow: 0 30px 70px rgba(11,36,56,.22); }
+.inner-page .fj-pathway__slide { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; opacity: 0; transition: opacity .6s ease; }
+.inner-page .fj-pathway__slide.is-active { opacity: 1; }
+.inner-page .fj-pathway__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 52%, rgba(11,36,56,.88) 100%); }
+.inner-page .fj-pathway__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(18px, 2vw, 28px); }
+.inner-page .fj-pathway__step {
+    color: var(--fmk-orange);
+    font-weight: 700;
+}
+.inner-page .fj-pathway__name { font-weight: 700; font-size: 28px; color: var(--fmk-white); margin-top: 6px; }
+
+.inner-page .fj-pathway__list { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+.inner-page .fj-movement {
+  display: flex; align-items: flex-start; gap: 14px; background: var(--fmk-white);
+  border: 1px solid rgba(11,36,56,.1); border-radius: 14px; padding: 18px 20px; cursor: pointer;
+  box-shadow: 0 12px 30px rgba(11,36,56,.06);
+  transition: background .3s, border-color .3s, transform .3s;
+}
+.inner-page .fj-movement__icon { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 11px; background: rgba(11,36,56,.06); display: flex; align-items: center; justify-content: center; transition: background .3s; }
+.inner-page .fj-movement__icon i { color: var(--fmk-rust); font-size: 17px; transition: color .3s; }
+.inner-page .fj-movement__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.inner-page .fj-movement__title { font-weight: 700; color: var(--fmk-navy-deep); transition: color .3s; }
+.inner-page .fj-movement__sub { color: var(--fj-muted); transition: color .3s; }
+.inner-page .fj-movement.is-active { background: var(--fmk-navy); border-color: var(--fmk-navy); transform: translateX(-6px); }
+.inner-page .fj-movement.is-active .fj-movement__icon { background: rgba(234,152,34,.2); }
+.inner-page .fj-movement.is-active .fj-movement__icon i { color: var(--fmk-orange); }
+.inner-page .fj-movement.is-active .fj-movement__title { color: var(--fmk-white); }
+.inner-page .fj-movement.is-active .fj-movement__sub { color: rgba(248,242,230,.75); }
+
+@media (max-width: 880px) { .inner-page .fj-pathway { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   07 · PRAYER (click a mini card to swap the big photo)
+   ========================================================================= */
+.inner-page .fj-prayer { display: grid; grid-template-columns: 1.05fr .95fr; border-radius: 26px; overflow: hidden; box-shadow: 0 34px 80px rgba(0,0,0,.3); }
+.inner-page .fj-prayer__media { position: relative; min-height: clamp(420px, 42vw, 560px); display: flex; flex-direction: column; justify-content: flex-end; }
+.inner-page .fj-prayer__slide { position: absolute; inset: 0; background-size: cover; background-position: center 55%; background-repeat: no-repeat; opacity: 0; transition: opacity .5s ease; }
+.inner-page .fj-prayer__slide.is-active { opacity: 1; }
+.inner-page .fj-prayer__scrim { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(11,36,56,.05) 30%, rgba(11,36,56,.62) 68%, rgba(11,36,56,.94) 100%); }
+.inner-page .fj-prayer__caption { position: relative; z-index: 2; padding: clamp(24px, 2.8vw, 44px); }
+.inner-page .fj-prayer__kicker { letter-spacing: 3px; text-transform: uppercase; color: var(--fmk-orange); font-weight: 600; }
+.inner-page .fj-prayer__title { margin: 12px 0 0; font-weight: 700; font-size: var(--fj-h2); line-height: 1.1; letter-spacing: -0.02em; color: var(--fmk-white); }
+.inner-page .fj-prayer__lede {
+    margin: 14px 0 0;
+    color: rgba(248,242,230,.88);
+    max-width: 500px;
+}
+.inner-page .fj-prayer__caption .fj-btn { margin-top: 22px; padding: 13px 26px; }
+
+.inner-page .fj-prayer__panel {
+    background: var(--fmk-white);
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.inner-page .fj-prayer__panel h3 { margin: 0; color: var(--fmk-navy-deep); font-weight:700; }
+.inner-page .fj-prayer__tabs { display: flex; gap: 18px; margin-top: 12px; font-weight: 700; }
+.inner-page .fj-prayer__tabs span { color: var(--fj-faint); }
+.inner-page .fj-prayer__tabs .is-active { color: var(--fmk-rust); border-bottom: 2px solid var(--fmk-orange); padding-bottom: 5px; }
+.inner-page .fj-prayer__copy { margin: 16px 0 0;  color: var(--fmk-body-soft); }
+.inner-page .fj-prayer__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.inner-page .fj-prayer-card { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 3 / 4; cursor: pointer; border: 0; padding: 0; background: none; transition: transform .3s, box-shadow .3s; }
+.inner-page .fj-prayer-card__photo { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; }
+.inner-page .fj-prayer-card__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(11,36,56,.88) 100%); }
+.inner-page .fj-prayer-card__cap { position: absolute; left: 10px; right: 10px; bottom: 10px; color: var(--fmk-white);  text-align: left; font-weight:700; }
+.inner-page .fj-prayer-card:hover { transform: translateY(-5px); box-shadow: 0 0 0 1.5px rgba(234,152,34,.7), 0 0 30px rgba(234,152,34,.45), 0 26px 60px rgba(11,36,56,.2); }
+.inner-page .fj-prayer-card.is-active { box-shadow: 0 0 0 2px var(--fmk-orange), 0 0 22px rgba(234,152,34,.45); }
+
+.inner-page .fj-prayer__foot { margin-top: auto; padding-top: 18px; }
+.inner-page .fj-prayer__footLabel { font-size: 16px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--fj-muted); }
+.inner-page .fj-prayer__topics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.inner-page .fj-topic {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border: 1px solid rgba(11,36,56,.12); border-radius: 12px; padding: 10px 14px; min-width: 62px;
+  transition: border-color .25s, background .25s;
+}
+.inner-page .fj-topic i { color: var(--fmk-rust); font-size: 15px; }
+.inner-page .fj-topic span {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--fj-muted);
+}
+.inner-page .fj-topic:hover,
+.inner-page .fj-topic.is-active { border-color: rgba(234,152,34,.6); background: rgba(234,152,34,.08); }
+.inner-page .fj-prayer__stat {
+    margin-top: 14px;
+    font-size: 16px;
+    color: var(--fj-faint);
+}
+
+@media (max-width: 880px) { .inner-page .fj-prayer { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   08 · MEMBERSHIP (split card)
+   photo → faith-journey/images/08-membership/membership-photo.jpg
+   ========================================================================= */
+.inner-page .fj-membership { margin-top: clamp(22px, 2.2vw, 36px); border-radius: var(--fj-r-lg); overflow: hidden; display: grid; grid-template-columns: 1.15fr .85fr; box-shadow: 0 30px 70px rgba(11,36,56,.22); }
+.inner-page .fj-membership__copy { background: var(--fmk-navy); padding: clamp(30px, 3.4vw, 60px); display: flex; flex-direction: column; justify-content: center; }
+.inner-page .fj-membership__copy h2 { margin-top: 10px; font-weight: 700; letter-spacing: -0.02em; color: var(--fmk-white); }
+.inner-page .fj-membership__copy p { margin: 20px 0 0; color: rgba(248,242,230,.82); }
+.inner-page .fj-membership__stat { margin-top: 20px; color: rgba(248,242,230,.55); }
+.inner-page .fj-membership__photo {
+  background: url("../faith-journey/images/08-membership/membership-photo.jpg") center top / cover no-repeat;
+  min-height: 320px;
+  transition: transform .55s cubic-bezier(.22,1,.36,1), filter .45s ease;
+}
+.inner-page .fj-membership__photo:hover { transform: scale(1.05); filter: brightness(1.06) saturate(1.1); }
+
+@media (max-width: 760px) {
+  .inner-page .fj-membership { grid-template-columns: 1fr; }
+  .inner-page .fj-membership__photo { min-height: 200px; }
+}
+
+/* =========================================================================
+   09 · DISCIPLE MAKING (full-width lead, points 6-6 beside three photo cards)
+   ========================================================================= */
+.inner-page .fj-disciple { margin-top: clamp(22px, 2.2vw, 34px); }
+.inner-page .fj-disciple__lead { align-items: flex-end; }
+.inner-page .fj-disciple__lead h2 { margin-top: 10px; font-weight: 700; letter-spacing: -0.02em; font-size: var(--fj-h2); line-height: 1.1; color: var(--fmk-white); }
+.inner-page .fj-disciple__verse {
+    font-weight: 700;
+    letter-spacing: -.03em;
+    color: var(--fmk-orange);
+}
+.inner-page .fj-disciple__verseNote {
+    margin: 10px 0 0;
+    font-family: var(--fmk-font-ui);
+    color: rgba(248,242,230,.7);
+}
+/* the row under the headline: points 6, photo cards 6, both starting at the
+   same line so each point sits opposite a card */
+.inner-page .fj-disciple__body { margin-top: clamp(18px, 1.8vw, 28px); }
+.inner-page .fj-disciple__icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(234,152,34,.16); display: flex; align-items: center; justify-content: center; }
+.inner-page .fj-disciple__icon i { color: var(--fmk-orange); font-size: 16px; }
+.inner-page .fj-disciple__pointTitle { font-weight: 700; color: var(--fmk-white); margin-top: 10px; }
+.inner-page .fj-disciple__pointText { margin: 6px 0 0; color: rgba(248,242,230,.7); }
+.inner-page .fj-disciple__script { margin: clamp(16px, 1.8vw, 26px) 0 0; padding-top: clamp(14px, 1.6vw, 22px); border-top: 1px solid rgba(248,242,230,.14); color: var(--fmk-orange); font-family: "alkaline", sans-serif; }
+.inner-page .fj-disciple__card { min-height: clamp(210px, 22vw, 320px); border-radius: 14px; background-size: cover; background-position: 42% center; background-repeat: no-repeat; box-shadow: 0 24px 56px rgba(11,36,56,.2); }
+
+@media (max-width: 991px) {
+  .inner-page .fj-disciple__lead { align-items: flex-start; }
+  .inner-page .fj-disciple__leadNote { margin-top: 20px; }
+  .inner-page .fj-disciple__cards { margin-top: clamp(24px, 3vw, 40px); }
+  .inner-page .fj-disciple__card { min-height: clamp(180px, 26vw, 260px); }
+}
+@media (max-width: 767px) {
+  .inner-page .fj-disciple .col-md-6 + .col-md-6 { margin-top: 26px; }
+}
+
+/* =========================================================================
+   10 · RESOURCES
+   ========================================================================= */
+.inner-page .fj-resources { margin-top: clamp(24px, 2.4vw, 38px); --bs-gutter-x: 14px; --bs-gutter-y: 14px; }
+.inner-page .fj-resource-card { position: relative; border-radius: 16px; overflow: hidden; min-height: 200px; display: flex; flex-direction: column; justify-content: flex-end; transition: transform .3s, box-shadow .3s; }
+.inner-page .fj-resource-card__photo { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; background-position: center; }
+.inner-page .fj-resource-card__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,36,56,.12) 0%, rgba(11,36,56,.88) 88%); }
+.inner-page .fj-resource-card__body { position: relative; z-index: 2; padding: 20px; }
+.inner-page .fj-resource-card__body i { color: var(--fmk-orange); font-size: 18px; }
+.inner-page .fj-resource-card__title { color: var(--fmk-white); font-weight: 700; margin-top: 10px; }
+.inner-page .fj-resource-card__sub { color: rgba(248,242,230,.75);  font-size: 16px; margin-top: 3px; }
+.inner-page .fj-resource-card:hover { transform: translateY(-5px); box-shadow: 0 0 0 1.5px rgba(234,152,34,.7), 0 0 30px rgba(234,152,34,.45), 0 26px 60px rgba(11,36,56,.2); }
+.inner-page .fj-resources__links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; align-items: center; }
+.inner-page .fj-resources__sep { color: rgba(11,36,56,.25); }
+
+/* =========================================================================
+   11 · FAQ (search + category filter + accordion)
+   ========================================================================= */
+.inner-page .fj-faq { position: relative; overflow: hidden; }
+.inner-page .fj-faq__title { margin: clamp(22px, 2.2vw, 34px) 0 0; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; font-size: var(--fj-h2); color: var(--fmk-white); }
+.inner-page .fj-faq__search {
+  margin-top: clamp(26px, 2.6vw, 44px); display: flex; align-items: center;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px; padding: 6px 6px 6px 22px;
+}
+.inner-page .fj-faq__search > i { color: var(--fmk-orange); font-size: 16px; flex: 0 0 auto; }
+.inner-page .fj-faq__search input { flex: 1 1 auto; min-width: 0; background: transparent; border: none; outline: none; padding: 14px; font-size: 15px; color: var(--fmk-white); }
+.inner-page .fj-faq__search input::placeholder { color: rgba(255,255,255,.55); }
+.inner-page .fj-faq__searchBtn {
+  flex: 0 0 auto; border: 1px solid var(--fmk-orange); cursor: pointer; background: var(--fmk-orange); color: var(--fmk-white);
+  font-weight: 800; font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+  padding: 13px 30px; border-radius: 30px; transition: background .25s, border-color .25s;
+}
+.inner-page .fj-faq__searchBtn:hover { background: var(--fmk-rust); border-color: var(--fmk-rust); }
+.inner-page .fj-faq__chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.inner-page .fj-chip {
+  border: 1px solid rgba(255,255,255,.55); cursor: pointer; background: transparent; color: var(--fmk-white);
+  font-weight: 800; font-size: 12px; letter-spacing: .8px; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 30px; transition: background .25s, border-color .25s;
+}
+.inner-page .fj-chip:hover { background: var(--fmk-rust); border-color: var(--fmk-rust); }
+.inner-page .fj-chip.is-active { background: var(--fmk-orange); border-color: var(--fmk-orange); }
+.inner-page .fj-faq__empty { margin-top: 20px; border-radius: var(--fj-r-sm); border: 1px dashed rgba(255,255,255,.35); padding: 26px; text-align: center; font-size: 15px; color: rgba(255,255,255,.85); }
+.inner-page .fj-faq__empty button { background: none; border: 0; color: var(--fmk-orange); font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; font-size: 15px; font-family: inherit; }
+/* two questions per row */
+.inner-page .fj-faq__grid { margin-top: clamp(22px, 2.2vw, 32px); --bs-gutter-x: 16px; --bs-gutter-y: 16px; align-items: start; }
+
+.inner-page .fj-faq-item { background: var(--fmk-white); border-radius: 10px; padding: 22px 28px; cursor: pointer; transition: background .35s; box-shadow: 0 8px 26px rgba(0,0,0,.18); }
+.inner-page .fj-faq-item__cat { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--fmk-rust); font-weight: 800; margin-bottom: 8px; transition: color .35s; }
+.inner-page .fj-faq-item__head { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.inner-page .fj-faq-item__q { font-weight: 700; font-size: 21px; color: var(--fmk-navy-deep); line-height: 1.3; transition: color .35s; }
+.inner-page .fj-faq-item__head i { color: var(--fmk-navy-deep); font-size: 15px; flex: 0 0 auto; transition: color .35s; }
+.inner-page .fj-faq-item__body { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s; }
+.inner-page .fj-faq-item__body p { margin: 0; padding-top: 14px; font-family: var(--fmk-font-ui); font-size: 14px; line-height: 1.75; color: var(--fmk-body-soft); }
+/* the open card turns orange */
+.inner-page .fj-faq-item.is-open { background: var(--fmk-orange); }
+.inner-page .fj-faq-item.is-open .fj-faq-item__cat { color: rgba(255,255,255,.85); }
+.inner-page .fj-faq-item.is-open .fj-faq-item__q,
+.inner-page .fj-faq-item.is-open .fj-faq-item__head i { color: var(--fmk-white); }
+.inner-page .fj-faq-item.is-open .fj-faq-item__body { max-height: 440px; opacity: 1; }
+.inner-page .fj-faq-item.is-open .fj-faq-item__body p { color: rgba(255,255,255,.95); }
+.inner-page .fj-faq-item.is-hidden { display: none; }
+
+/* =========================================================================
+   12 · CLOSING CTA
+   photo → faith-journey/images/11-closing-cta/cta-background.jpg
+   ========================================================================= */
+.inner-page .fj-cta {
+  position: relative; overflow: hidden;
+  background: linear-gradient(rgba(11,70,102,.86), rgba(11,70,102,.93)),
+              url("../faith-journey/images/11-closing-cta/cta-background.jpg") center / cover no-repeat;
+}
+.inner-page .fj-cta__glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 15% 0%, rgba(234,152,34,.16), transparent 55%); }
+.inner-page .fj-cta__inner { position: relative; z-index: 2; text-align: center; }
+.inner-page .fj-cta__kicker { letter-spacing: 3px; text-transform: uppercase; color: var(--fmk-orange); font-weight: 600; }
+.inner-page .fj-cta__title { margin: 10px 0 0; font-weight: 700; color: var(--fmk-white); }
+.inner-page .fj-cta__lede {
+    margin: 20px auto 0;
+    color: rgba(248,242,230,.82);
+    max-width: 1400px;
+}
+.inner-page .fj-cta__meta { margin-top:  40px; color: rgba(248,242,230,.45); }
+
+/* =========================================================================
+   RESPONSIVE — page-wide rhythm, on top of the per-component breakpoints
+   that sit with their sections above.
+   ========================================================================= */
+@media (max-width: 991px) {
+  .inner-page { --fj-pad: 64px; }
+/*  .inner-page .fj-hero__inner { min-height: clamp(460px, 70vw, 620px); }*/
+}
+@media (max-width: 767px) {
+  .inner-page { --fj-pad: 52px; }
+/*  .inner-page .fj-hero__inner { padding-bottom: 56px; }*/
+  /* the pill-shaped search bar cannot hold an input and a 30px-padded button
+     side by side on a phone, so it unrolls into a stacked block */
+  .inner-page .fj-faq__search { flex-wrap: wrap; border-radius: 20px; padding: 12px 16px; gap: 8px; }
+  .inner-page .fj-faq__search input { flex: 1 1 160px; padding: 8px 0; }
+  .inner-page .fj-faq__searchBtn { flex: 1 1 100%; padding: 12px 20px; }
+  .inner-page .fj-prayer__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 575px) {
+  .inner-page { --fj-pad: 44px; }
+  .inner-page .fj-glance-card--sm,
+  .inner-page .fj-glance-card--md,
+  .inner-page .fj-glance-card--lg { width: 80%; }
+  .inner-page .fj-prayer__cards { grid-template-columns: 1fr; }
+  .inner-page .fj-prayer-card { aspect-ratio: 16 / 9; }
+  .inner-page .fj-topic { flex: 1 1 auto; }
+  .inner-page .fj-btn-row .fj-btn { flex: 1 1 100%; justify-content: center; }
+  .inner-page .fj-step-card__foot {margin-top: 0;}
+}
+
+/* =========================================================================
+   MOTION PREFERENCES
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .inner-page [class^="fj-"],
+  .inner-page [class*=" fj-"] { animation: none !important; transition: none !important; }
+}
+
+/* =========================================================================
+   BOOTSTRAP GRID ADAPTERS
+   -------------------------------------------------------------------------
+   Four layouts on this page are Bootstrap .row/.col-* now, matching
+   index.html: the Three Circles split (col-lg-5 / col-lg-7), the five next
+   steps, the resource cards and the FAQ.
+
+   A Bootstrap column carries the gutter as horizontal PADDING, so anything
+   that paints a background must sit INSIDE the column rather than being the
+   column — otherwise the background fills the gutter and the cards touch.
+   Every card here is therefore wrapped in a plain column div, and these
+   rules just make the card fill the column it was given.
+   ========================================================================= */
+.inner-page .fj-steps__grid > .col,
+.inner-page .fj-resources > [class*="col-"] { display: flex; }
+.inner-page .fj-steps__grid > .col > .fj-step-card,
+.inner-page .fj-resources > [class*="col-"] > .fj-resource-card { flex: 1 1 auto; }
+
+/* the fan is centred inside its own column */
+.inner-page .fj-split > .fj-circles { display: flex; }
+
+.fmk-hero-section {
+padding: 80px 0px 80px;
+}
+/***responsive-csc***/
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .inner-page .fj-btn {
+    padding: 14px 20px !important;
+/*    text-align: center;*/
+}
+.inner-page .fj-prayer__panel {
+    padding: 20px 20px;
+}
+.inner-page .fj-membership__copy {
+    padding: 20px 20px;
+}
+.inner-page .fj-hero__eyebrow {
+    justify-content: start;
+    flex-direction: column;
+    align-items: self-start;
+}
+.inner-page .fj-baptism__body {
+    margin-top: 40px;
+}
+.fmk-hero-section {
+  padding: 50px 0px 50px;
+}
+.inner-page .fj-topic span {
+    font-size: 14px;
+}
+}
+@media (min-width: 768px) and (max-width: 992px) {
+.inner-page .fj-split > .fj-circles {
+    display: flex;
+    margin-top: 40px;
+}
+.inner-page .fj-baptism__body {
+    margin-top: 40px;
+}
+.fmk-hero-section {
+    padding: 150px 0px 60px;
+}
+.startustext{
+    line-height: 52px;
+}
+}

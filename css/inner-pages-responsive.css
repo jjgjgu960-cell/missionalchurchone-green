@@ -1,0 +1,838 @@
+/* =========================================================================
+   inner-pages-responsive.css — About Us + Plan Your Visit
+   ------------------------------------------------------------------------
+   Desktop-first max-width breakpoints. Loads LAST, after inner-pages.css.
+
+       1400   large desktop — pull the shell in
+       1200   small desktop / large tablet
+        992   tablet — every two-column split stacks
+        768   large phone
+        576   phone
+        400   small phone
+
+   Rule of thumb applied throughout: anything that is only reachable on
+   hover at desktop must be permanently visible from 992 down, because a
+   touch device has no hover state.
+   ========================================================================= */
+
+/* =========================================================================
+   1400 — large desktop
+   ========================================================================= */
+@media (max-width: 1400px) {
+  :root { --fmk-shell-pad: clamp(20px, 4.5vw, 80px); }
+
+/*.fmk-hero__inner {
+    padding: 150px 0px;
+}*/
+.fmk-hero__title {
+    line-height: 60px !important;
+}
+.fmk-heading {
+    font-size: 42px !important; 
+    line-height: 50px !important;
+}
+.inner-page-trusted  .accordion-button {
+    font-size: 20px;
+    line-height: 30px;
+    padding-right: 70px;
+/*    height: 82px;*/
+}
+/*.inner-page-trusted .search-questions .input-group input {
+    max-width: 100%;
+}*/
+
+.inner-page-trusted .heading-pathway {
+    max-width: 680px;
+}
+.heading-medium {
+    font-size: 28px !important;
+    line-height: 34px !important;
+}
+.heading-text-area {
+    font-size: 22px;
+    line-height: 30px;
+}
+  .fmk-glance__ghost { font-size: clamp(120px, 15vw, 220px); }
+  .fmk-stage { min-height: clamp(340px, 40vw, 520px); }
+}
+
+/* =========================================================================
+   1200 — small desktop / large tablet
+   ========================================================================= */
+@media (max-width: 1200px) {
+  :root { --fmk-shell-pad: clamp(20px, 4vw, 56px); }
+
+  /* the portrait cut-out gets too tall relative to the copy here */
+  .fmk-band__aside { flex-basis: 300px; }
+  .fmk-portrait img { max-width: clamp(300px, 42vw, 460px); }
+
+  /* the About FAQ grid drops to one column before the cards get cramped */
+  .fmk-faq__grid { grid-template-columns: 1fr; }
+  .fmk-faq__grid--flex .fmk-faq-item { flex: 1 1 100%; }
+
+  .fmk-glance__inner--visit { gap: clamp(24px, 3vw, 46px); }
+  .fmk-map__inset { width: 30%; }
+}
+
+/* =========================================================================
+   992 — tablet.  Every two-column split stacks.
+   ========================================================================= */
+@media (max-width: 992px) {
+  :root { --fmk-shell-pad: 32px; --fmk-header-h: 78px; --fmk-reveal-shift: 34px; }
+
+  /*.fmk-sec--pad,
+  .fmk-sec--pad-lg,
+  .fmk-sec--pad-xl { padding: 64px 0; }
+  .fmk-sec--pad-tight,
+  .fmk-sec--pad-mid { padding: 24px 0 64px; }*/
+
+  /* ---- hero ---- */
+/*  .fmk-hero__inner { min-height: 0; padding: calc(40px + var(--fmk-header-h)) 0 96px; }*/
+  .fmk-hero__row   { gap: 32px; }
+  .fmk-hero__copy  { flex: 1 1 100%; max-width: none; }
+
+  .fmk-hero__doodle { top: -38px; }
+
+  /* ---- glance ---- */
+  .fmk-glance__band { margin-top: -48px; }
+  .fmk-glance__inner { padding-block: 48px; gap: 20px; }
+  .fmk-glance__ghost { font-size: 120px; top: -18px; }
+  .fmk-glance__left,
+  .fmk-glance__right { flex: 1 1 100%; }
+  .fmk-stage { min-height: 340px; }
+
+/*  .fmk-glance__inner--visit { padding-block: 40px; }*/
+  .fmk-glance__lead,
+  .fmk-glance__cards { flex: 1 1 100%; }
+  /* the vertical hairline between the two halves has nothing to divide
+     once they are stacked */
+  .fmk-glance__rule { display: none; }
+
+  /* ---- every copy/photo split ---- */
+/*  .fmk-split { gap: 24px; }*/
+  .fmk-split__copy,
+  .fmk-split__copy--wide,
+  .fmk-split__media,
+  .fmk-split__media--framed,
+  .fmk-split__media--map,
+  .fmk-split__media--wide,
+  .fmk-lead-split__head,
+  .fmk-lead-split__copy,
+  .fmk-wide-split__copy,
+  .fmk-panel,
+  .fmk-panel--form,
+  .fmk-pathway,
+  .fmk-band__copy,
+  .fmk-band__aside {
+    flex: 1 1 100%;
+    max-width: none;
+    min-width: 0;
+  }
+  /* the photo always follows the copy once stacked, whichever side it was on */
+  .fmk-split__media,
+  .fmk-split__media--framed,
+  .fmk-split__media--map,
+  .fmk-split__media--wide { order: 2; }
+  .fmk-split__copy,
+  .fmk-split__copy--wide  { order: 1; }
+
+  .fmk-figs { max-width: 620px; margin-inline: auto; }
+  .fmk-tilt { max-width: 620px; margin-inline: auto; }
+
+  /* ---- leadership / welcome bands ---- */
+/*  .fmk-band__row  { padding-top: 56px; }*/
+  .fmk-band__copy { padding-bottom: 40px; }
+  .fmk-band__aside { align-self: auto; }
+  .fmk-quote { padding-top: 0; }
+  .fmk-portrait img { max-width: 420px; }
+
+  /* ---- map ---- */
+  .fmk-split__media--map { margin-bottom: 48px; }
+  .fmk-map img { height: 320px; }
+  .fmk-map__inset { width: 32%; right: 0; bottom: -12%; }
+
+  /* ---- photo-backed navy sections ---- */
+/*  .fmk-photoback__inner { padding-block: 64px; }*/
+  .fmk-wide-split { gap: 32px; }
+
+  /* the loose doodle wedged into the Connect button row has no room */
+  .fmk-doodle--float,
+  .fmk-doodle--pin { display: none; }
+
+  /* ---- FAQ ---- */
+  .fmk-faq__inner { padding-block: 64px; gap: 24px; }
+}
+
+/* =========================================================================
+   768 — large phone
+   ========================================================================= */
+@media (max-width: 768px) {
+  :root { --fmk-shell-pad: 22px; --fmk-header-h: 72px; --fmk-reveal-shift: 22px; --fmk-reveal-dur: .7s; }
+
+  /*.fmk-sec--pad,
+  .fmk-sec--pad-lg,
+  .fmk-sec--pad-xl { padding: 48px 0; }
+  .fmk-sec--pad-tight,
+  .fmk-sec--pad-mid { padding: 16px 0 48px; }*/
+
+  /* ---- hero: the 90° wash leaves the right edge too light for white text
+     once the copy spans the full width, so it becomes a vertical wash ---- */
+  .fmk-hero--about .fmk-hero__bg {
+    background-image: var(--fmk-hero-wash-phone),
+                      url("../images/about-us/01-hero/hero-sanctuary.jpg");
+  }
+  .fmk-hero--visit .fmk-hero__bg {
+    background-image: var(--fmk-hero-wash-phone-b),
+                      url("../images/plan-your-visit/01-hero/hero-signs.jpg");
+  }
+  .fmk-hero__inner   { padding: calc(28px + var(--fmk-header-h)) 0 64px; }
+  .fmk-hero__actions { gap: 10px; }
+  .fmk-hero__doodle  { display: none; }
+  .fmk-badge         { width: 100%; box-sizing: border-box; }
+
+  /* buttons go full width so the tap targets are honest */
+  .fmk-btn {  justify-content: center; padding: 14px 20px;}
+  .fmk-actions,
+  .fmk-actions--tight,
+  .fmk-actions--center,
+  .fmk-actions--rel { gap: 10px; }
+  /* the doodles are decorative and steal a whole row at this width */
+  .fmk-doodle { display: none; }
+
+  /* ---- glance ---- */
+  .fmk-glance__band  { margin-top: -36px; }
+  .fmk-glance__inner { padding-block: 36px; }
+  .fmk-glance__ghost { display: none; }
+  .fmk-glance__card  { border-radius: 18px; padding: 24px; }
+  .fmk-tiles         {margin-bottom: 20px;}
+  .fmk-tile          { flex: 1 1 100%; border-radius: 16px; }
+  .fmk-stage         { min-height: 280px; border-radius: 18px; }
+  .fmk-factcard,
+  .fmk-photocard     { flex: 1 1 100%; aspect-ratio: 3 / 2; }
+
+  /* ---- photo insets: the negative offsets push off-canvas on a phone ---- */
+/*  .fmk-figs { margin-bottom: 56px; }*/
+  .fmk-figs__inset,
+  .fmk-figs__inset--right { width: 48%; left: auto; right: 0; bottom: -8%; transform: none; }
+  .fmk-figs__outline { display: none; }
+  .fmk-tilt,
+  .fmk-tilt--right { transform: none; }
+  .fmk-tilt--rotin { animation: none; }
+
+  /* ---- leadership ---- */
+  .fmk-band__copy    { padding-bottom: 28px; }
+  .fmk-portrait img  { max-width: 320px; }
+  .fmk-portrait__tag { transform: none; display: inline-flex; margin-top: 14px; }
+  .fmk-portrait      { text-align: center; }
+  .fmk-swing         { animation: none; max-width: 100%; }
+
+  /* ---- cards ---- */
+  .fmk-cards  { gap: 16px; margin-top: 28px; }
+  .fmk-card   { flex: 1 1 100%; aspect-ratio: 4 / 3; }
+/*  .fmk-card__body { flex-direction: column; align-items: flex-start; gap: 10px; }*/
+  /* hover-only desaturation would leave this photo permanently grey on
+     touch, where there is no hover — so it renders in full colour */
+  .fmk-card img.fmk-card__img--gray { filter: none; }
+
+  /* ---- map ---- */
+  .fmk-map img     { height: 240px; }
+  .fmk-map__pin    { position: static; margin-top: 12px; max-width: none; box-shadow: none; }
+  .fmk-map__inset  { display: none; }
+  .fmk-split__media--map { margin-bottom: 0; }
+
+  /* ---- FAQ ---- */
+  .fmk-faq__inner { padding-block: 48px; }
+  .fmk-search     { flex-wrap: wrap; padding: 12px; border-radius: 16px; gap: 8px; }
+  .fmk-search input { flex: 1 1 auto; padding: 4px 0; }
+  .fmk-search button { width: 100%; }
+  .fmk-faq-item__btn { padding: 18px 20px; }
+  .fmk-faq-item__a > p { padding: 0 20px 18px; }
+
+  /* ---- panels + form ---- */
+  .fmk-panel       { padding: 22px; border-radius: 14px; }
+  .fmk-form__grid  { grid-template-columns: 1fr; gap: 14px; }
+  .fmk-contact li  { gap: 12px; }
+
+  /* ---- CTA + marquee ---- */
+/*  .fmk-cta { padding-block: 48px; }*/
+  .fmk-marquee__group { padding-right: 20px; }
+  .fmk-marquee__group span { padding: 0 10px; }
+  .fmk-marquee__group .fmk-outline { -webkit-text-stroke-width: 1.5px; }
+
+  /* the torn divider is 53px tall against a 48px section pad — trim it */
+  .fmk-tear { height: 34px; top: -12px; }
+}
+
+/* -------------------------------------------------------------------------
+   The site's own responsive.css drops the header out of `position: fixed`
+   below 768 (`.navigation.header { position: static !important }`), so from
+   there down the hero must NOT reserve space to clear it — otherwise the top
+   of the page gets a header's worth of empty band.
+   ------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  :root { --fmk-header-h: 0px; }
+}
+
+/* =========================================================================
+   576 — phone
+   ========================================================================= */
+@media (max-width: 576px) {
+  /* a slide this far down is more jitter than polish on a phone */
+  :root { --fmk-shell-pad: 18px; --fmk-reveal-shift: 0px; }
+
+/*  .fmk-hero__title  { font-size: clamp(26px, 7.4vw, 34px); }*/
+  .fmk-hero__kicker { font-size: 17px; }
+/*  .fmk-hero__lead   { font-size: 22px; }*/
+  .fmk-hero__lead--plain { font-size: 15px; }
+
+/*  .fmk-h2, .fmk-h2--band, .fmk-h2--big, .fmk-h2--faq { font-size: clamp(25px, 7vw, 32px); }*/
+/*  .fmk-glance__title { font-size: clamp(25px, 7vw, 32px); }*/
+  .fmk-glance__lead h2 { font-size: clamp(24px, 6.6vw, 30px); }
+/*  .fmk-cta h2 { font-size: clamp(25px, 7vw, 32px); }*/
+
+  .fmk-quote, .fmk-quote--lg { font-size: 28px; line-height: 34px; }
+  .fmk-facts { gap: 8px; }
+  .fmk-fact  { flex: 1 1 100%; padding: 10px 16px; }
+  .fmk-chips { gap: 7px; }
+  .fmk-chip  { padding: 8px 13px; font-size: 10px; }
+
+  .fmk-figs__inset,
+  .fmk-figs__inset--right { width: 52%; }
+  .fmk-figs__inset img { border-width: 4px; }
+
+/*  .fmk-marquee__group { font-size: 26px; }*/
+  .fmk-panel { padding: 18px; }
+  .fmk-faq-item__q { font-size: 15px; }
+}
+
+/* =========================================================================
+   400 — small phone
+   ========================================================================= */
+@media (max-width: 400px) {
+  :root { --fmk-shell-pad: 14px; }
+
+/*  .fmk-hero__title { font-size: 25px; }*/
+/*  .fmk-h2, .fmk-h2--band, .fmk-h2--big, .fmk-h2--faq,*/
+/*  .fmk-glance__title, .fmk-cta h2 { font-size: 23px; }*/
+
+/*  .fmk-badge { padding: 10px 14px; gap: 10px; }*/
+  .fmk-badge__icon { flex-basis: 34px; height: 34px; font-size: 14px; }
+
+  .fmk-glance__card { padding: 20px; }
+  .fmk-tile { padding: 18px; }
+/*  .fmk-tile__value { font-size: 30px; }*/
+  .fmk-stage { min-height: 230px; }
+
+  .fmk-figs__inset,
+  .fmk-figs__inset--right { width: 56%; bottom: -6%; }
+
+  .fmk-faq-item__btn { padding: 16px; }
+  .fmk-faq-item__a > p { padding: 0 16px 16px; }
+/*  .fmk-btn { font-size: 11px; padding: 13px 16px; letter-spacing: .5px; }*/
+  .fmk-marquee__group { font-size: 22px; }
+  .fmk-marquee__group span { padding: 0 8px; }
+}
+
+@media (min-width: 320px) and (max-width: 567px) {
+    .inner-page .rail {
+    gap: 5px !important;
+    justify-content: start;
+    flex-direction: column;
+}
+.sec-search-faq {
+    margin: 20px 0px 36px;
+}
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    .pdt-120 {
+    padding-top: 50px;
+}
+  .fmk-glance__title {
+    font-size: 32px;
+    line-height: 40px;
+}
+/*.fmk-h2 {
+    font-size: 32px;
+    line-height: 40px;
+}*/
+.fmk-tile__value {
+    font-size: 42px;
+    line-height: 52px;
+}
+.fmk-fact__value {
+    font-size: 24px;
+    line-height: 32px;
+}
+.fmk-lead-split { 
+ gap: 0px;
+  }
+  .fmk-card__title {
+    font-size: 24px;
+}
+
+.inner-page-trusted  .accordion-button {
+    font-size: 16px;
+    line-height: 24px;
+}
+.trusted-section .accordion-item {
+    margin-bottom: 15px;
+}
+.rightheadingarea {
+    text-align: left;
+    margin-top: 10px;
+}
+.inner-pages-tabs {
+    margin: 15px 0px 0px;
+    padding: 0 !important;
+}
+.inner-pages-test {
+    padding: 0 !important;
+}
+.inner-page-trusted .nav-tabs .nav-link {
+    font-size: 14px !important;
+    padding: 12px 20px !important;
+}
+/*.inner-page-trusted .row {
+    row-gap: 15px;
+}*/
+.fmk-hero__inner {
+    padding: 50px 0px 100px;
+}
+.fm-footer__inner {
+    padding-top: 50px;
+}
+.events-text-view {
+    font-size: 24px !important;
+    line-height: 32px !important;
+}
+.hero-title-box .fmk-hero__lead {
+    font-size: 16px;
+    line-height: 23px;
+}
+.fmk-hero__kicker {
+    font-size: 16px;
+    line-height: 23px;
+    margin: 10px 0px;
+}
+.fmk-hero__actions {
+    margin-top: 20px;
+}
+.inner-page-trusted .heading-pathway h3{
+    font-size: 18px;
+    line-height: 26px;
+}
+.heading-normal{
+    font-size: 24px;
+    line-height: 30px;
+}
+.heading-medium {
+    font-size: 28px !important;
+    line-height: 32px !important;
+}
+.fmk-heading {
+    font-size: 32px !important;
+    line-height: 40px !important;
+}
+.fmk-hero__title {
+    line-height: 50px !important;
+}
+/*.inner-page-trusted .nav-tabs {
+    margin: 10px 0px 30px;
+}*/
+.section-believe-inner {
+    margin-bottom: 50px;
+}
+.sidebarsection {
+    margin: 8px 0px;
+}
+.heading-sub {
+    font-size: 20px;
+    line-height: 30px;
+}
+.inner-page .fan__card--solid > i {
+    font-size: 36px;
+}
+.inner-page .way__photo {
+    width: 100%;
+    height: 400px;
+}
+.section-fmk-mcKinney .way__photo {
+    height: 400px;
+}
+.section-fmk-mcKinney .ways__title {
+    margin: 20px 0px 20px !important;
+}
+.section-fmk-missions .missions__copy {
+    margin-top: 20px !important;
+}
+.rightheadingarea h3 {
+    margin-bottom: 0;
+}
+.sec-series-area .pcollage__side {
+    height: 300px !important;
+}
+.section-fmk-secure .photo--sq{
+    margin-bottom: 0px !important;
+}
+.section-fmk-everything .photo--4x5 {
+    margin-bottom: 0;
+}
+.section-fmk-stewardship .split__photo {
+    margin-bottom: 0;
+}
+
+}
+@media (min-width: 568px) and (max-width: 767px) {
+    .inner-page-trusted .nav-tabs .nav-link {
+    width: 46%;
+}
+.inner-page-trusted .nav-tabs {
+    justify-content: center;
+   margin: 10px 0 30px;
+}
+.inner-page-trusted .search-questions {
+    margin-top: 20px;
+}
+.glance-section .fmk-glance__cards {
+    flex-wrap: unset;
+}
+.section-fmk-church .fmk-framed img {
+    height: 300px;
+}
+.fmk-cta p {
+    margin: 15px auto;
+}
+.section-inner-area a.fmk-card {
+    height: 300px;
+}
+.sec-search-faq {
+    margin: 0px;
+}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+      .pdt-120 {
+    padding-top: 50px;
+}
+  .fmk-hero__title {
+    line-height: 42px;
+}
+.events-text-view {
+    font-size: 28px;
+    line-height: 40px;
+}
+.fmk-hero__kicker {
+    font-size: 22px;
+    line-height: 30px;
+    margin: 10px 0px;
+}
+/*.fmk-h2 {
+    font-size: 52px;
+    line-height: 60px;
+}*/
+.fmk-glance__title {
+    font-size: 42px;
+    line-height: 48px;
+}
+.fmk-hero__row   { gap: 20px; 158 60 178 165 109 37 937 63 }
+.fmk-hero__inner {
+    padding: 150px 0px 101px;
+}
+.fmk-hero__actions {
+    margin-top: 20px;
+    justify-content: center;
+}
+.fmk-cards{
+grid-template-columns: repeat(2, 1fr);
+display: grid;
+}
+.inner-page-trusted .nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.inner-page-trusted .heading-pathway h3 {
+    text-align: left;
+/*    margin-top: 20px;*/
+margin: 0px;
+}
+.inner-page-trusted .nav-tabs {
+    margin: 0 !important;
+}
+/*.inner-page-btn a {
+    width: 48%;
+}*/
+.fmk-actions--rel {
+    justify-content: center;
+}
+/*.btn-fmk-view .inner-page-btn a {
+    width: 60% !important;
+}*/
+.inner-page-trusted .search-questions .input-group input {
+    max-width: 100%;
+}
+.inner-page-trusted .nav-tabs .nav-link {
+    width: 48%;
+}
+.trusted-section .nav-tabs .nav-link {
+    padding: 15px 30px;
+}
+.inner-page-trusted .nav-tabs .nav-link.active {
+    padding: 15px 30px;
+}
+.inner-pages-test{
+  padding: 0px !important;
+}
+.inner-pages-tabs {
+    margin: 24px 0px 24px;
+}
+.inner-page-trusted .row {
+    row-gap: 20px;
+}
+.trusted-section .accordion-item {
+    margin-bottom: 20px;
+}
+.inner-page-trusted  .accordion-button {
+    font-size: 20px;
+    line-height: 28px;
+}
+.fm-footer__inner {
+    padding-top: 50px;
+}
+.fmk-card__title {
+    font-size: 22px;
+}
+.heading-medium {
+    font-size: 24px !important;
+    line-height: 30px !important;
+}
+.glance-section .fmk-glance__cards {
+    flex-wrap: unset;
+}
+.section-fmk-church .fmk-framed img {
+    height: 400px;
+    object-fit: cover;
+}
+.section-fmk-church .fmk-fact {
+    width: 48%;
+}
+.top-header-section {
+    padding: 150px 0px 50px !important;
+}
+.fmk-tiles {
+    margin-bottom: 20px;
+}
+.inner-page-discover .fmk-figs__outline {
+    left: -10px;
+    top: 0;
+}
+.inner-page-discover .fmk-figs__inset {
+    position: absolute;
+    left: -25px;
+    bottom: 12px;
+    width: 46%;
+}
+.inner-page-discover .fmk-figs__main {
+    height: 520px;
+}
+.fmk-figs__main {
+    height: 500px;
+}
+.section-believe-inner {
+    margin-bottom: 50px;
+}
+.heading-sub {
+    font-size: 24px;
+    line-height: 30px;
+}
+.fmk-heading {
+    font-size: 38px !important;
+    line-height: 48px !important;
+}
+.support-mission {
+    line-height: 55px;
+}
+.section-fmk-history .fmk-facts {
+    margin-top: 80px;
+}
+.sec-ministry-calling .fmk-split {
+ gap: 40px;
+  }
+ 
+.section-fmk-discover .teach__head {
+    gap: 0px !important;
+}
+.section-fmk-everything .photo--4x5 {
+    margin-bottom: 0;
+}
+.section-fmk-stewardship .split__photo{
+margin-bottom: 0px;
+}
+.top-header-section {
+    padding: 50px 0px 50px;
+}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .pdt-120 {
+    padding-top: 60px;
+}
+  .fmk-pathway{
+   grid-template-columns: repeat(2, 1fr);
+display: grid; 
+  }
+.heading-sub {
+    font-size: 26px;
+    line-height: 36px;
+}
+.fmk-lead-split {
+    gap: 0;
+}
+.trusted-section .nav-tabs .nav-link {
+    padding: 8px 20px;
+}
+.fmk-portrait__tag {
+    left: auto;
+    right: 0;
+}
+.fmk-card__title {
+    font-size: 28px;
+}
+.inner-page-trusted .accordion-button {
+    font-size: 18px;
+    line-height: 24px;
+/*    height: 82px;*/
+}
+.inner-page-trusted .nav-tabs {
+    gap: 15px !important;
+}
+/*.inner-page-trusted .accordion-button::after {
+    top: 28px;
+}*/
+.inner-page-trusted button.accordion-button{
+padding-right: 120px;
+}
+.inner-page-trusted .rightheadingarea {
+    margin-left: auto !important;
+    max-width: 100% !important;
+}
+.inner-page-trusted .heading-pathway h3 {
+    font-size: 22px !important;
+    line-height: 28px !important;
+}
+.fmk-contact {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/*.fmk-contact li {
+    width: 31%;
+}*/
+.fmk-panel__title {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+.fmk-panel .fmk-btn--block {
+    margin-top: 24px;
+    max-width: 220px;
+}
+.fmk-glance__title {
+    font-size: 32px !important;
+    line-height: 42px !important;
+}
+.fmk-glance__card {
+    padding: 25px 25px;
+}
+.heading-normal {
+    font-size: 20px;
+    line-height: 28px;
+}
+.fmk-tile__value {
+    font-size: 32px;
+    line-height: 40px;
+}
+.fmk-split {
+    flex-wrap: unset;
+}
+.fmk-wide-split {
+    flex-wrap: unset;
+}
+.fmk-glance__inner--visit {
+    flex-wrap: unset;
+    
+}
+.glance-section .fmk-glance__cards {
+    flex-wrap: unset;
+}
+.top-header-section {
+    padding: 150px 0px 60px !important;
+}
+.fmk-hero__inner {
+    padding: 150px 0px 100px;
+}
+h1 {
+    font-size: 44px;
+    line-height: 55px;
+}
+.support-mission {
+    line-height: 62px !important;
+    padding: 10px 0px !important;
+}
+.events-text-view {
+    font-size: 26px;
+    line-height: 34px;
+}
+.teaching-block .t-card__title {
+    line-height: 27px;
+}
+.fm-footer__inner {
+    padding-top: 60px;
+}
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+.heading-normal {
+    font-size: 20px;
+    line-height: 28px;
+}
+.fmk-tile__value {
+    font-size: 42px;
+    line-height: 50px;
+}
+.heading-sub {
+    font-size: 26px;
+    line-height: 34px;
+}
+.events-text-view {
+    font-size: 28px;
+    line-height: 36px;
+}
+}
+@media (min-width: 1400px) and (max-width: 1600px) {
+   .section-photoback .fmk-doodle--pin {
+    top: -50px !important;
+}
+}
+@media (min-width: 1400px) and (max-width: 1800px) {
+    .fmk-heading {
+    font-size: 50px !important;
+    line-height: 60px !important;
+}
+    .heading-medium {
+    font-size: 30px !important;
+    line-height: 40px !important;
+}
+.inner-page .fj-step-card__sub {
+    min-height: 85px;
+}
+}
+
+@media (min-width: 320px) and (max-width: 420px) {
+    .fmk-btn {
+    padding: 14px 18px !important;
+}
+.fmk-btn {
+    width: 100%;
+}
+.fmk-hero__aside {
+    margin-left: 0;
+}
+}

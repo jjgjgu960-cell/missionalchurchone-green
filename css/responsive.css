@@ -62,7 +62,7 @@ button.steps-next {
 }
 .satisfied {
     padding: 24px;
-    height: auto;
+    height: 100%;
     margin-bottom: 30px;
 }
 
@@ -377,7 +377,7 @@ button.steps-next {
 
 .satisfied {
     padding: 30px;
-    height: auto;
+    height: 100%;
     margin-bottom: 30px;
 }
 .member-list p {
@@ -1728,7 +1728,7 @@ button.steps-next {
     margin: 15px 0px;
 }
 .satisfied {
-    height: auto;
+    height: 100%;
     margin-bottom: 50px;
 }
 .from-style input {
@@ -2351,7 +2351,7 @@ a.messagebtn {
     line-height: 28px;
 }
 .satisfied {
-    height: auto;
+    height: 100%;
 }
 .members h3 {
     font-size: 42px;

@@ -2317,6 +2317,7 @@ a.messagebtn {
     line-height: 28px;
 }
 .satisfied {
+    height: 100%;
     padding: 15px;
 }
 .member-list p {

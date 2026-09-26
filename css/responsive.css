@@ -60,7 +60,7 @@ button.steps-next {
 .about-hading {
     margin-bottom: 30px;
 }
-.satisfied {
+ {
     padding: 24px;
     height: 100%;
     margin-bottom: 30px;
@@ -375,7 +375,7 @@ button.steps-next {
     bottom: -10px;
 }
 
-.satisfied {
+ {
     padding: 30px;
     height: 100%;
     margin-bottom: 30px;
@@ -1727,7 +1727,7 @@ button.steps-next {
 .footer-heading p {
     margin: 15px 0px;
 }
-.satisfied {
+ {
     height: 100%;
     margin-bottom: 50px;
 }
@@ -2316,7 +2316,7 @@ a.messagebtn {
     font-size: 24px;
     line-height: 28px;
 }
-.satisfied {
+ {
     height: 100%;
     padding: 15px;
 }
@@ -2351,7 +2351,7 @@ a.messagebtn {
     font-size: 20px;
     line-height: 28px;
 }
-.satisfied {
+ {
     height: 100%;
 }
 .members h3 {
@@ -2982,9 +2982,9 @@ p.text-fit {
    font-size: 18px;
         line-height: 28px;
 }
-.satisfied {
+ {
     padding: 40px;
-    height: 372px;
+    height: 100%;
 }
 .members-text p {
     font-size: 18px;
@@ -3421,9 +3421,9 @@ a.messagebtn {
     width: 48px;
     height: 48px;
 }
-.satisfied {
+ {
     padding: 20px;
-    height: 433px;
+    height: 100%;
 }
 .about-hading {
     max-width: 850px;

@@ -1,0 +1,765 @@
+/* =========================================================================
+   ministries.css — Ministries
+   -------------------------------------------------------------------------
+   Load order on the page:
+       bootstrap.min.css → style.css → responsive.css
+     → inner-pages.css → inner-pages-responsive.css
+     → ministries.css → ministries-responsive.css   (this file, then that)
+
+   This file describes the WIDEST layout and carries NO media queries.
+   Every breakpoint lives in css/ministries-responsive.css.
+
+   House rules followed here, the same ones serve.css and inner-pages.css
+   follow:
+
+     1. Every rule is scoped `.inner-page .mn-*`, so nothing leaks onto the
+        shared header, footer or any other page.
+     2. No brand hex. Every colour is an --fmk-* token from inner-pages.css.
+     3. Page furniture is NOT reinvented — the hero, eyebrows, section
+        headings, body copy, buttons and the FAQ accordion all use the
+        site's own components. Only the bespoke modules live here.
+     4. Section headings and body copy carry no font-size of their own, so
+        they inherit the site scale. Sizes appear only on small UI.
+     5. Vertical rhythm comes from .pdtb-120 in the markup.
+     6. No page copy here, and every image path lives in §02 below — the
+        markup carries no style="" attribute at all.
+   ========================================================================= */
+
+.inner-page .mn-accent-rust { color: var(--fmk-rust); }
+.inner-page .mn-rust-bold   { color: var(--fmk-rust); font-weight: 600; }
+.inner-page .mn-hl { background: linear-gradient(transparent 62%, rgba(234, 152, 34, .55) 62%); }
+
+.inner-page .mn-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* every small label on this page is a <p>, so none of them inherit the
+   browser's paragraph margins */
+.inner-page .mn-card__sub,
+.inner-page .mn-card__title,
+.inner-page .mn-tile__kicker,
+.inner-page .mn-mtile__kicker,
+.inner-page .mn-flip__kicker,
+.inner-page .mn-lscard__kicker,
+.inner-page .mn-story__label,
+.inner-page .mn-gi__copy,
+.inner-page .mn-panel__copy,
+.inner-page .mn-panel__note { margin-top: 0; margin-bottom: 0; }
+
+/* the eyebrow is the site's .fmk-eyebrow; on cream its yellow would wash
+   out, so the light-background sections get the rust reading instead */
+.inner-page .fmk-eyebrow.mn-eyebrow--rust { color: var(--fmk-rust); }
+
+/* the handwritten line the page uses four times */
+.inner-page .mn-hand {
+  font-family: var(--fmk-font-hand);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 38px;
+  color: var(--fmk-rust);
+  margin: 18px 0 0;
+}
+.inner-page .mn-hand--onDark { color: var(--fmk-orange); }
+.inner-page .mn-hand--center { text-align: center; margin-top: 30px; }
+
+.inner-page .mn-imgfx {
+  transition: transform var(--fmk-t-slow) var(--fmk-ease-out), filter var(--fmk-t-mid) ease;
+  will-change: transform;
+}
+.inner-page .mn-imgfx:hover { transform: scale(1.05); filter: brightness(1.06) saturate(1.1); }
+
+/* an inline arrow link, the quiet sibling of .fmk-btn */
+.inner-page .mn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fmk-rust);
+  transition: color var(--fmk-t-fast);
+}
+.inner-page .mn-link:hover,
+.inner-page .mn-link:focus-visible { color: var(--fmk-orange); }
+.inner-page .mn-link i { font-size: 11px; }
+
+/* the uppercase "go" line on a photo tile */
+.inner-page .mn-go {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--fmk-white);
+}
+.inner-page .mn-go i { font-size: 10px; color: var(--fmk-orange); }
+.inner-page .mn-go--ink, .inner-page .mn-go--ink i { color: var(--fmk-ink); }
+.inner-page .mn-go--navy { color: var(--fmk-navy); }
+.inner-page .mn-go--navy i { color: var(--fmk-rust); }
+
+/* =========================================================================
+   01  HERO
+   Same shell as About Us and Plan Your Visit.
+   ========================================================================= */
+.fmk-hero--ministries .fmk-hero__bg {
+  background-image: var(--fmk-hero-wash), url("../images/ministries/01-hero/hero-background.jpg");
+  /* The source file is PORTRAIT (900x1350) sitting in a very wide banner, so
+     `cover` scales it to ~2160px tall inside a ~700px box — only about a
+     third of the photo is ever on screen. 16% lands that window just below
+     the top of the frame, which is where the faces are. Keep any change
+     small: past ~30% the window drops to chest height and cuts heads. */
+  background-position: center 16%;
+}
+
+/* =========================================================================
+   02  IMAGE PLATES
+   Every photograph on the page, in page order. The markup carries no
+   style="" — to swap a picture, change the url() here (or drop a new file
+   over the old one and change nothing).
+
+   FRAMING: portrait cards are pinned to `center top` and the landscape
+   plates sit no lower than 25%, so a face is never cropped at the top edge.
+   Do not push any of these past 30% without checking the photo at 400px —
+   that is what cut heads off before. The two exceptions are deliberate and
+   commented where they sit: the hero (center 16%) and the get-involved rows
+   (center center, because they are texture behind a near-opaque wash).
+   ========================================================================= */
+
+/* -- 03 category carousel ------------------------------------------------ */
+.inner-page .mn-i-cat-kids     { background-image: url("../images/ministries/02-categories/category-1-kids-preschool.jpg"); background-position: center top; }
+.inner-page .mn-i-cat-students { background-image: url("../images/ministries/02-categories/category-2-students.jpg");       background-position: center top; }
+.inner-page .mn-i-cat-adults   { background-image: url("../images/ministries/02-categories/category-3-adults.jpg");         background-position: center top; }
+.inner-page .mn-i-cat-groups   { background-image: url("../images/ministries/02-categories/category-4-groups.jpg");         background-position: center top; }
+.inner-page .mn-i-cat-care     { background-image: url("../images/ministries/02-categories/category-5-care.jpg");           background-position: center top; }
+.inner-page .mn-i-cat-asl      { background-image: url("../images/ministries/02-categories/category-6-asl-spanish.jpg");    background-position: center top; }
+
+/* -- 04 directory stage -------------------------------------------------- */
+.inner-page .mn-i-dir-kids      { background-image: url("../images/ministries/03-directory/directory-1-kids.jpg");             background-position: center 20%; }
+.inner-page .mn-i-dir-incredible{ background-image: url("../images/ministries/03-directory/directory-2-incredible-kids.jpg");  background-position: center 20%; }
+.inner-page .mn-i-dir-fblc      { background-image: url("../images/ministries/03-directory/directory-3-learning-center.jpg");  background-position: center 25%; }
+.inner-page .mn-i-dir-students  { background-image: url("../images/ministries/03-directory/directory-4-students.jpg");         background-position: center 20%; }
+.inner-page .mn-i-dir-young     { background-image: url("../images/ministries/03-directory/directory-5-young-adults.jpg");     background-position: center 20%; }
+
+/* -- 05 groups ----------------------------------------------------------- */
+.inner-page .mn-i-grp-life    { background-image: url("../images/ministries/04-groups/groups-1-life-groups.jpg");   background-position: center 25%; }
+.inner-page .mn-i-grp-midweek { background-image: url("../images/ministries/04-groups/groups-2-midweek.jpg");       background-position: center 25%; }
+.inner-page .mn-i-grp-dgroups { background-image: url("../images/ministries/04-groups/groups-3-discipleship.jpg");  background-position: center 20%; }
+
+/* -- 06 family mosaic ---------------------------------------------------- */
+.inner-page .mn-i-fam-adults  { background-image: url("../images/ministries/05-family/family-1-adults.jpg");        background-position: center 20%; }
+.inner-page .mn-i-fam-women   { background-image: url("../images/ministries/05-family/family-2-women-men.jpg");     background-position: center 20%; }
+.inner-page .mn-i-fam-married { background-image: url("../images/ministries/05-family/family-3-married-adults.jpg");background-position: center 25%; }
+.inner-page .mn-i-fam-senior  { background-image: url("../images/ministries/05-family/family-4-senior-adults.jpg"); background-position: center 25%; }
+
+/* -- 07 inclusive -------------------------------------------------------- */
+.inner-page .mn-i-inc-band  { background-image: url("../images/ministries/06-inclusive/inclusive-section-background.jpg"); background-position: center top; }
+.inner-page .mn-i-inc-care  { background-image: url("../images/ministries/06-inclusive/inclusive-1-care.jpg");             background-position: center top; }
+.inner-page .mn-i-inc-deaf  { background-image: url("../images/ministries/06-inclusive/inclusive-2-deaf-ministry.jpg");    background-position: center top; }
+.inner-page .mn-i-inc-nueva { background-image: url("../images/ministries/06-inclusive/inclusive-3-nueva-vida.jpg");       background-position: center top; }
+
+/* -- 08 life-stage rail (portrait cards, all pinned to the top) ---------- */
+.inner-page .mn-i-ls-01 { background-image: url("../images/ministries/07-life-stage/stage-01-young-families.jpg");  background-position: center top; }
+.inner-page .mn-i-ls-02 { background-image: url("../images/ministries/07-life-stage/stage-02-teenagers.jpg");       background-position: center top; }
+.inner-page .mn-i-ls-03 { background-image: url("../images/ministries/07-life-stage/stage-03-college.jpg");         background-position: center top; }
+.inner-page .mn-i-ls-04 { background-image: url("../images/ministries/07-life-stage/stage-04-young-adults.jpg");    background-position: center top; }
+.inner-page .mn-i-ls-05 { background-image: url("../images/ministries/07-life-stage/stage-05-married-couples.jpg"); background-position: center top; }
+.inner-page .mn-i-ls-06 { background-image: url("../images/ministries/07-life-stage/stage-06-men-women.jpg");       background-position: center top; }
+.inner-page .mn-i-ls-07 { background-image: url("../images/ministries/07-life-stage/stage-07-senior-adults.jpg");   background-position: center top; }
+.inner-page .mn-i-ls-08 { background-image: url("../images/ministries/07-life-stage/stage-08-care.jpg");            background-position: center top; }
+.inner-page .mn-i-ls-09 { background-image: url("../images/ministries/07-life-stage/stage-09-deaf.jpg");            background-position: center top; }
+.inner-page .mn-i-ls-10 { background-image: url("../images/ministries/07-life-stage/stage-10-nueva-vida.jpg");      background-position: center top; }
+.inner-page .mn-i-ls-11 { background-image: url("../images/ministries/07-life-stage/stage-11-special-needs.jpg");   background-position: center top; }
+
+/* -- 09 get involved (revealed on row hover) -----------------------------
+   These three sit behind a near-opaque navy wash in a short, very wide row,
+   so they read as texture rather than as photographs — centred is the right
+   framing here, not top-pinned. */
+.inner-page .mn-i-gi-sunday { background-image: url("../images/ministries/08-get-involved/involved-1-come-on-sunday.jpg"); background-position: center center; }
+.inner-page .mn-i-gi-group  { background-image: url("../images/ministries/08-get-involved/involved-2-find-your-group.jpg");background-position: center center; }
+.inner-page .mn-i-gi-serve  { background-image: url("../images/ministries/08-get-involved/involved-3-serve.jpg");          background-position: center center; }
+
+/* -- 12 closing CTA ------------------------------------------------------ */
+.inner-page .mn-i-cta { background-image: url("../images/ministries/10-cta/cta-background.jpg"); background-position: center top; }
+
+/* =========================================================================
+   02b GRID GUTTERS
+   Bootstrap ships --bs-gutter-y at 0, so a stacked .row has NO vertical gap:
+   the button ending the copy column lands flush against the photo starting
+   the next one. Every multi-column row on this page therefore declares its
+   own gutters here — per the spec, as --bs-gutter-* rather than g-* utility
+   classes, so the spacing is a real design value and not a preset.
+   The stacked values are raised at 992 and 768 in ministries-responsive.css.
+   ========================================================================= */
+
+/* copy + media, two columns */
+.inner-page .mn-split {
+  --bs-gutter-x: 40px;
+  --bs-gutter-y: 40px;
+}
+
+/* three cards abreast.
+   Bootstrap pulls .row up by one gutter (margin-top: calc(-1 * gutter-y)) so
+   the first band of columns sits flush; overriding margin-top outright would
+   silently add a whole gutter of slack. Subtracting it keeps the gap above
+   this row a real, stated 40px at every breakpoint. */
+.inner-page .mn-cards {
+  --bs-gutter-x: 22px;
+  --bs-gutter-y: 22px;
+  margin-top: calc(40px - var(--bs-gutter-y));
+}
+
+/* the numbered get-involved rows: number | title | body */
+.inner-page .mn-cards--tight {
+  --bs-gutter-x: 24px;
+  --bs-gutter-y: 0px;
+}
+
+/* =========================================================================
+   03  AT A GLANCE
+   ========================================================================= */
+.inner-page .mn-glance { text-align: center; }
+.inner-page .mn-glance .fmk-eyebrow { justify-content: center; }
+.inner-page .mn-glance__lede { margin: 24px auto 0; max-width: 1100px; }
+
+.inner-page .mn-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 34px auto 0;
+  max-width: 900px;
+}
+.inner-page .mn-jump {
+  background: var(--fmk-white);
+  border: 1px solid rgba(11, 70, 102, .18);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fmk-body-soft);
+  transition: background var(--fmk-t-fast), color var(--fmk-t-fast), border-color var(--fmk-t-fast);
+}
+.inner-page .mn-jump:hover,
+.inner-page .mn-jump:focus-visible {
+  background: var(--fmk-rust);
+  color: var(--fmk-white);
+  border-color: var(--fmk-rust);
+}
+
+/* =========================================================================
+   04  CATEGORY CARD CAROUSEL      (js → initMarquee)
+   The six cards are authored once; the script clones them so the loop is
+   seamless, then translates the track.
+   ========================================================================= */
+.inner-page .mn-marquee { overflow: clip; padding: 16px 0; margin-top: 40px; }
+.inner-page .mn-marquee__track { display: flex; width: max-content; will-change: transform; }
+
+.inner-page .mn-card {
+  flex: 0 0 262px;
+  margin-right: 14px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--fmk-sh-badge);
+  transition: transform var(--fmk-t-mid) var(--fmk-ease-out), box-shadow var(--fmk-t-mid) ease;
+}
+.inner-page .mn-card:hover,
+.inner-page .mn-card:focus-visible { transform: scale(1.04); box-shadow: var(--fmk-sh-stage); }
+.inner-page .mn-card__shade { position: absolute; inset: 0; background: var(--fmk-card-wash); }
+.inner-page .mn-card__body { position: relative; z-index: 2; padding: 18px; }
+.inner-page .mn-card__body > i { color: var(--fmk-orange); font-size: 17px; }
+.inner-page .mn-card__title {
+  margin-top: 9px;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--fmk-white);
+}
+.inner-page .mn-card__sub {
+  margin-top: 6px;
+  font-family: var(--fmk-font-ui);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--fmk-white-85);
+}
+
+/* =========================================================================
+   05  MINISTRY DIRECTORY          (js → initDirectory)
+   One row, one panel and one photo share a data-mn-index.
+   ========================================================================= */
+.inner-page .mn-stage {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr) minmax(0, .82fr);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 40px;
+  background: var(--fmk-white);
+  box-shadow: var(--fmk-sh-tile);
+}
+.inner-page .mn-stage__panels,
+.inner-page .mn-stage__photos { position: relative; overflow: hidden; min-height: 560px; }
+.inner-page .mn-stage__panels { border-right: 1px solid rgba(11, 70, 102, .1); }
+
+.inner-page .mn-panel {
+  position: absolute;
+  inset: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity var(--fmk-t-mid) ease;
+}
+.inner-page .mn-panel.is-active { opacity: 1; pointer-events: auto; z-index: 3; }
+.inner-page .mn-panel__title { margin: 12px 0 0; font-size: 34px; line-height: 42px; font-weight: 700; color: var(--fmk-ink); }
+.inner-page .mn-panel__copy { margin: 16px 0 0; font-size: 16px; line-height: 26px; color: var(--fmk-body); }
+.inner-page .mn-panel__note { margin: 12px 0 0; font-size: 15px; line-height: 24px; color: var(--fmk-body-soft); }
+.inner-page .mn-panel .mn-link { margin-top: auto; padding-top: 22px; }
+
+.inner-page .mn-photo {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity var(--fmk-t-slow) ease;
+}
+.inner-page .mn-photo.is-active { opacity: 1; z-index: 3; }
+
+.inner-page .mn-rows { display: flex; flex-direction: column; border-left: 1px solid rgba(11, 70, 102, .1); }
+.inner-page .mn-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 22px 24px;
+  border: none;
+  border-bottom: 1px solid rgba(11, 70, 102, .1);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--fmk-t-mid);
+}
+.inner-page .mn-row:last-child { border-bottom: none; }
+.inner-page .mn-row.is-active { background: rgba(234, 152, 34, .14); }
+.inner-page .mn-row__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--fmk-ink);
+  transition: color var(--fmk-t-mid);
+}
+.inner-page .mn-row__arrow { font-size: 11px; color: var(--fmk-body-soft); transition: transform var(--fmk-t-mid), color var(--fmk-t-mid); }
+.inner-page .mn-row:hover .mn-row__arrow,
+.inner-page .mn-row:focus-visible .mn-row__arrow { transform: translateX(5px); }
+.inner-page .mn-row.is-active .mn-row__title,
+.inner-page .mn-row.is-active .mn-row__arrow { color: var(--fmk-orange); }
+
+/* =========================================================================
+   06  GROUPS — photo tiles
+   ========================================================================= */
+.inner-page .mn-tile {
+  position: relative;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--fmk-sh-card);
+  transition: transform var(--fmk-t-mid) var(--fmk-ease-out), box-shadow var(--fmk-t-mid) ease;
+}
+.inner-page .mn-tile:hover,
+.inner-page .mn-tile:focus-visible { transform: translateY(-6px); box-shadow: var(--fmk-sh-stage); }
+.inner-page .mn-tile__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform .7s var(--fmk-ease-out);
+}
+.inner-page .mn-tile:hover .mn-tile__img { transform: scale(1.06); }
+.inner-page .mn-tile__shade { position: absolute; inset: 0; background: var(--fmk-card-wash); }
+.inner-page .mn-tile__body { position: relative; z-index: 2; padding: 300px 34px 34px; }
+.inner-page .mn-tile__body--sm { padding: 150px 24px 24px; }
+.inner-page .mn-tile__body--flat { padding: 30px; }
+
+.inner-page .mn-tile__kicker {
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--fmk-orange);
+}
+.inner-page .mn-tile__kicker--ink { color: rgba(19, 19, 19, .6); }
+.inner-page .mn-tile__title { margin: 8px 0 0; font-size: 32px; line-height: 38px; font-weight: 700; color: var(--fmk-white); }
+.inner-page .mn-tile__title--sm { font-size: 24px; line-height: 30px; }
+.inner-page .mn-tile__title--ink { color: var(--fmk-ink); }
+.inner-page .mn-tile__copy { margin: 12px 0 0; font-size: 16px; line-height: 26px; color: var(--fmk-white-85); }
+.inner-page .mn-tile__copy--sm { font-size: 15px; line-height: 24px; }
+.inner-page .mn-tile__copy--ink { color: rgba(19, 19, 19, .78); }
+.inner-page .mn-tile--orange { background: var(--fmk-orange); }
+
+/* =========================================================================
+   07  FAMILY MOSAIC
+   Two masonry columns; bootstrap cannot express the uneven card heights,
+   so this is column-count, not a row/col grid.
+   ========================================================================= */
+
+/* The copy column pins while the mosaic scrolls past it, as in the source.
+   It is an inner wrapper rather than the bootstrap column itself: .row is
+   flex with align-items:stretch, so the column is already full height and
+   would have nothing to travel through.
+   Sticky survives here because every ancestor that clips — .fmk-sec and
+   .main-wrapper.fmk-shell — uses `overflow: clip`, which does not become a
+   scroll container. Switching either to `overflow: hidden` kills this.
+   Offset = the site's fixed-header token + 20px. */
+.inner-page .mn-family__copy {
+  position: sticky;
+  top: calc(var(--fmk-header-h) + 20px);
+}
+
+.inner-page .mn-mosaic { columns: 2; column-gap: 14px; min-width: 0; }
+.inner-page .mn-mtile {
+  display: block;
+  break-inside: avoid;
+  width: 100%;
+  margin: 0 0 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--fmk-white);
+  box-shadow: var(--fmk-sh-tile);
+  transition: transform var(--fmk-t-mid) var(--fmk-ease-out), box-shadow var(--fmk-t-mid) ease;
+}
+.inner-page .mn-mtile:hover,
+.inner-page .mn-mtile:focus-visible { transform: translateY(-5px); box-shadow: var(--fmk-sh-photo); }
+.inner-page .mn-mtile__imgwrap { position: relative; overflow: hidden; }
+.inner-page .mn-ar-4-3  { aspect-ratio: 4 / 3; }
+.inner-page .mn-ar-1-1  { aspect-ratio: 1 / 1; }
+.inner-page .mn-ar-16-10{ aspect-ratio: 16 / 10; }
+.inner-page .mn-mtile__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform .65s var(--fmk-ease-out);
+}
+.inner-page .mn-mtile:hover .mn-mtile__img { transform: scale(1.06); }
+.inner-page .mn-mtile__body { padding: 24px; }
+.inner-page .mn-mtile__kicker {
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--fmk-rust);
+}
+.inner-page .mn-mtile__title { margin: 8px 0 0; font-size: 24px; line-height: 30px; font-weight: 700; color: var(--fmk-ink); }
+.inner-page .mn-mtile__copy  { margin: 12px 0 0; font-size: 16px; line-height: 26px; color: var(--fmk-body); }
+
+.inner-page .mn-mtile--rust   { background: var(--fmk-rust); padding: 28px; }
+.inner-page .mn-mtile--orange { background: var(--fmk-orange); padding: 28px; }
+.inner-page .mn-mtile__flat { font-size: 24px; line-height: 32px; font-weight: 700; color: var(--fmk-white); }
+.inner-page .mn-mtile__flat--ink { color: var(--fmk-ink); }
+.inner-page .mn-mtile--rust .mn-mtile__copy   { color: var(--fmk-white-85); }
+.inner-page .mn-mtile--orange .mn-mtile__copy { color: rgba(19, 19, 19, .78); }
+
+/* =========================================================================
+   08  INCLUSIVE FLIP CARDS        (js → initFlips)
+   Desktop flips on hover/focus in CSS; the script adds tap and Enter/Space.
+   Below 992px the card does not flip at all — see ministries-responsive.css,
+   where both faces stack and the copy is permanently visible. Hover-only
+   copy on a touch device is invisible copy.
+   ========================================================================= */
+.inner-page .mn-onphoto { background: var(--fmk-navy-deep); }
+.inner-page .mn-onphoto__wash { position: absolute; inset: 0; background: var(--fmk-hero-wash); }
+.inner-page .mn-onphoto__inner { position: relative; z-index: 2; }
+
+.inner-page .mn-flip { perspective: 1500px; cursor: pointer; outline: none; aspect-ratio: 4 / 5; }
+.inner-page .mn-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .75s var(--fmk-ease-out);
+}
+.inner-page .mn-flip:hover .mn-flip__inner,
+.inner-page .mn-flip:focus-within .mn-flip__inner,
+.inner-page .mn-flip.is-flipped .mn-flip__inner { transform: rotateY(180deg); }
+
+.inner-page .mn-flip__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--fmk-sh-card);
+}
+.inner-page .mn-flip__front { justify-content: flex-end; }
+.inner-page .mn-flip__shade { position: absolute; inset: 0; background: var(--fmk-card-wash); }
+.inner-page .mn-flip__frontbody { position: relative; z-index: 2; padding: 30px; }
+.inner-page .mn-flip__back {
+  transform: rotateY(180deg);
+  background: var(--fmk-cream);
+  justify-content: center;
+  overflow-y: auto;
+  padding: 30px;
+}
+.inner-page .mn-flip__kicker {
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--fmk-orange);
+}
+.inner-page .mn-flip__kicker--rust { color: var(--fmk-rust); }
+.inner-page .mn-flip__title { margin: 10px 0 0; font-size: 32px; line-height: 38px; font-weight: 700; color: var(--fmk-white); }
+.inner-page .mn-flip__title--ink { font-size: 27px; line-height: 34px; color: var(--fmk-ink); }
+.inner-page .mn-flip__hint {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--fmk-white-70);
+}
+.inner-page .mn-flip__hint i { font-size: 10px; color: var(--fmk-orange); }
+.inner-page .mn-flip__copy { margin: 14px 0 0; font-size: 16px; line-height: 26px; color: var(--fmk-body); }
+.inner-page .mn-flip__note { margin: 10px 0 0; font-size: 14px; line-height: 22px; color: var(--fmk-body-soft); }
+.inner-page .mn-flip .mn-link { margin-top: 18px; }
+
+/* =========================================================================
+   09  LIFE-STAGE RAIL             (js → initRail)
+   A horizontal drift rail, not a grid — it stays natively scrollable so it
+   works with no JS and with reduced motion.
+   ========================================================================= */
+.inner-page .mn-ls__nav { display: flex; align-items: center; gap: 10px; }
+.inner-page .mn-navbtn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(11, 70, 102, .2);
+  background: var(--fmk-white);
+  color: var(--fmk-navy);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background var(--fmk-t-fast), color var(--fmk-t-fast),
+              border-color var(--fmk-t-fast), opacity var(--fmk-t-fast);
+}
+.inner-page .mn-navbtn:hover,
+.inner-page .mn-navbtn:focus-visible { background: var(--fmk-rust); color: var(--fmk-white); border-color: var(--fmk-rust); }
+.inner-page .mn-navbtn[disabled] {
+  opacity: .35;
+  cursor: default;
+  background: var(--fmk-white);
+  color: var(--fmk-navy);
+  border-color: rgba(11, 70, 102, .2);
+}
+
+.inner-page .mn-rail {
+  /* both tunables in one place; the breakpoints below override these two
+     rather than re-stating the padding shorthand */
+  --mn-rail-pad: var(--fmk-shell-pad);
+  --mn-rail-gap: 16px;
+
+  display: flex;
+  gap: var(--mn-rail-gap);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  /* NO inline padding here — see the spacers below */
+  padding: 40px 0 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.inner-page .mn-rail::-webkit-scrollbar { display: none; }
+
+/* A flex scroll container's trailing padding is not dependable: once the
+   content overflows, several engines drop padding-inline-end from the
+   scrollable area, so the first card keeps its gutter and the LAST one ends
+   flush against the screen edge. Two flex spacers give an identical gutter
+   at both ends by construction, in every engine.
+   The gap is subtracted because it also sits beside each spacer, so the
+   visible gutter is exactly --mn-rail-pad on both sides. */
+.inner-page .mn-rail::before,
+.inner-page .mn-rail::after {
+  content: "";
+  flex: 0 0 max(0px, calc(var(--mn-rail-pad) - var(--mn-rail-gap)));
+}
+
+.inner-page .mn-lscard {
+  flex: 0 0 292px;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--fmk-sh-tile);
+  transition: transform var(--fmk-t-mid) var(--fmk-ease-out), box-shadow var(--fmk-t-mid) ease;
+}
+.inner-page .mn-lscard:hover,
+.inner-page .mn-lscard:focus-visible { transform: translateY(-7px); box-shadow: var(--fmk-sh-photo); }
+.inner-page .mn-lscard__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform .65s var(--fmk-ease-out);
+}
+.inner-page .mn-lscard:hover .mn-lscard__img { transform: scale(1.07); }
+.inner-page .mn-lscard__shade { position: absolute; inset: 0; background: var(--fmk-card-wash); }
+.inner-page .mn-lscard__body { position: relative; z-index: 2; padding: 20px; }
+.inner-page .mn-lscard__kicker {
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--fmk-orange);
+}
+.inner-page .mn-lscard__title { margin: 8px 0 0; font-size: 21px; line-height: 27px; font-weight: 700; color: var(--fmk-white); }
+.inner-page .mn-lscard__go {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fmk-font-ui);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--fmk-white-85);
+}
+.inner-page .mn-lscard__go span { flex: 1; min-width: 0; }
+.inner-page .mn-lscard__go i { font-size: 10px; color: var(--fmk-orange); }
+
+.inner-page .mn-ls__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 30px;
+  margin-top: 30px;
+}
+.inner-page .mn-ls__foot .mn-hand { margin: 0; }
+
+/* =========================================================================
+   10  GET INVOLVED — full-bleed hover rows
+   The photo is an enhancement; all copy is readable without it, so this is
+   not hover-only content.
+   ========================================================================= */
+.inner-page .mn-gi__list { margin-top: 40px; }
+.inner-page .mn-gi__row {
+  position: relative;
+  overflow: hidden;
+  padding: 48px 0;
+  border-top: 1px solid var(--fmk-glass-line);
+}
+.inner-page .mn-gi__row:last-child { border-bottom: 1px solid var(--fmk-glass-line); }
+.inner-page .mn-gi__bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.07);
+  pointer-events: none;
+  transition: opacity var(--fmk-t-slow) ease, transform .9s var(--fmk-ease-out);
+}
+.inner-page .mn-gi__row:hover .mn-gi__bg,
+.inner-page .mn-gi__row:focus-within .mn-gi__bg { opacity: 1; transform: scale(1); }
+.inner-page .mn-gi__bgshade { position: absolute; inset: 0; background: var(--fmk-navy-wash); }
+.inner-page .mn-gi__inner { position: relative; z-index: 2; }
+.inner-page .mn-gi__num {
+  font-family: var(--fmk-font-ui);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding-top: 6px;
+  color: var(--fmk-white-45);
+  transition: color var(--fmk-t-mid) ease;
+}
+.inner-page .mn-gi__title {
+  font-size: 52px;
+  line-height: 58px;
+  font-weight: 700;
+  color: var(--fmk-white);
+  transition: color var(--fmk-t-mid) ease;
+}
+.inner-page .mn-gi__row:hover .mn-gi__num,
+.inner-page .mn-gi__row:hover .mn-gi__title { color: var(--fmk-orange); }
+.inner-page .mn-gi__body { display: flex; flex-direction: column; align-items: flex-start; }
+.inner-page .mn-gi__copy { font-size: 16px; line-height: 26px; color: var(--fmk-white-85); }
+.inner-page .mn-gi__body .fmk-btn { margin-top: 20px; }
+
+/* =========================================================================
+   11  WHY — photo + story slot
+   ========================================================================= */
+.inner-page .mn-why__media { display: flex; flex-direction: column; gap: 18px; }
+.inner-page .mn-why__photo { overflow: hidden; border-radius: 18px; }
+.inner-page .mn-why__photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  /* 20% keeps faces clear of the top crop */
+  object-position: center 20%;
+  border-radius: 18px;
+  box-shadow: var(--fmk-sh-photo);
+}
+.inner-page .mn-story {
+  background: var(--fmk-white);
+  border-radius: 18px;
+  border-left: 3px solid var(--fmk-orange);
+  padding: 28px;
+  box-shadow: var(--fmk-sh-tile);
+}
+.inner-page .mn-story__label {
+  font-family: var(--fmk-font-ui);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--fmk-rust);
+}
+.inner-page .mn-story__copy { margin: 10px 0 0; font-size: 16px; line-height: 26px; font-style: italic; color: var(--fmk-body-soft); }
+
+/* =========================================================================
+   12  FAQ
+   The accordion itself is the site's own .trusted-section component, shared
+   verbatim with About Us — nothing about it is restyled here.
+   ========================================================================= */
+
+/* =========================================================================
+   13  CLOSING CTA
+   ========================================================================= */
+.inner-page .mn-cta { position: relative; overflow: clip; background: var(--fmk-navy); }
+.inner-page .mn-cta__overlay { position: absolute; inset: 0; background: var(--fmk-navy-wash); }
+.inner-page .mn-cta__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90% 120% at 15% 0%, rgba(234, 152, 34, .16), transparent 55%);
+}
+.inner-page .mn-cta__inner { position: relative; z-index: 2; text-align: center; max-width: 1100px; }
+.inner-page .mn-cta__inner .fmk-eyebrow { justify-content: center; }
+.inner-page .mn-cta__inner .fmk-copy { max-width: 820px; }
+.inner-page .mn-cta__note { margin-top: 40px; font-family: var(--fmk-font-ui); font-size: 15px; color: var(--fmk-white-45); }

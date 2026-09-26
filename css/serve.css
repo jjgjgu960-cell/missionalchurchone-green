@@ -1,0 +1,869 @@
+/* =========================================================================
+   serve.css — Serve page components
+   ------------------------------------------------------------------------
+   Ported from serve-main/. That export is the inline-style variety: almost
+   every rule lived in a style="..." attribute on the element, and the only
+   real stylesheet (assets/css/style.css) held nothing but resets, keyframes
+   and nine anonymous hover classes (.hv1 … .hv9). So this file is not a
+   copy of that stylesheet — it is the whole export's inline layer lifted
+   into named classes, one per distinct treatment.
+
+   Conversion rules applied:
+     1. every style="..." became a class; the nine .hv* hover classes were
+        resolved back into the :hover of the component they decorated, so
+        no !important survives and no class is named after a hover alone.
+     2. EVERY class carries an `sv-` prefix, and every selector is scoped
+        under .inner-page — the export's bare names would have collided
+        with bootstrap.min.css and style.css, and an unscoped rule here
+        could reach the shared header, the footer, or index.html.
+     3. colours remapped to the --fmk-* tokens from inner-pages.css.
+        #08283E (the export's footer navy, darker than --fmk-navy-deep) is
+        the one value with no token, and it belonged to the export's own
+        footer, which this page does not use.
+     4. image urls repointed at the export folder, which stays where it is —
+        ../serve-main/images/... — so no asset is duplicated.
+
+   .rv is NOT redefined here. The export drove .rv/.rvf off
+   `animation-timeline: view()`, which needs the element's scroll container
+   to be the document; style.css gives .main-wrapper `overflow: hidden`,
+   which would have frozen every one of them at a fixed progress. The
+   markup uses the site's own .rv instead — js/app.js observes it and flips
+   it to .is-in — and .rvf is folded into .rv, since app.js observes only
+   .rv and an unobserved reveal would stay invisible forever.
+
+   @keyframes svRibbon replaces the export's <animate> inside the SVG
+   ribbon so the effect is CSS-driven and honours prefers-reduced-motion.
+   ========================================================================= */
+
+.inner-page {
+  --sv-muted:  #6E6355;   /* eyebrow labels on light */
+  --sv-faint:  #9A8C74;   /* de-emphasised captions  */
+  --sv-pad-y:  clamp(48px, 5vw, 84px);
+
+  /* ---- TYPE SCALE, taken from the main site ----------------------------
+     Same scale as faith-journey.css — see the long note there. In short:
+     the site's section headings run 55px/1.1, card titles 36px, sub-heads
+     30px, body copy 20/30 stepping to 18/28 and 16/26, and style.css puts
+     bare h1 at 64/80. The export sat well below all of it.
+     -------------------------------------------------------------------- */
+  --sv-h1:      64px;   /* hero — matches style.css h1 */
+  --sv-h2:      55px;   /* section heading             */
+  --sv-h3:      36px;   /* card title                  */
+  --sv-sub:     30px;   /* small heading / sub-heading  */
+  --sv-text:    20px;   /* body copy                   */
+  --sv-text-lh: 30px;
+  --sv-lead:    24px;   /* section lede, a step above body */
+  /* one crossfade duration for the tracks carousel and the Serve Global
+     panel. journey-serve.js reads this value back off the element, so
+     changing it here changes the JS timing too — they cannot drift. */
+  --sv-fade:   .28s;
+}
+
+@media (max-width: 1399px) {
+  .inner-page { --sv-h1: 58px; --sv-h2: 54px; --sv-h3: 32px; --sv-sub: 28px;
+                --sv-text: 18px; --sv-text-lh: 28px; --sv-lead: 21px; }
+}
+@media (max-width: 1199px) {
+  .inner-page { --sv-h1: 50px; --sv-h2: 46px; --sv-h3: 30px; --sv-sub: 26px;
+                --sv-text: 16px; --sv-text-lh: 26px; --sv-lead: 19px; }
+}
+@media (max-width: 991px) {
+  .inner-page { --sv-h1: 42px; --sv-h2: 38px; --sv-h3: 28px; --sv-sub: 24px;
+                --sv-lead: 18px; }
+}
+@media (max-width: 767px) {
+  .inner-page { --sv-h1: 34px; --sv-h2: 32px; --sv-h3: 24px; --sv-sub: 21px;
+                --sv-text-lh: 26px; --sv-lead: 17px; }
+}
+
+/* ------------------------------------------------------------------------
+   WIDTH comes from Bootstrap's own `.container`, which every band inner
+   also carries in the markup. index.html and the other converted pages
+   (about-us, watch, give, events) all lay out on plain `.container`, so
+   this page now measures the same as the rest of the site at every
+   breakpoint: 1320 / 1140 / 960 / 720 / 540, then fluid. The export's
+   private 1500px shell was wider than anything else on the site.
+
+   Only the vertical rhythm is set here — `.container` has no opinion about
+   it, and the bands need it to alternate cleanly.
+   ------------------------------------------------------------------------ */
+.inner-page .sv-band { width: 100%; }
+.inner-page .sv-band--cream { background: var(--fmk-cream); }
+.inner-page .sv-band--navy  { background: var(--fmk-navy); }
+/*.inner-page .sv-band__inner { padding-top: var(--sv-pad-y); padding-bottom: var(--sv-pad-y); }*/
+.inner-page .sv-sec { scroll-margin-top: 110px; }
+
+/* Numbered section rule:  04 ————————————— SERVE LOCAL */
+.inner-page .sv-eyebrow { display: flex; align-items: center; gap: 14px; }
+.inner-page .sv-eyebrow__num  { font-weight: 700;  color: var(--fmk-rust); }
+.inner-page .sv-eyebrow__rule { flex: 1; height: 1px; background: rgba(11, 36, 56, 0.15); }
+.inner-page .sv-eyebrow__label {
+    text-transform: uppercase;
+    color: var(--sv-muted);
+    font-weight: 600;
+}
+.inner-page .sv-eyebrow--onDark .sv-eyebrow__num   { color: var(--fmk-orange); }
+.inner-page .sv-eyebrow--onDark .sv-eyebrow__rule  { background: rgba(255, 255, 255, 0.22); }
+.inner-page .sv-eyebrow--onDark .sv-eyebrow__label { color: rgba(248, 242, 230, 0.68); }
+
+/* the centred variant, e.g. "07 · The third movement" */
+.inner-page .sv-kicker { text-align: center; text-transform: uppercase; color: rgba(248, 242, 230, 0.68); font-weight: 600; }
+.inner-page .sv-kicker b { color: var(--fmk-orange); font-weight: 800; font-family: var(--fmk-font-ui); }
+
+/* style.css sets bare h1 at 64px and bare h2 at 96px, so every heading here
+   carries its own class and never relies on the tag default. Weight is 700,
+   matching every heading on the main site — the export used 800. */
+.inner-page .sv-h2 { margin: 0; font-weight: 700; color: #000; }
+.inner-page .sv-h2--onDark { color: var(--fmk-white); }
+.inner-page .sv-h2--center {
+    margin-inline: auto;
+    text-align: center;
+    max-width: 1100px;
+}
+/*.inner-page .sv-h2--lead { font-size: var(--sv-h2); line-height: 1.1; }*/
+.inner-page .sv-body { margin: 20px 0 0; color: var(--fmk-body-soft); }
+.inner-page .sv-body--onDark { color: rgba(248, 242, 230, 0.78); }
+.inner-page .sv-accent { color: var(--fmk-orange); }
+.inner-page .sv-accent--rust { color: var(--fmk-rust); }
+.inner-page .sv-accent--dim  { color: rgba(255, 255, 255, 0.55); }
+.inner-page .sv-col { min-width: 0; }
+/* columns + gutter come from Bootstrap's .row/.col-lg-6 in the markup */
+.inner-page .sv-split { margin-top: clamp(22px, 2.2vw, 36px); --bs-gutter-x: clamp(28px, 3vw, 56px); --bs-gutter-y: clamp(28px, 3vw, 40px); }
+
+/* =========================================================================
+   BUTTONS — every button turns rust (#B04825) on hover
+   ========================================================================= */
+.inner-page .sv-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 14px 24px !important;
+    font-size: 14px;
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+  transition: background .25s, color .25s, border-color .25s, transform .25s;
+  font-weight: 700;
+}
+.inner-page .sv-btn i { font-size: 11px; }
+.inner-page .sv-btn--white  { background: var(--fmk-white); color: var(--fmk-navy-deep); }
+.inner-page .sv-btn--white:hover { color: var(--fmk-white); }
+.inner-page .sv-btn--orange { background: var(--fmk-orange); color: var(--fmk-navy-deep); }
+.inner-page .sv-btn--orange:hover { color: var(--fmk-white); transform: translateY(-2px); }
+.inner-page .sv-btn--ghost  { border-color: rgba(11, 36, 56, 0.4); color: var(--fmk-navy-deep); background: transparent; }
+.inner-page .sv-btn--ghost:hover {border-color: var(--fmk-rust); color: var(--fmk-white); }
+/*.inner-page .sv-btn--lg { font-size: clamp(15px, 1.1vw, 18px); padding: 16px 32px; }
+.inner-page .sv-btn--sm { font-size: 12.5px; padding: 10px 18px; }*/
+
+/* the pill button with a dark disc on its trailing edge */
+.inner-page .sv-btn--disc { gap: 10px; padding: 8px 8px 8px 22px; }
+.inner-page .sv-btn--disc.sv-btn--sm { padding: 8px 8px 8px 20px; font-size: 13.5px; }
+.inner-page .sv-btn__disc {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--fmk-navy-deep); color: var(--fmk-white);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex: 0 0 auto;
+}
+.inner-page .sv-btn--sm .sv-btn__disc { width: 32px; height: 32px; font-size: 11px; }
+/* the export drew every "go" arrow as fa-arrow-up rotated 45° */
+.inner-page .sv-arrow-ne { transform: rotate(45deg); }
+.inner-page .sv-arrow-nw { transform: rotate(-45deg); }
+
+/* the standalone round arrow button beside the hero CTA */
+.inner-page .sv-round {
+  width: clamp(50px, 3.6vw, 58px); height: clamp(50px, 3.6vw, 58px); border-radius: 50%;
+  background: var(--fmk-white); color: var(--fmk-navy-deep);
+  display: inline-flex; align-items: center; justify-content: center; font-size: 16px;
+  transition: background .25s, color .25s, transform .25s;
+}
+.inner-page .sv-round:hover { background: var(--fmk-rust); color: var(--fmk-white); transform: rotate(45deg); }
+
+.inner-page .sv-textlink { display: inline-flex; align-items: center; gap: 8px; color: var(--fmk-orange); font-weight:600; font-size: 16px; }
+.inner-page .sv-textlink:hover { color: var(--fmk-white); }
+.inner-page .sv-textlink i { font-size: 18px; }
+.inner-page .sv-textlink--soft { color: rgba(248, 242, 230, 0.85); font-weight: 600; }
+.inner-page .sv-textlink--soft:hover { color: var(--fmk-orange); }
+.inner-page .sv-textlink--soft i { color: var(--fmk-orange); }
+
+/* the rounded tags under Serve Local / Every Age & Stage */
+.inner-page .sv-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.inner-page .sv-tag {
+    background: var(--fmk-white);
+    border: 1px solid rgba(176, 72, 37, 0.2);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--fmk-rust);
+}
+.inner-page .sv-tag--ink { border-color: rgba(19, 19, 19, 0.1); color: var(--fmk-ink); }
+.inner-page .sv-tag--ink i { color: var(--fmk-orange); margin-right: 7px; }
+
+/* the bracketed "team to confirm" placeholder notes */
+.inner-page .sv-note { margin-top: 20px; display: inline-flex; align-items: center; gap: 10px; background: var(--fmk-white); border: 1px solid rgba(19, 19, 19, 0.1); border-radius: 10px; padding: 12px 16px; font-size: 16px; color: var(--sv-muted); }
+.inner-page .sv-note i { font-size: 12px; color: var(--fmk-rust); }
+.inner-page .sv-note--bare { margin-top: 14px; background: none; border: 0; padding: 0; font-size: 16px; color: var(--sv-faint); }
+.inner-page .sv-note--bare i { font-size: 11px; margin-right: 7px; color: inherit; }
+
+/* =========================================================================
+   01 · HERO
+   photo → serve-main/images/hero/hero-steeple.png
+   ========================================================================= */
+.inner-page .sv-hero {
+  position: relative; overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(11,36,56,.62) 100%, rgba(11,36,56,.28) 34%, rgba(11,36,56,.42) 70%, rgba(11,36,56,.78) 100%),
+    url("../serve-main/images/hero/hero-steeple.png") center 30% / cover no-repeat;
+}
+/* the export's own nav was sticky; the shared site header is position:fixed,
+   so the first band has to clear it by hand — same trick index.html uses. */
+/* width + inline padding from `.container` in the markup */
+.inner-page .sv-hero__inner {
+    min-height: clamp(480px, 66vh, 660px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(20px, 2.4vw, 40px);
+}
+.inner-page .sv-hero__top { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.inner-page .sv-crumbs { display: flex; align-items: center; gap: 9px; color: rgba(248,242,230,.8); }
+.inner-page .sv-crumbs a { color: rgba(248,242,230,.8); }
+.inner-page .sv-crumbs a:hover { color: var(--fmk-orange); }
+.inner-page .sv-crumbs span { opacity: .5; }
+.inner-page .sv-crumbs .is-current { color: var(--fmk-orange); font-weight: 600; opacity: 1; }
+.inner-page .sv-hero__badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(9,30,47,.55); border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: 999px; padding: 10px 20px; color: var(--fmk-white); font-weight: 600; 
+}
+.inner-page .sv-hero__badge i { color: var(--fmk-orange); font-size: 13px; }
+.inner-page .sv-hero__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: clamp(28px, 3vw, 48px); }
+.inner-page .sv-hero__copy { flex: 1 1 480px; min-width: min(480px, 100%); }
+.inner-page .sv-hero__title { margin: 0; color: var(--fmk-white); line-height: 70px;}
+.inner-page .sv-hero__actions { display: flex; align-items: center; gap: 14px;     margin-top: 30px; }
+
+/* the glass stat / photo cluster on the right */
+.inner-page .sv-hero__cards { flex: 0 1 auto; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+.inner-page .sv-hero__stats { display: flex; flex-direction: column; gap: 12px; width: min(190px, 100%); }
+.inner-page .sv-stat {
+  flex: 1; background: rgba(9,30,47,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 16px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+}
+.inner-page .sv-stat__num { font-weight:700; color: var(--fmk-white); }
+.inner-page .sv-stat__label {
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(248,242,230,.7);
+}
+.inner-page .sv-stat__bar { margin-top: 10px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.15); overflow: hidden; }
+.inner-page .sv-stat__fill { height: 100%; border-radius: 999px; background: var(--fmk-orange); }
+
+.inner-page .sv-hero__card {
+  background: rgba(9,30,47,.72); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 12px;
+  display: flex; gap: 14px; width: min(560px, 100%);
+}
+.inner-page .sv-hero__cardPhoto { flex: 0 0 42%; border-radius: 14px; overflow: hidden; }
+.inner-page .sv-hero__cardPhoto img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; }
+.inner-page .sv-hero__cardBody { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 8px 6px 6px 0; }
+.inner-page .sv-hero__cardTitle { font-weight: 700; font-size: var(--sv-h3); line-height: 1.2; color: var(--fmk-white); }
+.inner-page .sv-hero__cardText {
+    margin: 10px 0 0;
+    font-size: 16px;
+    line-height: 26px;
+    color: rgba(248,242,230,.72);
+}
+.inner-page .sv-hero__cardActions { display: flex; align-items: center; gap: 10px; }
+.inner-page .sv-hero__cardActions .sv-textlink { color: var(--fmk-white); }
+.inner-page .sv-hero__cardActions .sv-textlink:hover { color: var(--fmk-orange); }
+.inner-page .sv-hero__cardActions .sv-textlink i { font-size: 9px; }
+
+/* =========================================================================
+   02 · SERVING AT A GLANCE (the answer capsule)
+   ========================================================================= */
+.inner-page .sv-glance {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.inner-page .sv-glance__lede {
+    margin: 20px 0px 0px;
+    color: var(--fmk-navy-deep);
+    letter-spacing: -0.01em;
+}
+
+/* =========================================================================
+   03 · THREE WAYS IN (featured card carousel, js → initTracks)
+   ========================================================================= */
+/* this band has no separate inner, so it is the `.container` itself —
+   width and inline padding come from there, only the deeper vertical
+   rhythm this section wants is set here */
+.inner-page .sv-tracks { display: flex; gap: clamp(20px, 2.4vw, 44px); align-items: center; }
+.inner-page .sv-tracks__main { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; gap: clamp(28px, 3vw, 48px); align-items: center; justify-content: space-between; }
+/* the copy column centres against the card rather than being pushed to the
+   two ends of it — the export's space-between + 120px gap left the pill
+   stranded at the top on tall viewports */
+.inner-page .sv-tracks__copy { flex: 1 1 380px; min-width: min(380px, 100%); display: flex; flex-direction: column; justify-content: center; gap: clamp(22px, 2.6vw, 40px); }
+.inner-page .sv-tracks__pill {
+  display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-radius: 999px;
+  padding: 11px 22px; color: var(--fmk-white); font-weight: 600; text-transform: uppercase;
+}
+.inner-page .sv-tracks__pill span { width: 9px; height: 9px; border-radius: 50%; background: var(--fmk-orange); }
+.inner-page .sv-tracks__title { margin: 0; color: var(--fmk-white); }
+.inner-page .sv-tracks__lede {
+    margin: 20px 0px 0px;
+    max-width: 700px;
+    color: rgba(248,242,230,.78);
+}
+
+.inner-page .sv-track {
+  flex: 0 1 560px; min-width: min(440px, 100%);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 22px; padding: 14px; display: flex; flex-direction: column;
+}
+.inner-page .sv-track__media { border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; background: rgba(255,255,255,.04); }
+.inner-page .sv-track__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.inner-page .sv-track__body { padding: 20px 12px 12px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+
+/* ---- crossfade -----------------------------------------------------------
+   The carousel replaces the photo and every text field at once. Swapping
+   them raw made the card flick between states, so JS fades the pieces out,
+   swaps while they are invisible, then fades them back. The photo fades a
+   little slower than the copy so the image reads as the thing that moved.
+   `.is-fading` is the only class JS touches; the timings live here.
+   -------------------------------------------------------------------------- */
+.inner-page .sv-track__media img,
+.inner-page .sv-track__body { transition: opacity var(--sv-fade) ease; }
+/* The duration in force during a transition comes from the DESTINATION
+   state, so the base rule governs the fade-IN and .is-fading governs the
+   fade-OUT. The photo therefore eases back in slightly slower than it left
+   — but its fade-out stays exactly --sv-fade, which is what the JS timer
+   waits for. Give the base rule the longer duration and the fade-out would
+   still be running when the swap lands, and the old photo would pop. */
+.inner-page .sv-track__media img { transition-duration: calc(var(--sv-fade) * 1.3); }
+.inner-page .sv-track__media img.is-fading { transition-duration: var(--sv-fade); }
+.inner-page .sv-track__media img.is-fading,
+.inner-page .sv-track__body.is-fading { opacity: 0; }
+.inner-page .sv-track__head { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.inner-page .sv-track__title { font-weight: 700; color: var(--fmk-white); }
+.inner-page .sv-track__badge {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.08); border-radius: 999px; padding: 8px 16px;
+  color: var(--fmk-white); font-weight: 600; font-size: 16px; letter-spacing: 1px; text-transform: uppercase;
+}
+.inner-page .sv-track__badge i { color: var(--fmk-orange); font-size: 12px; }
+.inner-page .sv-track__desc { margin: 0; color: rgba(248,242,230,.75); }
+.inner-page .sv-track__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.inner-page .sv-track__count { font-weight: 800; font-size: clamp(20px, 1.6vw, 26px); color: rgba(255,255,255,.85); }
+
+.inner-page .sv-tracks__rail { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 18px; }
+.inner-page .sv-tracks__ticks { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.inner-page .sv-tick { width: 3px; height: 22px; border-radius: 999px; background: rgba(255,255,255,.22); transition: height .3s, background .3s; }
+.inner-page .sv-tick.is-active { height: 58px; background: var(--fmk-orange); }
+.inner-page .sv-navbtn { width: 46px; height: 46px; border-radius: 50%; cursor: pointer; font-size: 15px; transition: background .25s, color .25s, border-color .25s; }
+.inner-page .sv-navbtn--solid { border: none; background: var(--fmk-orange); color: var(--fmk-navy-deep); }
+.inner-page .sv-navbtn--solid:hover { background: var(--fmk-rust); color: var(--fmk-white); }
+.inner-page .sv-navbtn--ghost { border: 1px solid rgba(255,255,255,.3); background: transparent; color: var(--fmk-white); }
+.inner-page .sv-navbtn--ghost:hover { background: var(--fmk-rust); border-color: var(--fmk-rust); }
+
+@media (max-width: 991px) {
+  .inner-page .sv-tracks { flex-direction: column; }
+  .inner-page .sv-tracks__rail { flex-direction: row; width: 100%; }
+  .inner-page .sv-tracks__ticks { flex-direction: row; }
+  .inner-page .sv-tick { width: 22px; height: 3px; }
+  .inner-page .sv-tick.is-active { width: 58px; height: 3px; }
+}
+
+/* =========================================================================
+   04 · MATCH YOUR GIFTS
+   photo → serve-main/images/gifts/gifts-welcome-team.jpg
+   ========================================================================= */
+.inner-page .sv-photo { display: block; width: 100%; object-fit: cover; border-radius: 18px; box-shadow: 0 24px 56px rgba(11,36,56,.2); }
+.inner-page .sv-photo--43 { aspect-ratio: 4 / 3; }
+.inner-page .sv-photo--54 { aspect-ratio: 5 / 4; }
+.inner-page .sv-photo--gifts  { object-position: center 60%; }
+.inner-page .sv-photo--family { object-position: center 42%; }
+.inner-page .sv-figure { position: relative; min-width: 0; }
+.inner-page .sv-figure__chip {
+  position: absolute; left: 18px; bottom: 18px;
+  background: rgba(11,36,56,.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 11px;
+}
+.inner-page .sv-figure__icon { width: 34px; height: 34px; border-radius: 9px; background: var(--fmk-orange); color: var(--fmk-navy-deep); display: flex; align-items: center; justify-content: center; font-size: 13px; }
+.inner-page .sv-figure__kicker {
+    color: var(--fmk-orange);
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+.inner-page .sv-figure__label { color: var(--fmk-white); }
+
+/* =========================================================================
+   05 · SERVE THE CHURCH (white card + animated SVG ribbon + team tiles)
+   photo → serve-main/images/church/church-students-gathering.jpg
+   ========================================================================= */
+/* the card is the .row itself, so its own padding sits outside the gutter */
+.inner-page .sv-card {
+ background: var(--fmk-white); border-radius: 28px;
+  padding: clamp(26px, 3vw, 52px); box-shadow: 0 22px 54px rgba(0,0,0,.25);
+  margin-inline: 0;
+}
+.inner-page .sv-card__tag {
+    display: inline-block;
+    padding: 7px 16px;
+    border: 1px solid rgba(176,72,37,.3);
+    border-radius: 999px;
+    text-transform: uppercase;
+    color: var(--fmk-rust);
+    font-weight: 600;
+}
+.inner-page .sv-card__title { margin: 10px 0 0; }
+.inner-page .sv-card__media { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 7 / 5; min-height: 260px; }
+.inner-page .sv-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 65%; }
+.inner-page .sv-ribbon { position: absolute; inset: 0; width: 100%; height: 100%; }
+.inner-page .sv-ribbon__text { fill: var(--fmk-cream);  font-weight: 600; font-size: 19px; letter-spacing: 0.4px; }
+/* The ribbon's travel stays on the SVG <animate> element in the markup, as
+   the export had it. `startOffset` is an SVG attribute, not a CSS property,
+   so a @keyframes block cannot drive it — SMIL is the only thing that moves
+   text along a textPath without a script. The reduced-motion block at the
+   foot of this file therefore cannot reach it; main.js pauses it instead,
+   by calling the document's SMIL timeline. */
+
+/* six tiles, three to a row (col-lg-4), two on tablet, one on phone */
+.inner-page .sv-teams { margin-top: clamp(24px, 2.4vw, 38px); --bs-gutter-x: 14px; --bs-gutter-y: 14px; }
+.inner-page .sv-team {
+  background: rgba(255,255,255,.07); border-radius: 14px; padding: 22px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .25s, background .25s;
+}
+.inner-page .sv-team--split { justify-content: space-between; }
+.inner-page .sv-team > i { color: var(--fmk-orange); font-size: 28px; transition: color .25s; }
+.inner-page .sv-team__title { color: var(--fmk-white); font-weight: 700; }
+.inner-page .sv-team__title--strong { font-weight: 800; }
+.inner-page .sv-team__sub { color: rgba(248,242,230,.62); }
+.inner-page .sv-team:hover { transform: translateY(-4px); background: var(--fmk-orange); }
+.inner-page .sv-team:hover > i { color: var(--fmk-white); }
+
+/* =========================================================================
+   06 · SERVE LOCAL
+   photo → serve-main/images/local/local-outreach.jpg
+   ========================================================================= */
+/* Serve Local puts the photo second in the source so it reads first on a
+   phone, then swaps sides from lg up where the row is two columns */
+@media (min-width: 992px) {
+  .inner-page .sv-split--flip .sv-split__media { order: 2; }
+  .inner-page .sv-split--flip .sv-split__copy  { order: 1; }
+}
+.inner-page .sv-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+/* =========================================================================
+   07 · SERVE GLOBAL (tabs + swappable side panels, js → initGlobal)
+   photos → serve-main/images/global/global-0{1,2,3}-*.{jpg,png}
+   ========================================================================= */
+.inner-page .sv-global__head { text-align: center; }
+.inner-page .sv-global__lede {
+    margin: 16px auto 0;
+    color: rgba(248,242,230,.75);
+    max-width: 900px;
+}
+.inner-page .sv-global__tabs {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(14px, 2vw, 34px);
+  margin: clamp(20px, 2vw, 30px) auto 0; border-bottom: 1px solid rgba(255,255,255,.14); max-width: 760px;
+}
+.inner-page .sv-globtab {
+    padding: 10px 4px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgba(248,242,230,.55);
+    border-bottom: 2px solid transparent;
+    transition: color .25s, border-color .25s;
+}
+.inner-page .sv-globtab:hover { color: var(--fmk-white); }
+.inner-page .sv-globtab.is-active { color: var(--fmk-white); border-bottom-color: var(--fmk-orange); }
+
+.inner-page .sv-global__stage {
+  display: grid; grid-template-columns: minmax(90px, 1fr) minmax(0, 2.1fr) minmax(90px, 1fr);
+  gap: clamp(12px, 1.4vw, 20px); margin-top: clamp(24px, 2.4vw, 40px);
+  align-items: stretch; min-height: clamp(300px, 30vw, 380px);
+}
+.inner-page .sv-globside { position: relative; border-radius: 20px; overflow: hidden; cursor: pointer; }
+.inner-page .sv-globside img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---- crossfade -----------------------------------------------------------
+   Changing focus replaces the centre panel's icon, title and copy and both
+   flanking photos in the same tick. Everything that changes fades out, is
+   swapped while invisible, and fades back — so the section reads as one
+   dissolve rather than three separate jumps.
+   -------------------------------------------------------------------------- */
+.inner-page .sv-globside img,
+.inner-page .sv-globside__label,
+.inner-page .sv-globpanel__icon,
+.inner-page .sv-globpanel__title,
+.inner-page .sv-globpanel__desc { transition: opacity var(--sv-fade) ease; }
+.inner-page .sv-globside img.is-fading,
+.inner-page .sv-globside__label.is-fading,
+.inner-page .sv-globpanel__icon.is-fading,
+.inner-page .sv-globpanel__title.is-fading,
+.inner-page .sv-globpanel__desc.is-fading { opacity: 0; }
+/* the copy block is the tallest thing that changes; holding its height
+   steady stops the panel from resizing mid-dissolve */
+.inner-page .sv-globpanel__desc { min-height: 5.1em; }
+.inner-page .sv-globside__veil { position: absolute; inset: 0; background: rgba(11,36,56,.6); display: flex; align-items: center; justify-content: center; transition: background .25s; }
+.inner-page .sv-globside:hover .sv-globside__veil { background: rgba(11,36,56,.42); }
+.inner-page .sv-globside__label {
+    color: var(--fmk-white);
+    font-weight: 700;
+    text-align: center;
+    padding: 0 14px;
+}
+
+.inner-page .sv-globpanel {
+  background: linear-gradient(150deg, rgba(255,255,255,.13) 0%, rgba(255,255,255,.04) 100%);
+  border: 1px solid rgba(255,255,255,.14); border-radius: 22px; padding: clamp(24px, 2.8vw, 44px);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+}
+.inner-page .sv-globpanel__icon { width: 48px; height: 48px; border-radius: 13px; background: var(--fmk-orange); color: var(--fmk-navy-deep); display: inline-flex; align-items: center; justify-content: center; font-size: 19px; }
+.inner-page .sv-globpanel__title { margin-top: 16px; font-weight: 700; font-size: var(--sv-sub); color: var(--fmk-white); letter-spacing: -0.01em; }
+.inner-page .sv-globpanel__desc { margin: 12px 0 0; color: rgba(248,242,230,.78); }
+.inner-page .sv-globpanel__foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.inner-page .sv-globpanel__count { font-weight: 800; font-size: clamp(18px, 1.5vw, 24px); color: rgba(255,255,255,.85); }
+
+@media (max-width: 880px) {
+  /* three columns cannot hold a readable panel between two 90px rails */
+  .inner-page .sv-global__stage { grid-template-columns: 1fr 1fr; }
+  .inner-page .sv-globpanel { grid-column: 1 / -1; grid-row: 1; }
+  .inner-page .sv-globside { min-height: 180px; }
+}
+
+/* =========================================================================
+   08 · WHY IT'S DISCIPLESHIP (accordion + photo swap, js → initDisc)
+   photos → serve-main/images/discipleship/accordion-0{1..5}-*.jpg
+   ========================================================================= */
+/* `align-items: start`, not stretch. Stretching tied the photo's height to
+   the accordion's, so every open/close resized the image and the whole row
+   jumped — worst on the last item, whose answer is the longest. The photo
+   now has a height of its own and simply stays put. */
+.inner-page .sv-disc { margin-top: clamp(30px, 3vw, 52px); --bs-gutter-x: clamp(24px, 2.6vw, 48px); --bs-gutter-y: clamp(24px, 2.6vw, 40px); align-items: start; }
+.inner-page .sv-disc__list { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.inner-page .sv-disc-item { background: rgba(255,255,255,.05); border-radius: 16px; padding: 20px 24px; cursor: pointer; transition: background .3s; }
+.inner-page .sv-disc-item__head { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.inner-page .sv-disc-item__title { font-weight: 700;color: var(--fmk-white); transition: color .3s; }
+.inner-page .sv-disc-item__sign { color: var(--fmk-orange); font-size: 18px; flex: 0 0 auto; transition: color .3s; }
+.inner-page .sv-disc-item__body { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s; }
+.inner-page .sv-disc-item__body p { margin: 12px 0 0; color: rgba(248,242,230,.75); transition: color .3s; }
+/* the open item turns orange and its copy flips to navy */
+.inner-page .sv-disc-item.is-open { background: var(--fmk-orange); }
+.inner-page .sv-disc-item.is-open .sv-disc-item__title,
+.inner-page .sv-disc-item.is-open .sv-disc-item__sign { color: var(--fmk-navy-deep); }
+/* 340px, not the export's 220px: "Start small" is the longest answer and at
+   narrow widths it ran past 220 and was clipped, which is what made the
+   last item feel like it snapped rather than opened. The ceiling only has
+   to exceed the tallest answer — the transition still ends at real height. */
+.inner-page .sv-disc-item.is-open .sv-disc-item__body { max-height: 340px; opacity: 1; }
+.inner-page .sv-disc-item.is-open .sv-disc-item__body p { color: rgba(11,36,56,.85); }
+.inner-page .sv-disc__links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; padding-left: 4px; }
+
+/* a height of its own, and it follows you down the accordion instead of
+   sliding away while you open the items further down the list */
+.inner-page .sv-disc__media {
+  min-width: 0; border-radius: 24px; overflow: hidden;
+  height: clamp(420px, 44vw, 560px);
+  position: sticky; top: calc(var(--fmk-header-h) + 24px);
+}
+.inner-page .sv-disc__media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: opacity var(--sv-fade) ease; }
+.inner-page .sv-disc__media img.is-fading { opacity: 0; }
+
+/* =========================================================================
+   09 · FAQ (search + category filter + accordion, js → initServeFaq)
+   ========================================================================= */
+.inner-page .sv-faq__title { margin: clamp(22px, 2.2vw, 36px) 0 0; }
+.inner-page .sv-faq__search {
+  margin-top: clamp(22px, 2.2vw, 32px); display: flex; align-items: center;
+  background: var(--fmk-white); border: 1px solid rgba(19,19,19,.12);
+  border-radius: 999px; padding: 5px 6px 5px 20px;
+}
+.inner-page .sv-faq__search > i { color: var(--fmk-rust); font-size: 15px; flex: 0 0 auto; }
+.inner-page .sv-faq__search input { flex: 1 1 auto; min-width: 0; border: none; outline: none; background: transparent; font-size: 15px; color: var(--fmk-ink); padding: 14px 0; }
+.inner-page .sv-faq__searchBtn { flex: 0 0 auto; border: 1px solid var(--fmk-orange); cursor: pointer; background: var(--fmk-orange); color: var(--fmk-navy-deep); font-weight: 700; font-size: 14px; padding: 11px 24px; border-radius: 999px; transition: background .25s, color .25s, border-color .25s; }
+.inner-page .sv-faq__searchBtn:hover { background: var(--fmk-rust); border-color: var(--fmk-rust); color: var(--fmk-white); }
+
+.inner-page .sv-faq__cats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.inner-page .sv-faq__cat {
+  border: 1px solid rgba(11,36,56,.25); cursor: pointer; background: var(--fmk-white); color: var(--fmk-navy-deep);
+  font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 999px;
+  transition: background .25s, color .25s, border-color .25s;
+}
+.inner-page .sv-faq__cat:hover { background: var(--fmk-rust); border-color: var(--fmk-rust); color: var(--fmk-white); }
+.inner-page .sv-faq__cat.is-active { background: var(--fmk-orange); border-color: var(--fmk-orange); color: var(--fmk-navy-deep); }
+
+.inner-page .sv-faq__empty { margin-top: 18px; border-radius: 14px; border: 1px dashed rgba(19,19,19,.3); padding: 24px; text-align: center; font-size: 15px; color: var(--sv-muted); }
+.inner-page .sv-faq__empty button { background: none; border: 0; font-family: inherit; font-size: 15px; color: var(--fmk-rust); font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.inner-page .sv-faq__empty[hidden] { display: none; }
+
+.inner-page .sv-faq__grid { margin-top: clamp(20px, 2vw, 28px); --bs-gutter-x: 12px; --bs-gutter-y: 12px; align-items: start; }
+.inner-page .sv-faq-card { display: block; background: var(--fmk-white); border: 1px solid rgba(11,36,56,.12); border-radius: 14px; padding: 20px 22px; cursor: pointer; transition: background .35s, border-color .35s; }
+.inner-page .sv-faq-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.inner-page .sv-faq-card__cat { font-size: 9.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--fmk-rust); font-weight: 800; margin-bottom: 6px; transition: color .35s; }
+.inner-page .sv-faq-card__q { font-weight: 700; font-size: 21px; color: var(--fmk-navy-deep); line-height: 1.3; }
+.inner-page .sv-faq-card__sign { color: var(--fmk-rust); font-size: 14px; flex: 0 0 auto; margin-top: 4px; transition: color .35s; }
+.inner-page .sv-faq-card__body { overflow: hidden; max-height: 0; opacity: 0; transition: max-height .5s cubic-bezier(.4,0,.2,1), opacity .4s; }
+.inner-page .sv-faq-card__body p { margin: 0; padding-top: 12px; font-family: var(--fmk-font-ui); font-size: 14px; line-height: 1.7; color: var(--fmk-body-soft); transition: color .35s; }
+.inner-page .sv-faq-card__body em { font-style: normal; color: var(--sv-faint); }
+/* the open card turns orange */
+.inner-page .sv-faq-card.is-open { background: var(--fmk-orange); border-color: var(--fmk-orange); }
+.inner-page .sv-faq-card.is-open .sv-faq-card__cat,
+.inner-page .sv-faq-card.is-open .sv-faq-card__sign { color: var(--fmk-navy-deep); }
+.inner-page .sv-faq-card.is-open .sv-faq-card__body { max-height: 300px; opacity: 1; }
+.inner-page .sv-faq-card.is-open .sv-faq-card__body p { color: rgba(11,36,56,.85); }
+.inner-page .sv-faq-card.is-hidden { display: none; }
+
+/* =========================================================================
+   10 · STORIES
+   photo → serve-main/images/stories/stories-outreach.jpg
+   ========================================================================= */
+.inner-page .sv-stories__dots { display: flex; gap: 10px; padding-bottom: 6px; }
+.inner-page .sv-dot { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
+.inner-page .sv-dot--ghost { border: 1px solid rgba(255,255,255,.3); color: var(--fmk-white); }
+.inner-page .sv-dot--solid { background: var(--fmk-orange); color: var(--fmk-navy-deep); }
+.inner-page .sv-stories__title { text-align: center; }
+.inner-page .sv-stories__title .sv-h2 { margin-top: 10px; }
+
+.inner-page .sv-stories__grid { margin-top: clamp(24px, 2.4vw, 36px); --bs-gutter-x: 16px; --bs-gutter-y: 16px; align-items: start; }
+.inner-page .sv-story-photo { position: relative; border-radius: 18px; overflow: hidden; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-end; }
+.inner-page .sv-story-photo__bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,36,56,.1) 30%, rgba(11,36,56,.75) 100%),
+              url("../serve-main/images/stories/stories-outreach.jpg") center / cover no-repeat;
+}
+.inner-page .sv-story-photo__cap { position: relative; z-index: 2; margin: 18px; background: rgba(9,30,47,.72); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 12px; padding: 14px 18px; text-align: center; color: var(--fmk-white); font-weight: 700; font-size: 16px; }
+
+.inner-page .sv-quote { background: rgba(9,30,47,.72); border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 20px 20px; }
+.inner-page .sv-quote > i { color: var(--fmk-orange); font-size: 24px; }
+.inner-page .sv-quote p { margin: 12px 0 0; color: var(--fmk-white); font-size: 16px; line-height:26px; }
+.inner-page .sv-quote__by { margin-top: 5px; color: rgba(248,242,230,.7); font-size: 18px; line-height:26px; }
+
+.inner-page .sv-reviews { display: flex; flex-direction: column; gap: 16px; }
+.inner-page .sv-review { flex: 1 1 auto; background: rgba(255,255,255,.08); border: 1px solid rgba(11,36,56,.1); border-radius: 18px; padding: clamp(22px, 2vw, 30px); display: flex; flex-direction: column; justify-content: center; box-shadow: 0 14px 34px rgba(11,36,56,.08); }
+.inner-page .sv-review__stars { display: flex; gap: 3px; color: var(--fmk-orange); font-size: 14px; }
+.inner-page .sv-review p { margin: 12px 0 0; font-size: 16px; line-height: 24px; color: rgba(248,242,230,.68); font-style: italic; }
+.inner-page .sv-review__who { margin-top: 14px; display: flex; align-items: center; gap: 10px; }
+.inner-page .sv-review__avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(11,36,56,.08); }
+.inner-page .sv-review__line { height: 9px; width: 120px; border-radius: 5px; background: rgba(11,36,56,.1); }
+
+/* =========================================================================
+   11 · CLOSING CTA
+   photo → serve-main/images/cta/cta-worship-night.jpg
+   ========================================================================= */
+.inner-page .sv-cta {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, rgba(11,70,102,.92) 0%, rgba(9,46,68,.94) 100%),
+              url("../serve-main/images/cta/cta-worship-night.jpg") center 35% / cover no-repeat;
+}
+.inner-page .sv-cta__glow { position: absolute; inset: 0; background: radial-gradient(90% 120% at 15% 0%, rgba(234,152,34,.16), transparent 55%); }
+/* width + inline padding from `.container`; the copy inside keeps its own
+   reading measure, so a full-width container does not stretch the text */
+.inner-page .sv-cta__inner { position: relative; z-index: 2; text-align: center; }
+.inner-page .sv-cta__kicker {
+    text-transform: uppercase;
+    color: var(--fmk-orange);
+    font-weight: 600;
+}
+.inner-page .sv-cta__title {
+    margin: 10px 0 0;
+    font-weight: 700;
+    color: var(--fmk-white);
+}
+.inner-page .sv-cta__lede {
+    margin: 20px auto 0;
+    color: rgba(248,242,230,.82);
+    max-width: 1000px;
+}
+.inner-page .sv-cta__tiles { max-width: 800px; margin: clamp(28px, 2.6vw, 30px) auto 0; --bs-gutter-x: 14px; --bs-gutter-y: 14px; }
+.inner-page .sv-cta-tile {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 18px;
+  padding: 26px 20px; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  transition: transform .25s, background .25s;
+}
+.inner-page .sv-cta-tile:hover { transform: translateY(-4px); background: var(--fmk-orange); }
+.inner-page .sv-cta-tile__icon { width: 54px; height: 54px; border-radius: 14px; background: rgba(255,255,255,.1); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.inner-page .sv-cta-tile__icon i { color: var(--fmk-orange); font-size: 22px; transition: color .25s; }
+.inner-page .sv-cta-tile:hover .sv-cta-tile__icon i { color: var(--fmk-white); }
+.inner-page .sv-cta-tile__title { color: var(--fmk-white); font-weight: 700; }
+.inner-page .sv-cta-tile__sub { color: rgba(248,242,230,.65); font-size: 16px; }
+.inner-page .sv-cta__links { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin-top: 20px; }
+.inner-page .sv-cta__sep { color: rgba(255,255,255,.2); }
+.inner-page .sv-cta__meta {
+    margin-top: 20px;
+    font-size: 16px;
+    color: rgba(248,242,230,.45);
+}
+
+/* =========================================================================
+   RESPONSIVE — page-wide rhythm, on top of the per-component breakpoints
+   that sit with their sections above.
+   ========================================================================= */
+@media (max-width: 991px) {
+  .inner-page { --sv-pad-y: 60px; }
+  .inner-page .sv-hero__inner { min-height: clamp(440px, 72vw, 600px); }
+  .inner-page .sv-hero__cards { width: 100%; }
+  .inner-page .sv-disc__media { height: clamp(360px, 46vw, 460px); }
+}
+@media (max-width: 767px) {
+  .inner-page { --sv-pad-y: 48px; }
+  .inner-page .sv-hero__row { align-items: flex-start; }
+  .inner-page .sv-hero__stats { flex-direction: row; width: 100%; }
+  .inner-page .sv-hero__card { flex-direction: column; }
+  .inner-page .sv-hero__cardPhoto { flex: 0 0 auto; aspect-ratio: 16 / 9; }
+  .inner-page .sv-hero__cardBody { padding: 0 4px 4px; }
+  /* the pill-shaped search bar cannot hold an input and a padded button side
+     by side on a phone, so it unrolls into a stacked block */
+  .inner-page .sv-faq__search { flex-wrap: wrap; border-radius: 18px; padding: 12px 16px; gap: 8px; }
+  .inner-page .sv-faq__search input { flex: 1 1 160px; padding: 8px 0; }
+  .inner-page .sv-faq__searchBtn { flex: 1 1 100%; }
+  .inner-page .sv-stories__title { text-align: left; }
+  .inner-page .sv-card { padding: 24px; border-radius: 22px; }
+  /* stacked now, so the photo sits above the list — sticky would pin it
+     over the answers instead of beside them */
+  .inner-page .sv-disc__media { height: 260px; position: static; }
+  .inner-page .sv-ribbon__text { font-size: 15px; }
+}
+@media (max-width: 575px) {
+  .inner-page { --sv-pad-y: 40px; }
+  .inner-page .sv-hero__stats { flex-direction: column; }
+  .inner-page .sv-hero__actions { flex-wrap: wrap; }
+  .inner-page .sv-hero__actions .sv-btn--lg { flex: 1 1 100%; justify-content: center; }
+  .inner-page .sv-global__stage { grid-template-columns: 1fr; }
+  .inner-page .sv-actions .sv-btn { flex: 1 1 100%; justify-content: center; }
+}
+
+/* =========================================================================
+   MOTION PREFERENCES
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .inner-page [class^="sv-"],
+  .inner-page [class*=" sv-"] { animation: none !important; transition: none !important; }
+}
+
+/* =========================================================================
+   BOOTSTRAP GRID ADAPTERS
+   -------------------------------------------------------------------------
+   Most layouts on this page are Bootstrap .row/.col-* now, matching
+   index.html: the three alternating two-column sections, the white Serve
+   the Church card, the six team tiles (three to a row), the discipleship
+   split, the FAQ, the stories row and the closing CTA tiles.
+
+   A Bootstrap column carries the gutter as horizontal PADDING, so anything
+   that paints a background must sit INSIDE the column rather than being the
+   column — otherwise the background fills the gutter and the tiles touch.
+   Every painted card here is therefore wrapped in a plain column div, and
+   these rules just make it fill the column it was given.
+
+   Kept as CSS grid / flex on purpose, because Bootstrap's 12 columns cannot
+   express them: the hero card cluster, the tracks carousel and its tick
+   rail, the Serve Global 1 / 2.1 / 1 stage.
+   ========================================================================= */
+.inner-page .sv-teams > [class*="col-"],
+.inner-page .sv-cta__tiles > [class*="col-"],
+.inner-page .sv-stories__grid > [class*="col-"] { display: flex; }
+.inner-page .sv-teams > [class*="col-"] > .sv-team,
+.inner-page .sv-cta__tiles > [class*="col-"] > .sv-cta-tile,
+.inner-page .sv-stories__grid > [class*="col-"] > .sv-story-photo,
+.inner-page .sv-stories__grid > [class*="col-"] > .sv-quote { flex: 1 1 auto; }
+
+/* the two review cards stack inside their column */
+.inner-page .sv-stories__grid > .sv-reviews { display: flex; flex-direction: column; gap: 16px; }
+
+/* .sv-card IS the row, so it keeps its own padding and cancels the negative
+   margin a .row would otherwise apply against its rounded background */
+.inner-page .sv-card { margin-inline: 0; }
+
+
+
+.serve-bnt-hover{
+  position: relative;
+  overflow: hidden;
+}
+.serve-bnt-hover::after {
+    background: var( --mco-tertiary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    border-radius: 10px;
+/*    z-index: -1;*/
+}
+.serve-bnt-hover:hover:after {
+    width: 100%;
+}
+.serve-bnt-hover span{
+  position: relative;
+  z-index: 9;
+}
+.image-sv-card{
+    margin-top: 0px;
+}
+
+/***responsive-css***/
+@media (min-width: 320px) and (max-width: 767px) {
+.inner-page .sv-hero__inner {
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+.requests-box {
+    padding: 0;
+    margin: 0;
+}
+.inner-page .sv-globpanel {
+    padding: 20px 20px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+.sv-hero__inner .sv-hero__stats {
+    flex-direction:  unset; 
+    width: 100%;
+}
+.sv-hero__inner .sv-hero__card {
+    width: 100%;
+}
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+ .longtime {
+    margin-top: 0 !important;
+} 
+.inner-page .sv-hero__inner {
+    padding-bottom: 60px;
+}
+}
+.inner-page .fj-hero__title {
+    margin: 10px 0px 20px;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    color: var(--fmk-white);
+    animation: fjUp .8s ease .08s both;
+}
+.inner-page .fj-hero__content {
+    max-width: 820px;
+}
+.inner-page-btn a:hover:after {
+    width: 100%;
+}
+.inner-page-btn a::after {
+    background: #054766;
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    /* border-radius: 10px; */
+    z-index: -1;
+}

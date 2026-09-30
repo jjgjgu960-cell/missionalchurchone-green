@@ -1,0 +1,3737 @@
+@media (min-width: 320px) and (max-width: 567px) {
+    .growbtn a {
+    padding: 15px 20px;
+    font-size: 14px !important;
+    text-align: center;
+    width: 100%;
+}
+
+
+.firstorder{
+    order:1;
+}
+
+
+
+
+
+.playnow a {
+    padding: 16px 22px;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+}
+a.sayingbtn {
+    margin-left: 0px;
+    margin-top: 20px;
+}
+button.steps-prev {
+    left: 5%;
+}
+button.steps-next {
+    right: 5%;
+}
+/*.baptist-church{
+    margin-bottom: 50px;
+}*/
+.address-block {
+    padding: 20px;
+}
+.address-list span {
+    font-size: 24px;
+    line-height: 30px;
+}
+.address-list p {
+    font-size: 17px;
+    line-height: 24px;
+}
+.contacttext h3 {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 20px;
+}
+.send-message {
+    padding-left: 0px;
+    margin-top: 50px;
+}
+.from-style {
+    margin-top: 0px;
+}
+.about-hading {
+    margin-bottom: 30px;
+}
+
+
+.members-text p {
+    font-size: 17px;
+    line-height: 27px;
+}
+.member-list p {
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 20px;
+}
+.profiletext {
+    padding-top: 20px;
+}
+.arrowbtn {
+    bottom: 35px;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+.img-profile {
+    margin-top: 20px;
+}
+a.googlebtn {
+    margin: 0px 0px 0px 0px;
+    margin-top: 20px;
+}
+.stories {
+    margin-left: 0;
+    display: none;
+}
+.trusted-section .heading-pathway h3 {
+    font-size: 18px;
+    line-height: 24px;
+}
+.trusted-section .nav-tabs {
+    gap: 0px;
+    justify-content: center;
+}
+.search-questions {
+    margin-top: 30px;
+}
+.trusted-section .nav-tabs .nav-link {
+    width: 100%;
+    text-align: left;
+}
+.trusted-section .accordion-button {
+    font-size: 16px;
+    line-height: 24px;
+}
+.whitearrow {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+.lifelongbtn .arrow-two {
+    margin-left: 0;
+}
+.union-shape-image {
+    top: -10px;
+}
+.union-shape {
+    bottom: -10px;
+}
+.image-union1 {
+    top: -10px;
+}
+.union-image {
+    bottom: -10px;
+}
+.from-style input {
+    padding: 15px 10px;
+    font-size: 16px;
+    line-height: 30px;
+}
+.from-style select {
+   padding: 15px 10px;
+    font-size: 16px;
+    line-height: 30px;
+}
+.contact-image {
+    bottom: -10px;
+}
+.trusted-section::after {
+    top: -75px;
+}
+.trusted-section .nav-tabs .nav-link {
+    font-size: 18px;
+}
+.search-questions {
+    max-width: 100%;
+}
+.trusted-section  .accordion-button {
+    padding: 16px 60px 20px 16px;
+}
+.right-slide img {
+    width: 300px;
+    object-fit: cover;
+}
+.our-missions .christma-image img {
+    height: 520px;
+    object-fit: contain;
+}
+.newmissions {
+    padding-top: 24px;
+}
+.main-city {
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+.studygroups {
+    margin-top: 50px;
+}
+.blue-arrow {
+    text-align: end;
+    margin-right: 0px;
+    margin-top: -45px;
+}
+.sharebtn {
+    margin: 0px auto 0px;
+}
+.card-one h3 {
+    font-size: 20px;
+    line-height: 24px;
+}
+	.happing-sefction{
+	margin-top: 50px;
+}
+	.listenbtn a {
+    max-width: 100%;
+    justify-content: center;
+}
+	.listenbtn {
+    flex-direction: column;
+}
+	.growbtn a {
+    justify-content: center;
+}
+.our-choose .why-choose {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.footer-heading p {
+    margin: 10px 0px 30px;
+}
+.firstbtn-list {
+    padding-top: 30px;
+    display: inline-block;
+    width: 100%;
+}
+.growbtn {
+    margin: 0 auto;
+}
+.come__body {
+    margin-top: 30px;
+}
+.outreach__partners {
+    margin-top: 20px;
+}
+.teaching__copy {
+    max-width: 100%;
+}
+.bluebtnarrow {
+    margin-top: 80px;
+}
+.listenbtn .arrow-two {
+    left: 0;
+}
+.hero-prev, .hero-next {
+    width: 42px;
+    height: 42px;
+}
+.trusted-section .accordion-button::after {
+    top: 28px;
+        font-size: 18px;
+        right: 18px;
+}
+.footer-logo {
+    margin-bottom: 30px;
+}
+.outreach__cards {
+    margin-top: clamp(50px, 3vw, 56px);
+}
+.outreach__head {
+    gap: clamp(10px, 3vw, 50px);
+}
+.life-groups h3 br{
+    display: none;
+}
+.come__row-title {
+    font-size: clamp(22px, 3vw, 42px);
+}
+.come__row-title {
+    padding-left: 10px;
+}
+.come__row-text {
+    padding-left: 10px;
+}
+.looking-heading {
+    flex-direction: column !important;
+}
+.image-bg-church::after {
+    right: -15px;
+    bottom: -15px;
+}
+.section-mckinney h2.bold-heading br {
+    display: none;
+}
+.profile-icontext span {
+    font-size: 14px !important;
+    line-height: 24px !important;
+}
+	.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+	.slider-controls {
+    max-width: 360px;
+}
+	.main-slider .overlay-slider {
+    background: linear-gradient(90deg, rgba(4, 14, 20, .9) 0%, rgba(4, 14, 20, .50) 50%, rgb(0 0 0 / 30%) 100%);
+    width: 100%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    content: "";
+    z-index: 1;
+}
+.main-slider .yellow-shape img {
+    width: 70px;
+}
+	.main-slider .yellow-shape {
+    margin-top: 25px;
+}
+	h1 {
+    font-size: 35px !important;
+    line-height: 40px !important;
+}
+	.worship-inset img {
+    width: 160px !important;
+    height: 180px !important;
+}
+	.image-bg-church {
+    right: 16px !important;
+    bottom: -15px !important;
+}
+	.biblical-contant {
+    margin-top: 30px !important;
+}
+	.image-list {
+    max-width: 320px !important;
+}
+		.kids-image {
+    justify-content: center;
+    display: flex;
+}
+}
+@media (min-width: 568px) and (max-width: 767px) {
+
+.trusted-section .nav-tabs {
+    gap: 45px !important;
+}
+.search-questions {
+    max-width: 100%;
+    margin-top: 50px;
+}
+.trusted-section .heading-pathway h3 {
+    font-size: 20px;
+    line-height: 26px;
+}
+.trusted-section::after {
+    top: -70px;
+}
+a.googlebtn {
+    margin: 20px 0px 0px 10px;
+}
+.send-message {
+    padding-left: 0;
+    margin-top: 50px;
+}
+.contacttext h3 {
+    margin-bottom: 0;
+}
+.from-style {
+    margin-top: 40px;
+}
+.address-block {
+    padding: 20px;
+    margin-top: 24px;
+}
+.baptist-church {
+    margin-bottom: 50px;
+}
+button.steps-prev {
+    left: 15%;
+}
+button.steps-next {
+    right: 15%;
+}
+.about-hading {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.location-image {
+    top: -10px;
+}
+.contact-image {
+    bottom: -10px;
+}
+
+
+.member-list p {
+    font-size: 20px;
+    line-height: 26px;
+    margin-top: 10px;
+}
+.profiletext {
+    padding-top: 20px;
+    margin-bottom: 50px;
+}
+.arrowbtn {
+    bottom: 50px;
+    right: 0;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+.playnow a {
+    width: 100%;
+    text-align: center;
+}
+a.sayingbtn {
+    margin-top: 20px;
+    margin-left: 0px;
+}
+.listenbtn a {
+    text-align: center;
+    width: 100%;
+}
+.solid-contant {
+    padding: 15px;
+}
+.solid-contant h3 {
+    font-size: 18px !important;
+    line-height: 20px !important;
+}
+.solid-contant p {
+    font-size: 15px !important;
+    line-height: 21px !important;
+}
+.right-slide img {
+    width: 300px;
+    object-fit: cover;
+}
+.trusted-section  .accordion-button {
+    padding: 16px 60px 20px 16px;
+}
+.stories {
+    display: none;
+}
+.newmissions {
+    padding-top: 20px;
+}
+.listenbtn {
+    margin-top: 20px;
+    text-align: center;
+}
+.happing-sefction{
+	margin-top: 50px;
+}
+.profile-icontext span {
+    font-size: 14px !important;
+    line-height: 24px !important;
+}
+
+}
+@media (min-width: 320px) and (max-width: 767px) {
+	.outreach__eyebrow {
+    font-size: 20px;
+
+}
+	.serve-card__title {
+    font-size: 28px;
+}
+	.teaching__title {
+    font-size: 32px;
+
+}
+	.story__title {
+    font-size: 32px;
+
+}
+	.teaching__item-text {
+    line-height: 26px;
+    font-size: 16px;
+}
+	.hover-card__title {
+    font-size: 24px;
+
+}
+	.baptist-church .clear-text {
+ 
+    margin-left: 0;
+}
+	.outreach__title {
+    font-size: 32px;
+}
+	.main-banner {
+    padding: 0px 0px 0;
+
+}
+	.navigation.header {
+    position: static !important;
+}
+	.event-card {
+    padding: 15px;
+
+}
+	.section-mckinney .row {
+		row-gap: 20px;
+	}
+  .mission-trips {
+    grid-template-columns: repeat(1, 1fr);
+	  
+}
+  body {
+    font-size: 16px;
+    line-height: 23px;
+}
+ .pdtb-150 {
+   padding: 50px 0px;
+}
+.pdb-150 {
+   padding-bottom: 50px;
+}
+.pdt-150 {
+   padding-top: 50px;
+}
+.mt-85{
+    margin-top: 20px;
+}
+.mb-85{
+    margin-bottom: 20px;
+}
+	.pdt-85 {
+    padding-top: 50px;
+}
+	.pdb-120 {
+    padding-bottom: 50px;
+}
+	.pdtb-120 {
+    padding: 50px 0px;
+}
+	.pdtb-85 {
+    padding: 50px 0px;
+}
+h2 {
+    font-size: 32px;
+    line-height: 40px;
+}
+    .serve-others p {
+    font-size: 48px;
+}
+.step-number {
+    font-size: 42px;
+}
+.bold-heading {
+    font-size: 30px;
+    line-height: 40px;
+}
+/*.looking-heading {
+    gap: 16px;
+}*/
+.looking-play {
+    width: 72px;
+    height: 72px;
+}
+.event-content p {
+    font-size: 16px;
+    line-height: 22px;
+    min-height: 120px;
+}
+.church-services span {
+    font-size: 24px;
+}
+.relationships {
+    margin-left: 0px;
+    margin-top: 50px;
+}
+.church-services h2 {
+    font-size: 28px;
+    line-height: 33px;
+}
+.right-place {
+    display: inline-block;
+}
+.welcoming-church .accordion {
+    display: inline-block;
+}
+.newlesson {
+    display: inline-block;
+    margin-top: 0;
+}
+.main-city {
+    display: inline-block;
+}
+.great-heading {
+    padding-left: 0px;
+}
+.img-three {
+    width: 350px;
+    height: 250px;
+}
+.img-two {
+    width: 360px;
+    height: 360px;
+}
+.gallery-img {
+    position: static;
+}
+.our-doors {
+    padding-left: 0px;
+    margin-top: 50px;
+}
+.global-partners {
+    width: 100%;
+    margin-top: 20px;
+}
+.our-doors h3 {
+    font-size: 30px;
+    line-height: 38px;
+    margin-bottom: 0;
+    max-width: 100%;
+}
+.city-image {
+    max-width: 100%;
+    width: 100%;
+}
+.great-heading h2 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 0;
+}
+.podcast-main-list {
+    display: inline-block;
+}
+.gallery-wrap {
+    max-width: 100%;
+    height: auto;
+}
+.why-choose {
+        display: inline-block !important;
+}
+.main-address {
+    grid-template-columns: repeat(1, 1fr);
+}
+.lifelong-heading h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+.lifelong-heading h2 {
+    font-size: 42px;
+    line-height: 42px;
+}
+.navigation a.navbar-brand img {
+    width: 250px;
+}
+
+.navigation button.navbar-toggler {
+    background: var(--mco-secondary);
+    padding: 8px 8px 0px 8px;
+    outline: none;
+    color: #fff;
+    box-shadow: none !important;
+}
+.navigation li.nav-item {
+    margin-left: 0px;
+}
+.sidebarsection {
+    margin-left: 0px;
+}
+.church-services p {
+    font-size: 16px;
+    line-height: 26px;
+    margin: 15px 0px 0px;
+}
+.church-text span {
+    font-size: 20px;
+    line-height: 28px;
+}
+.church-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.right-place {
+    margin-top: 20px;
+}
+.story__body{
+    font-size: 16px;
+    line-height: 26px;
+}
+.right-image {
+    margin-top: 20px;
+}
+.right-image img {
+    width: 200px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.left-slide h3 {
+    font-size: 62px;
+    line-height: 62px;
+}
+.left-slide h2 {
+    font-size: 28px;
+    line-height: 38px;
+}
+.left-slide p {
+    font-size: 16px;
+    line-height: 24px;
+    padding-left: 20px;
+    margin: 20px 0px 20px;
+}
+.growbtn a {
+    padding: 15px 22px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.event-badge {
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 0;
+}
+.right-slide{
+    margin-top: 50px;
+}
+.heading-box {
+    display: inline-block;
+}
+p.text-fit {
+    font-size: 16px;
+    line-height: 26px;
+    max-width: 100%;
+}
+.come__row-text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.churchbtn {
+    max-width: 100%;
+}
+.arrow-two {
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+.biblical-contant p {
+    font-size: 16px;
+    line-height: 26px;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+.arrow-shape-bg::after {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        70% 99%,
+        0 100%,
+        0% 0%
+    );
+}
+.biblical-contant {
+    margin-top:50px;
+}
+.biblical-contant h6 {
+    font-size: 20px;
+}
+.image-bg-church {
+    right: 16px;
+    bottom: -40px;
+}
+.worship-inset img {
+    width: 180px;
+    height: 220px;
+}
+.bottom-list {
+    margin-top: 50px;
+}
+.solid-contant h3 {
+    font-size: 28px;
+    line-height: 32px;
+}
+.solid-contant {
+    padding: 20px;
+}
+.solid-contant p {
+    font-size: 16px;
+    line-height: 26px;
+    min-height: 90px;
+    margin-bottom: 0;
+}
+.long-text h3 {
+    font-size: 32px;
+    line-height: 40px;
+    margin-top: 20px;
+}
+.lifelong-heading {
+    padding: 30px;
+/*    margin-top: 30px;*/
+}
+.join-us .churchbtn {
+    max-width: 100%;
+    margin: 10px auto 0px;
+}
+.lifelong-heading p {
+    font-size: 16px;
+    line-height: 26px;
+    max-width: 100%;
+    margin: 10px 0px 30px;
+}
+.live-show img {
+    width: 200px;
+}
+.kids-heading h6 {
+    font-size: 20px;
+    line-height: 28px;
+/*    margin-top: 50px;*/
+}
+.number-box h6{
+    margin-top: 0;
+}
+.newlesson h2 {
+    font-size: 32px;
+    line-height: 38px;
+    max-width: 100%;
+}
+.textbox h4 {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 10px 0px 0px;
+}
+.textbox p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 40px;
+    margin-top: 10px;
+}
+
+.plan-visit {
+    margin-bottom: 20px;
+}
+.heading-pathway h3 {
+    font-size: 20px;
+    line-height: 24px;
+    max-width: 100%;
+}
+.clear-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.life-groups {
+    padding: 20px;
+}
+.life-groups h3 {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 0 20px;
+}
+.love-image{
+    margin-bottom: 20px;
+}
+
+.next-step h2 {
+    font-size: 24px;
+    line-height: 30px;
+}
+.missions-heading {
+    
+}
+.slide-arrow {
+    position: static;
+    margin-top: 20px;
+}
+.panel-description {
+    font-size: 16px;
+    line-height: 25px;
+    max-width: 100%;
+}
+.global-partners h6 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.img-one {
+    margin-bottom: 20px;
+}
+.img-three {
+    margin-top: 20px;
+}
+.great-heading {
+    padding-left: 0px;
+    margin-top: 50px;
+}
+.great-heading h2 br{
+    display: none;
+}
+.podcast-contant h3 {
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 20px;
+}
+.podcast-contant p {
+    font-size: 16px;
+    line-height: 22px;
+}
+.listenbtn a {
+    margin-top: 0px;
+}
+.choose-heading {
+    max-width: 100%;
+}
+.why-choose {
+    margin-top: 50px;
+}
+.choose-heading h2 {
+    font-size: 28px;
+    line-height: 37px;
+}
+.img-bottom {
+    margin-top: 0px;
+}
+.choose-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.stepsSwiper {
+margin-top: 0;
+}
+.clear-text p {
+    margin-bottom: 30px;
+}
+.step-content h3 {
+    font-size: 32px;
+    line-height: 36px;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+.social-icon a {
+    margin: 0 10px 0 0;
+}
+.footer-block {
+    margin-top: 30px;
+}
+.panel {
+    margin-bottom: 20px;
+}
+.panel:last-child {
+    margin-bottom: 0px;
+}
+.trusted-section .accordion-button {
+    font-size: 19px;
+    line-height: 24px;
+}
+.img-two {
+    width: 100% !important;
+    height: auto !important;
+}
+.img-three {
+    width: 100% !important;
+    height: auto;
+}
+.event-card1 img {
+    height: auto;
+    max-width: 100%;
+}
+.event-card3 img {
+    max-width: 100%;
+    height: auto;
+}
+.event-card2 img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+.icon {
+    width: 62px;
+    height: 62px;
+}
+.icon:before {
+    width: 62px;
+    height: 62px;
+}
+.icon img {
+    width: 50% !important;
+}
+.image-bg img {
+    height: auto;
+}
+.collapsed-title {
+    bottom: 5%;
+    left: 20px;
+    transform: translate(0%, 0%) rotate(
+0deg);
+}
+.panel-content h2 {
+    line-height: 32px;
+    font-size: 32px;
+}
+.panel-number img {
+    width: 35px;
+    height: auto;
+}
+.panel-number { 
+    width: 62px;
+     height: 62px;
+ }
+.panel-number {
+    left: 20px;
+    transform: rotate(
+90deg);
+}
+.collapsed-title p {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 10px 0px 0px;
+}
+.next-step p {
+    margin-bottom: 0;
+}
+.slide-arrow a {
+    font-size: 15px;
+    line-height: 22px;
+    padding: 10px 20px;
+}
+.collapsed-title span {
+    font-size: 38px;
+    line-height: 42px;
+}
+.footer-section {
+    padding: 50px 0px 24px;
+}
+.playnow {
+    padding-top: 20px;
+}
+.sharebtn {
+    margin: 20px auto 0px;
+}
+	.slidedown-1{
+	margin-top: 0px !important;
+}
+.slidedown-2{
+	margin-top: 0px !important;
+}
+	.section-mckinney .looking-heading .bold-heading {
+    flex: 1 1 auto;
+}
+.hero-contant p {
+    font-size: 16px;
+	line-height: 26px;
+}
+	h1 {
+    font-size: 41px;
+    line-height: 45px;
+}
+	.submitbtn {
+    padding: 15px 17px;
+    font-size: 16px;
+
+}
+	.visit-btn {
+    font-size: 14px;
+		margin-top: 10px;
+    padding: 10px 15px;
+
+}
+	.profile-icon {
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+}
+	.visit-menu li a {
+    padding: 9px 20px;
+		font-size: 14px;
+
+   
+}
+
+
+
+
+	.accordion-body {
+    font-size: 16px;
+    line-height: 26px;
+}
+.collapsed-title {
+    writing-mode: horizontal-tb;
+
+}
+.growbtn.servebtn {
+    margin-top: 0;
+}
+.outreach__note {
+    max-width: 100%;
+    margin-bottom: 0;
+}
+.life-groups p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.next-step p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.story__inner {
+    position: relative;
+    z-index: 2;
+    /* max-width: var(--shell); */
+    margin-inline: auto;
+    padding: 50px 15px !important;
+    gap: clamp(30px, 4vw, 50px);
+}
+.story__copy-stage {
+    min-width: 100%;
+    max-width: 100%;
+}
+.yellow-shape {
+    margin-left: 0;
+}
+.mckinney {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 0;
+}
+.look-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.looking__cards {
+    padding-top: 30px;
+}
+.come__row {
+    margin-right: clamp(0px, 5vw, 110px);
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.serve-card__text {
+    font-size: 18px;
+    line-height: 26px;
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__lede {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__note {
+    font-size: 16px;
+    line-height: 26px;
+}
+.review-modal .modal-body p {
+    font-size: 16px;
+    line-height: 26px;
+}
+	.outreach__title br{
+		display: none;
+	}
+	.contacttext.planvisit p {
+    font-size: 16px;
+    line-height: 26px;
+}
+	.member-list p {
+    font-size: 16px;
+    line-height: 26px;
+}
+	.fm-footer__inner {
+    padding-top: 50px;
+}
+	.fm-footer__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.fmk-hero__title {
+    line-height: 50px !important;
+}
+.fmk-panel__title {
+    font-size: 24px !important;
+    line-height: 30px;
+}
+.thumb-itemmain {
+    min-height: 200px;
+}
+.looking-media {
+    width: 100%;
+}
+.firstbtn-list {
+    padding-top: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+
+
+.reviews i {
+    font-size: 16px;
+    color: #1A1A1A;
+}
+
+
+.satisfied-images img {
+    max-width: 100%;
+    width: 33px;
+}
+
+
+.genuinelot {
+    padding: 20px;
+}
+
+
+
+
+
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.look-card {
+    padding: clamp(16px, 8.3vw, 20px) clamp(22px, 5.3vw, 20px) clamp(26px, 2vw, 50px);
+
+}
+	p.text-fit {
+    max-width: 100%;
+}
+	.come__rows {
+    max-width: 100%;
+
+}
+.hover-card__title {
+    font-size: 24px;
+}
+	.next-step h2 {
+    font-size: 38px;
+}
+	.outreach__title {
+    font-size: 38px;
+
+}
+	.come__row-title {
+    font-size: 26px;
+
+}
+	.outreach__eyebrow {
+    font-size: 24px;
+    
+}
+	.serve-card__title {
+    font-size: 24px;
+}
+	.accordion-body {
+    font-size: 16px;
+    line-height: 28px !important;
+}
+ body {
+    font-size: 16px;
+    line-height: 23px;
+}
+ .pdtb-150 {
+   padding: 85px 0px;
+}
+.pdb-150 {
+   padding-bottom: 85px;
+}
+.pdt-150 {
+   padding-top: 85px;
+}
+.mt-85{
+    margin-top: 50px;
+}
+.mb-85{
+    margin-bottom: 50px;
+}
+	.pdt-85 {
+    padding-top: 50px;
+}
+	.pdb-120 {
+    padding-bottom: 50px;
+}
+	.pdtb-120 {
+    padding: 50px 0px;
+}
+	.pdtb-85 {
+    padding: 50px 0px;
+}
+h2 {
+    font-size: 38px;
+    line-height: 44px;
+}
+    .serve-others p {
+    font-size: 38px;
+    line-height: 45px;
+}
+/*.bold-heading {
+    font-size: 52px;
+    line-height: 62px;
+}*/
+.looking-play {
+    width: 100px;
+    height: 100px;
+}
+
+.church-services h2 {
+    font-size: 40px;
+    line-height: 50px;
+    margin: 0 0 0 0;
+}
+	.story__title {
+    font-size: 48px;
+
+}
+	.teaching__title {
+    font-size: 38px;
+
+}
+	.teaching__item-text {
+    line-height: 26px;
+
+    font-size: 16px;
+}
+.church-services p {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 10px 0px 10px;
+}
+.relationships {
+    margin-left: 0;
+    margin-top: 50px;
+}
+.church-text span {
+    font-size: 20px;
+    line-height: 28px;
+}
+.church-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.look-card__text {
+    font-size: 18px;
+    line-height: 26px;
+}
+.event-content p {
+    font-size: 16px;
+    line-height: 22px;
+    min-height: 120px;
+}
+.event-badge {
+    font-size: 28px;
+    line-height: 36px;
+}
+.left-slide h3 {
+    font-size: 162px;
+    line-height: 170px;
+}
+.left-slide h2 {
+    font-size: 32px;
+    line-height: 45px;
+}
+.left-slide p {
+    font-size: 16px;
+    line-height: 26px;
+    margin: 20px 0px 40px;
+}
+.right-slide{
+    margin-top: 50px;
+}
+.heading-box {
+    display: inline-block;
+}
+.churchbtn {
+    max-width: 100%;
+}
+.panel-content h2 {
+    font-size: 32px;
+    line-height: 40px;
+    margin: 10px 0 10px 0;
+}
+.panel-description {
+    font-size: 16px;
+    line-height: 23px;
+}
+.slide-arrow {
+    position: static;
+    margin-top: 20px;
+}
+.collapsed-title p {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 0px 0px 0px;
+}
+.collapsed-title {
+left: -13px;
+        width: 100%;
+}
+.collapsed-title span {
+    font-size: 36px;
+    line-height: 45px;
+    margin-bottom: 0;
+}
+.icon {
+    width: 82px;
+    height: 82px;
+}
+.biblical-contant p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.biblical-contant h6 {
+    font-size: 28px;
+}
+.story__body {
+    font-size: 16px;
+    line-height: 26px;
+}
+.newlesson {
+    gap: 100px;
+    margin-top: 15px;
+    display: inline-block;
+}
+.kids-image {
+    justify-content: center;
+    margin-top: 50px;
+}
+.solid-contant h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+.solid-contant p {
+    font-size: 16px;
+    line-height: 25px;
+    min-height: 68px;
+}
+.solid-contant {
+    padding: 20px;
+}
+.long-text h3 {
+    font-size: 38px;
+    line-height: 42px;
+    margin-top: 28px;
+}
+	.contacttext.planvisit p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.lifelong-heading h3 {
+    font-size: 28px;
+    line-height: 34px;
+}
+.lifelong-heading h2 {
+    font-size: 82px;
+    line-height: 82px;
+}
+.icon:before {
+    width: 82px;
+    height: 82px;
+}
+.live-show img {
+    width: 210px;
+}
+.lifelong-heading p {
+    font-size: 16px;
+    line-height: 25px;
+    margin: 15px 0px;
+    max-width: 420px;
+}
+.lifelong-heading {
+    padding: 30px;
+}
+.biblical-contant {
+    margin-top: 40px;
+}
+.arrow-shape-bg::after {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        70% 99%,
+        0 100%,
+        0% 0%
+    );
+}
+.icon img {
+    width: 38% !important;
+}
+.arrow-shape-bg {
+    padding-bottom: 50px;
+}
+.newlesson h2 {
+    font-size: 38px;
+    line-height: 44px;
+}
+.kids-heading h6 {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 0;
+}
+.number-box h6 {
+    font-size: 28px;
+    line-height: 36px;
+}
+.textbox h4 {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 20px 0px 0px;
+}
+.textbox p {
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 20px;
+}
+.kids-ministry::before {
+    top: -80px;
+}
+.navigation button.navbar-toggler {
+    background: var(--mco-secondary);
+    padding: 8px 8px 0px 8px;
+    outline: none;
+    box-shadow: none !important;
+}
+.navigation span.navbar-toggler-icon i {
+    color: #fff;
+}
+.navigation li.nav-item {
+    margin-left: 0;
+}
+.sidebarsection {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.navigation .navbar-nav .nav-link {
+    font-size: 16px;
+}
+.navigation ul.navbar-nav {
+    padding: 10px 0px;
+}
+.navigation .navbar-nav .dropdown-item {
+    padding: 8px 15px;
+    font-size: 16px;
+}
+.navigation .navbar-nav .dropdown-menu {
+    margin-top: 0;
+}
+.event-card {
+    padding: 15px;
+
+}
+.bottom-list {
+    margin-top: 40px;
+}
+
+.kids-ministry::after {
+    bottom: -80px;
+}
+.heading-pathway h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.clear-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.life-groups p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.clear-text p {
+    margin-bottom: 50px;
+}
+.life-groups {
+    padding: 20px;
+}
+.life-groups h3 br {
+    display: none;
+}
+.life-groups h3 {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 0 0 10px;
+}
+.slide-arrow a {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 12px 22px;
+}
+.panel-content {
+    padding: 20px 20px 30px 20px;
+}
+.lifebtn {
+    margin-top: 20px;
+}
+.growbtn a {
+    padding: 14px 18px;
+    font-size: 14px;
+}
+.love-image {
+    margin-bottom: 20px;
+}
+.yellow-shape {
+    margin-left: 0;
+    margin-top: 0;
+}
+h1 {
+    font-size: 48px;
+    line-height: 42px;
+}
+.hero-content p {
+    max-width: 250px;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.next-step p {
+    margin-bottom: 0;
+}
+.our-doors {
+    padding-left: 0;
+    margin-top: 50px;
+}
+.main-city {
+    gap: 20px;
+    margin-bottom: 25px;
+}
+.global-partners h6 {
+    font-size: 18px;
+    line-height: 25px;
+}
+.our-doors h3 {
+    font-size: 24px;
+    line-height: 32px;
+}
+.partnertext {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+.missions-heading {
+   
+}
+.newmissions {
+    padding-top: 20px;
+}
+.great-heading {
+    padding-left: 0;
+    padding-top: 50px;
+}
+.great-heading h2 {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 40px;
+}
+.great-heading h2 br {
+    display: none;
+}
+.podcast-contant h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+.podcast-contant p {
+    font-size: 16px;
+    line-height: 24px;
+}
+.listenbtn {
+    margin-top: 0;
+}
+.img-bottom {
+    margin-top: -50px;
+}
+.arrow-two {
+    margin-left: 0;
+}
+.listenbtn a {
+    padding: 17px 20px;
+    font-size: 14px;
+}
+.why-choose {
+    display: inline-block;
+}
+.why-choose {
+    margin-top: 60px;
+}
+.choose-text {
+    max-width: 100%;
+}
+.choose-heading h2 {
+    font-size: 30px;
+    line-height: 42px;
+}
+.choose-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.baptist-church .clear-text {
+    max-width: 100%;
+}
+.stepsSwiper {
+    margin-top: 0;
+}
+.step-content h3 {
+    font-size: 32px;
+    line-height: 42px;
+    margin-bottom: 10px;
+}
+.step-number {
+    font-size: 42px;
+}
+button.steps-prev {
+    left: 27%;
+}
+button.steps-next {
+    right: 27%;
+}
+.location-image {
+    top: -20px;
+}
+.address-block {
+    padding: 20px;
+}
+.send-message {
+    padding-left: 0;
+    margin-top: 50px;
+}
+.from-style {
+    margin-top: 0;
+}
+.contacttext h3 {
+    margin-bottom: 20px;
+}
+.about-hading {
+    margin-bottom: 40px;
+}
+.playnow.sharebtn a {
+    margin: 15px 10px 0;
+}
+.profiletext {
+    padding-top: 0px;
+    margin-bottom: 50px;
+}
+.member-list p {
+    font-size: 16px;
+    line-height: 28px;
+    margin-top: 25px;
+}
+.arrowbtn {
+    bottom: 45px;
+    right: 0%;
+    width: 100%;
+    justify-content: center;
+}
+.stories {
+    margin-left: -16px;
+    margin-top: -120px;
+}
+.trusted-section .nav-tabs {
+    margin-bottom: 40px;
+    justify-content: space-between;
+}
+.search-questions {
+    max-width: 100%;
+}
+.trusted-section .nav-tabs {
+    max-width: 100%;
+}
+.trusted-section .heading-pathway h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.trusted-section .accordion-button {
+    font-size: 18px;
+    line-height: 30px;
+}
+.main-address {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 50px;
+}
+.footer-heading p {
+    margin: 15px 0px;
+}
+.satisfied {
+    margin-bottom: 50px;
+}
+.from-style input {
+    padding: 15px 10px;
+    font-size: 16px;
+    line-height: 27px;
+}
+.from-style select {
+      padding: 15px 10px;
+    font-size: 17px;
+    line-height: 27px;
+}
+.from-style label {
+    font-size: 17px;
+    line-height: 22px;
+}
+.image-union1 {
+    top: -26px;
+}
+.union-image {
+    bottom: -28px;
+}
+.union-shape {
+    bottom: -20px;
+}
+.panel-number {
+    left: 50%;
+}
+.panel-number img {
+    width: 45%;
+    object-fit: contain;
+}
+.right-slide img {
+    width: 350px;
+    object-fit: cover;
+}
+.arrow-two {
+    margin-left: -18px;
+}
+.event-card1 img {
+    height: auto;
+}
+.event-card2 img {
+    height: auto;
+}
+.event-card3 img{
+    height: auto;
+}
+.panel-content {
+    padding: 24px 20px 24px 20px;
+}
+.our-missions .christma-image img {
+    width: 520px;
+    object-fit: cover;
+}
+.christma-image {
+    display: flex;
+    justify-content: center;
+}
+.address-list span {
+    font-size: 22px;
+    line-height: 28px;
+}
+.address-list p {
+    font-size: 17px;
+    line-height: 24px;
+}
+.sharebtn {
+    margin: 40px auto 0px;
+}
+.trusted-section::after {
+    top: -60px;
+}
+.happing-sefction{
+	margin-top: 50px;
+ 
+}
+.slidedown-1{
+	margin-top: 0px !important;
+}
+.slidedown-2{
+	margin-top: 0px !important;
+}
+	.hero-contant p {
+    font-size: 16px;
+}
+.section-mckinney .row {
+    row-gap: 20px;
+    justify-content: center;
+}
+	.church-services span {
+    font-size: 38px;
+}
+	p.text-fit {
+   font-size: 16px;
+        line-height: 26px;
+   
+}
+	.image-list {
+    max-width: 320px;
+    margin: 0 auto;
+}
+	.worship-inset img {
+    width: 165px;
+    height: 170px;
+
+}
+	.teaching__copy {
+    max-width: 100%;
+}
+	.teaching__title br{
+		display: none;
+	}
+	.image-bg-church::after {
+    right: -14px;
+    bottom: -14px;
+}
+	.come__row-text {
+   font-size: 16px;
+        line-height: 26px;
+}
+	.trips h3 {
+    font-size: 23px;
+
+}
+	.trips p {
+    font-size: 16px;
+    line-height: 25px;
+
+}
+	.visit-menu li a {
+    padding: 12px 22px;
+    font-size: 14px;
+}
+.story__inner {
+    flex-wrap: unset;
+}
+.bluebtnarrow {
+    margin-top: 85px;
+}
+.listenbtn .arrow-two {
+    left: 0;
+}
+.our-choose .why-choose {
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.our-choose .playnow {
+    max-width: 490px;
+}
+.social-icon a {
+    margin: 0 20px 0 0;
+}
+.footer-section {
+    padding: 50px 0px 40px;
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.serve-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.firstbtn-list {
+    padding-top: 50px;
+}
+.outreach__lede {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__note {
+    font-size: 16px;
+    line-height: 26px;
+}
+.review-modal .modal-body p {
+    font-size: 16px;
+    line-height: 26px;
+}
+
+
+
+.expand-card {
+    
+      min-width: 0px;
+   
+    }
+
+
+
+.contact-image {
+    bottom: -20px;
+}
+.fm-footer__nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+}
+.looking__cards {
+    padding-top: 20px;
+}
+	.looking-media {
+    width: 100%;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+	.image-bg-church::after {
+    right: -14px;
+    bottom: -14px;
+
+}
+	.image-list {
+    max-width: 230px;
+}
+	.worship-inset img {
+    width: 165px;
+    height: 160px;
+
+}
+
+
+
+
+
+
+
+	
+	h1 {
+    font-size: 44px !important;
+    line-height: 52px !important;
+}
+.textbox {
+    min-height: 490px;
+}
+	
+	
+	body {
+    font-size: 16px;
+    line-height: 26px;
+
+}
+	.contacttext h3 {
+    font-size: 28px;
+    line-height: 34px;
+
+}
+.pdtb-150 {
+   padding: 100px 0px;
+}
+.pdb-150 {
+   padding-bottom: 100px;
+}
+.pdt-150 {
+   padding-top: 100px;
+}
+.mt-85{
+    margin-top: 30px;
+}
+.pdt-150 {
+    padding-top: 60px;
+}
+.look-card__text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.story__body {
+    font-size: 16px;
+    line-height: 26px;
+}
+.come__row-text {
+    font-size: 16px;
+    line-height: 26px;
+}
+.next-step p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__note {
+    font-size: 16px;
+    line-height: 26px;
+}
+.teaching__item-text {
+    line-height: 26px;
+    font-size: 16px;
+}
+.choose-text p {
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height:26px;
+    text-align: justify;
+}
+.address-list a {
+    font-size: 16px;
+    line-height: 26px;
+}
+.contacttext.planvisit p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.accordion-body {
+    font-size: 16px;
+    line-height: 26px;
+}
+.footer-heading p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__lede {
+    font-size: 16px;
+    line-height: 26px;
+}
+.serve-others p {
+    font-size: 52px;
+}
+.bold-heading {
+    font-size: 62px;
+    line-height: 70px;
+}
+.social-icon a {
+    margin: 0 30px 0 0;
+}
+.event-content p {
+    font-size: 16px;
+    line-height: 26px;
+    min-height: 155px;
+}
+.growbtn a {
+    padding: 14px 18px;
+    font-size: 13px;
+	line-height: 18px;
+}
+.event-badge {
+    font-size: 28px;
+    line-height: 32px;
+}
+.church-services span {
+    font-size: 38px;
+}
+.church-services h2 {
+    font-size: 38px !important;
+    line-height: 40px !important;
+}
+	.church-text span {
+    font-size: 28px;
+    line-height: 34px;
+
+}
+	.come__row-title {
+    font-size: 26px;
+    line-height: 38px;
+
+}
+	.hover-card__title {
+    font-size: 22px;
+
+}
+	.serve-card__title {
+    font-size: 22px;
+
+}
+.church-services p {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 15px 0px 15px;
+}
+.right-place {
+    margin-top: 0px;
+    display: inline-block;
+}
+.shadow-image {
+    margin-top: 20px;
+}
+.relationships {
+    margin-left: 0px;
+}
+.left-slide h2 {
+    font-size: 42px;
+    line-height: 50px;
+}
+.left-slide p {
+    font-size: 16px;
+    line-height: 26px;
+    margin: 20px 0px 40px;
+}
+
+h2 {
+    font-size: 46px !important;
+    line-height: 53px !important;
+}
+p.text-fit {
+    font-size: 16px;
+    line-height: 26px;
+    max-width: 260px;
+}
+.biblical-contant p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.solid-contant h3 {
+    font-size: 32px;
+    line-height: 38px;
+}
+.solid-contant p {
+    font-size: 16px;
+    line-height: 22px;
+    min-height: 90px;
+}
+.long-text h3 {
+    font-size: 32px;
+    line-height: 45px;
+    margin-top: 20px;
+}
+.lifelong-heading h3 {
+    font-size: 42px;
+    line-height: 42px;
+}
+.lifelong-heading h2 {
+    font-size: 124px;
+    line-height: 110px;
+}
+.lifelong-heading p {
+    font-size: 16px;
+    line-height: 26px;
+    margin: 15px 0px;
+    max-width: 435px;
+}
+.lifelong-heading {
+    padding: 45px;
+}
+.live-show img {
+    width: 290px;
+}
+.newlesson {
+    display: inline-block;
+    margin-top: 15px;
+}
+.newlesson h2 {
+    font-size: 52px;
+    line-height: 62px;  
+}
+.textbox p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 10px;
+}
+.textbox h4 {
+    font-size: 20px;
+    line-height: 32px;
+    margin: 15px 0px 0px;
+}
+.kids-heading h6 {
+    font-size: 28px;
+    line-height: 30px;
+}
+.heading-pathway h3 {
+    font-size: 26px !important;
+    line-height: 32px !important;
+    
+/*    margin-left: auto !important;*/
+}
+.clear-text p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.life-groups {
+    padding: 20px;
+}
+.life-groups h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 15px;
+}
+.life-groups h3 br{
+    display: none;
+}
+.lifebtn {
+    margin-top: 20px;
+}
+.life-groups p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.outreach__lede {
+    font-size: 16px;
+    line-height: 26px;
+}
+.outreach__note {
+    font-size: 16px;
+    line-height: 26px;
+}
+.studygroups {
+    margin-top: 40px;
+}
+.newmissions {
+    padding-top: 30px;
+	align-items: self-start;
+}
+.our-doors {
+    padding-left: 10px;
+}
+.our-doors h3 {
+    font-size: 22px;
+    line-height: 24px;
+    max-width: 100%;
+}
+.partnertext {
+    padding-top: 0px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.main-city {
+    gap: 20px;
+}
+.global-partners p {
+    font-size: 16px;
+    line-height: 22px;
+}
+.global-partners h6 {
+    font-size: 16px;
+    line-height: 20px;
+}
+.city-image {
+    width: 40%;
+}
+.global-partners {
+    width: 60%;
+}
+.great-heading h2 {
+    font-size: 42px;
+    line-height: 50px;
+}
+.great-heading {
+    padding-left: 20px;
+}
+.img-two {
+    width: 300px;
+    height: 300px;
+    top: 220px;
+}
+.img-three {
+    width: 455px;
+    height: 330px;
+}
+.gallery-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+.podcast-contant h3 {
+    font-size: 22px;
+    line-height: 28px;
+}
+.podcast-main-list {
+    gap: 20px;
+    margin-top: 10px;
+}
+.podcast-contant p {
+    font-size: 16px;
+    line-height: 26px;
+}
+a.messagebtn {
+    margin-top: 20px;
+}
+.great-heading h2 {
+    margin-bottom: 30px;
+}
+.choose-text p {
+    font-size: 16px;
+    line-height: 26px;
+    max-width: 400px;
+    margin-left: auto;
+}
+.contacttext.planvisit p {
+    font-size: 18px;
+}
+.step-content h3 {
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom: 0;
+}
+
+.send-message {
+    padding-left: 0px;
+}
+.address-block {
+    padding: 20px;
+}
+.from-style {
+    margin-top: 60px;
+}
+.from-style label {
+    font-size: 17px;
+    line-height: 27px;
+    margin-top: 20px;
+}
+.address-list span {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.member-list p {
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 30px;
+}
+
+.members-text p {
+    font-size: 16px;
+    line-height: 24px;
+}
+.profiletext {
+    padding-top: 5px;
+}
+.arrow-two {
+    margin-left: 16px;
+    margin-top: 15px;
+}
+.heading-pathway {
+    max-width: 390px;
+}
+.about-hading {
+    margin-bottom: 40px;
+}
+.hero-prev, .hero-next {
+    width: 40px;
+    height: 40px;
+}
+.newmember h3 {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.members h3 {
+    font-size: 42px;
+    line-height: 52px;
+}
+.reviews {
+    margin: 10px 0px 10px;
+}
+
+.slide-arrow {
+    bottom: 30px;
+    left: 30px;
+}
+.panel-content {
+    padding: 39px 32px 100px 33px;
+}
+.collapsed-title p {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 10px 0px 0px;
+}
+.panel-content h2 {
+    font-size: 42px;
+    line-height: 50px;
+}
+.collapsed-title span {
+    font-size: 38px;
+}
+.collapsed-title {
+    bottom: 15%;
+    left: 45%;
+}
+.panel-description {
+    font-size: 18px;
+    line-height: 24px;
+}
+.slide-arrow a {
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 18px;
+}
+.trusted-section .accordion-button {
+    font-size: 24px;
+    line-height: 32px;
+}
+.trusted-section .nav-tabs {
+    gap: 55px;
+}
+.union-shape {
+    bottom: -20px;
+}
+.generation {
+    padding-bottom: 0px;
+}
+.biblical-contant h6 {
+    font-size: 28px;
+}
+.left-slide h3 {
+    font-size: 180px;
+    line-height: 200px;
+}
+.main-address {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 30px;
+}
+.visit-menu li a {
+    font-size: 14px;
+    line-height: 20px;
+}
+.union-image {
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+}
+.icon img {
+    width: 38% !important;
+}
+.icon {
+    width: 99px;
+    height: 99px;
+}
+.icon:before {
+    width: 99px;
+    height: 99px;
+}
+.navigation button.navbar-toggler {
+    background: var(--mco-secondary);
+    padding: 8px 8px 0px 8px;
+    outline: none;
+    color: #fff;
+    box-shadow: none !important;
+}
+.event-card1 img {
+    height: auto;
+}
+.event-card2 img {
+    height: auto;
+}
+.event-card3 img {
+    height: auto;
+}
+.discoverbtn {
+    max-width: 100%;
+    text-align: center;
+}
+.shake {
+    margin-bottom: 20px;
+}
+.navigation li.nav-item {
+    margin-left: 0;
+}
+	.right-image {
+    min-width: 150px;
+}
+		.hero-contant p {
+    font-size: 16px;
+}
+	.section-mckinney .row {
+    row-gap: 20px;
+}
+	.church-services span {
+    font-size: 38px;
+}
+	p.text-fit {
+    font-size: 20px;
+    line-height: 30px; 
+}
+	.trips h3 {
+    font-size: 23px;
+}
+	.trips p {
+    font-size: 16px;
+    line-height: 25px;
+}
+	.visit-menu li a {
+    padding: 12px 22px;
+    font-size: 14px;
+
+}
+.thumbnail-slider {
+    width: min(70%, 780px);
+}
+.look-card {
+    padding: clamp(16px, 8.3vw, 30px) clamp(22px, 5.3vw, 20px) clamp(26px, 2vw, 50px);
+}
+.listenbtn {
+    display: inline-block;
+}
+.listenbtn a {
+    max-width: 100%;
+}
+.arrow-shape-bg {
+    padding-bottom: 120px;
+}
+.pdb-120 {
+    padding-bottom: 60px;
+}
+    .pdtb-120 {
+    padding: 60px 0px;
+}
+  .pdt-85 {
+    padding-top: 60px;
+}
+.mb-85 {
+    margin-bottom: 40px;
+} 
+.firstbtn-list {
+    padding-top: 50px;
+}
+.about-saying .member-list__body p {
+    margin-top: 12px;
+}
+
+.stepsSwiper {
+    margin-top: 30px;
+}
+.submitbtn {
+    padding: 16px 20px;
+    font-size: 16px;
+    line-height: 26px;  
+}
+.stories {
+    margin-left: 0;
+}
+.trusted-section::after {
+    top: -70px;
+}
+.rightheadingarea {
+    margin-left: auto !important;
+    max-width: 190px !important;
+}
+.outreach__head-left h2 br {
+    display: none;
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 24px;
+}
+.serve-card__text {
+    font-size: 16px;
+    line-height: 24px;
+    height: 160px;
+    overflow-y: scroll;
+}
+.hover-card__text {
+    font-size: 16px;
+    line-height: 24px;
+}
+.profile-icontext span {
+    font-size: 16px;
+    line-height: 28px;
+}
+.teaching__item-text {
+    line-height: 26px;
+    font-size: 18px;
+}
+.review-modal .modal-body p {
+    font-size: 16px;
+    line-height: 26px;
+}
+.location-image {
+ top: -30px;
+}
+.contact-image {
+    bottom: -30px;
+}
+	.church-text p {
+    font-size: 16px;
+    line-height: 26px;
+ 
+}
+	.outreach__title {
+    font-size: 38px !important;
+  
+}
+
+.reviews i {
+    font-size: 16px;
+    color: #1A1A1A;
+}
+
+
+.satisfied-images img {
+    max-width: 100%;
+    width: 33px;
+}
+
+
+.genuinelot {
+    padding: 15px;
+}
+
+
+	.teaching__title {
+    font-size: 38px !important;
+}
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+	
+.image-list {
+    max-width: 290px;
+}
+	.worship-inset img {
+    width: 230px;
+    height: 195px;
+}
+	.image-bg-church {
+    bottom: -15px;
+    right: 20px;
+}
+	.biblical-contant h2{
+		max-width: 80%;
+	}	
+	
+	.profile-icontext span {
+   font-size: 18px;
+        line-height: 28px;
+    max-width: 100%;
+}
+.look-card__text {
+    font-size: 18px;
+    line-height: 28px;
+}
+.story__body {
+    font-size: 18px;
+    line-height: 28px;
+}
+.come__row-text {
+    font-size: 18px;
+    line-height: 28px;
+}
+.next-step p {
+    font-size: 18px;
+    line-height: 28px;
+}
+.outreach__note {
+    font-size: 18px;
+    line-height: 28px;
+}
+.teaching__item-text {
+    line-height: 28px;
+    font-size: 18px;
+}
+.choose-text p {
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height:28px;
+    text-align: justify;
+}
+.address-list a {
+    font-size: 18px;
+    line-height: 28px;
+}
+.contacttext.planvisit p {
+    font-size: 18px;
+    line-height: 28px;
+}
+.accordion-body {
+    font-size: 18px;
+    line-height: 28px;
+}
+.footer-heading p {
+    font-size: 18px;
+    line-height: 28px;
+}
+.outreach__lede {
+    font-size: 18px;
+    line-height: 28px;
+}
+	.profile-icon {
+    width: 100px;
+    min-width: 100px;
+
+}
+	
+	.right-image {
+    min-width: 150px;
+}
+
+.navigation li.nav-item {
+    margin-left: 5px;
+}
+.sidebarsection {
+    margin-left: 10px;
+}
+.navigation a.navbar-brand img {
+    width: 250px;
+}
+h1 {
+    font-size: 48px;
+    line-height: 54px;
+}
+.hero-content p {
+    font-size: 18px;
+        line-height: 28px;
+    max-width: 450px;
+}
+.hero-contant {
+    max-width: 500px;
+  
+}
+.serve-others p {
+    font-size: 38px;
+}
+.bold-heading {
+/*
+    font-size: 62px;
+    line-height: 72px;
+*/
+    max-width: 720px;
+}
+.event-content p {
+    font-size: 18px;
+        line-height: 28px;
+    min-height: 130px;
+}
+.event-badge {
+    font-size: 28px;
+    line-height: 36px;
+}
+.church-services span {
+    font-size: 37px;
+}
+.church-services h2 {
+    font-size: 39px;
+    line-height: 50px;
+}
+.church-services p {
+    font-size: 18px;
+    line-height: 28px;
+}
+.church-text p {
+    font-size: 18px;
+        line-height: 28px;
+}
+.church-text span {
+   font-size: 18px;
+        line-height: 28px;
+}
+.btnfill {
+    padding: 14px 20px;
+    font-size: 16px;
+}
+.shake {
+    width: 80px !important;
+}
+.blue-arrow {
+    margin-right: 40px;
+}
+.left-slide h2 {
+    font-size: 48px;
+    line-height: 55px;
+}
+.left-slide p {
+   font-size: 18px;
+        line-height: 28px;
+}
+.left-slide h3 {
+    font-size: 220px;
+    line-height: 220px;
+}
+.heading-box {
+    display: inline-block;
+    max-width: 498px;
+}
+	.trips h3 {
+    font-size: 26px;
+    line-height: 32px;
+
+}
+	.trips p {
+   font-size: 18px;
+        line-height: 28px;
+
+}
+	.newmissions {
+
+    align-items: start;
+}
+	.img-one img, .img-two img, .img-three img {
+    max-width: 400px;
+    border-radius: 20px;
+}
+h2 {
+    font-size: 54px;
+    line-height: 60px;
+}
+p.text-fit {
+   font-size: 18px;
+        line-height: 28px;
+    max-width: 100%;
+}
+.panel-content h2 {
+    font-size: 50px;
+    line-height: 60px;
+}
+.panel-description {
+    font-size: 20px;
+    line-height: 28px;
+    max-width: 270px;
+}
+.slide-arrow a {
+    font-size: 14px;
+    padding: 12px 15px;
+}
+.collapsed-title {
+    transform: translate(12%, -10%);
+  
+}
+.collapsed-title span {
+    font-size: 52px;
+}
+.collapsed-title p {
+   font-size: 18px;
+        line-height: 28px;
+    margin: 15px 0px 0px;
+}
+.biblical-contant h6 {
+    font-size: 24px;
+}
+	.hero-contant p {
+    font-size: 18px;
+        line-height: 28px;
+}
+.biblical-contant p {
+   font-size: 18px;
+        line-height: 28px;
+}
+.solid-contant h3 {
+    font-size: 42px;
+    line-height: 45px;
+}
+.solid-contant p {
+  font-size: 18px;
+        line-height: 28px;
+}
+.long-text h3 {
+    font-size: 54px;
+    line-height: 58px;
+    margin-top: 20px;
+}
+.join-us .churchbtn {
+    margin: 30px auto 0px;
+}
+.lifelong-heading h2 {
+    font-size: 160px;
+    line-height: 160px;
+}
+.lifelong-heading h3 {
+    font-size: 54px;
+    line-height: 60px;
+}
+.lifelong-heading p {
+   font-size: 18px;
+        line-height: 28px;
+    max-width: 600px;
+}
+.live-show img {
+    width: 370px;
+}
+.newlesson {
+    gap: 32px;
+}
+.newlesson h2 {
+    font-size: 42px;
+    line-height: 48px;
+}
+	.kids-heading h6 {
+    font-size: 30px;
+    line-height: 40px;
+}
+	.great-heading {
+    padding-left: 0px;
+}
+.textbox p {
+   font-size: 18px;
+        line-height: 28px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+.textbox h4 {
+    font-size: 28px;
+    line-height: 35px;
+    margin: 20px 0px 0px;
+}
+
+.clear-text p {
+   font-size: 18px;
+        line-height: 28px;
+}
+.life-groups {  
+    padding: 15px;
+}
+
+
+.life-groups {
+  background: var(--mco-secondary);
+  padding: 50px;
+  border-radius: 20px;
+}
+
+
+.life-groups h3 {
+    font-size: 18px;
+    line-height: 28px;
+    margin: 0 0 15px;
+}
+.life-groups br {
+    display: none;
+}
+
+.lifebtn {
+    margin-top: 30px;
+}
+.lifebtn a {
+    font-size: 16px;
+    padding: 15px 20px;
+}
+.life-groups .lifebtn a {
+    font-size: 14px;
+    padding: 12px 19px;
+}
+	.life-groups p {
+    font-size: 16px;
+    line-height: 27px;
+}
+.missions-heading {
+    
+}
+.our-doors h3 {
+    font-size: 34px;
+    line-height: 42px;
+}
+.great-heading h2 {
+    font-size: 42px;
+    line-height: 52px;
+    margin-bottom: 40px;
+}
+.podcast-contant p {
+   font-size: 18px;
+        line-height: 28px;
+}
+.podcast-contant h3 {
+    font-size: 28px;
+    line-height: 34px;
+}
+
+.global-partners h6 {
+    font-size: 16px;
+    line-height: 18px;
+}
+.global-partners p {
+   font-size: 18px;
+        line-height: 28px;
+}
+.main-city {
+    gap: 20px;
+    margin-bottom: 15px;
+}
+.seebtn a {
+    padding: 12px 15px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.partnertext {
+    padding-top: 5px;
+}
+
+.step-content h3 {
+    font-size: 28px;
+    line-height: 35px;
+    margin-bottom: 0px;
+}
+.step-number {
+    font-size: 32px;
+}
+.step-content p {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 25px;
+}
+.step-content {
+    left: 15px;
+    bottom: 15px;
+}
+
+.member-list p {
+   font-size: 18px;
+        line-height: 28px;
+}
+
+.members-text p {
+    font-size: 18px;
+        line-height: 28px;
+}
+.profiletext {
+    padding-top: 85px;
+}
+.genuinelot {
+    padding: 15px;
+}
+.about-hading {
+    margin-bottom: 40px;
+}
+.hero-prev, .hero-next {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+}
+.card-one h3 {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 5px;
+}
+.card-one p {
+    font-size: 16px;
+        line-height: 26px;
+}
+	.card-one a {
+    font-size: 16px;
+    line-height: 26px;
+}
+.visit-menu li a {
+    font-size: 13px;
+    line-height: 20px;
+	    padding: 10px 20px;
+}
+	.trusted-section .heading-pathway {
+    max-width: 520px;
+}
+.card-one {
+    padding: 15px;
+}
+.card-one {
+    width: 48%;
+}
+.main-address {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.footer-heading {
+    max-width: 490px;
+}
+.footer-logo img {
+    width: 350px;
+}
+.social-icon a {
+    margin: 0 30px 0 0;
+}
+.trusted-section .accordion-button {
+    font-size: 28px;
+    line-height: 32px;
+}
+.address-block {
+    padding: 30px;
+}
+.from-style {
+    margin-top: 60px;
+}
+.heading-pathway {
+    max-width: 520px;
+}
+.great-heading h2 {
+    font-size: 52px;
+    line-height: 62px;
+}
+
+	.visit-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+    /* margin: 6px; */
+    margin-bottom: 8px;
+}
+.main-banner {
+    padding: 70px 0px 0;
+}
+.bluebtnarrow {
+    display: flex;
+    flex-direction: column;
+}
+
+.serve-card__text {
+    font-size: 16px;
+    line-height: 25px;
+}
+.hover-card__text {
+  font-size: 18px;
+        line-height: 28px;
+}
+.our-choose .playnow {
+    max-width: 500px;
+}
+.contact-image {
+    bottom: -30px;
+}
+.location-image {
+    top: -30px;
+}
+.trusted-section::after {
+    top: -70px;
+}
+.stories {
+    margin-top: -100px;
+}
+.story__title {
+    font-size: 42px;	
+}
+.solid-contant {
+    padding: 20px;
+}
+	.solid-contant h3 {
+    font-size: 28px;
+    line-height: 36px;
+}
+	.newlesson {
+    margin-top: 28px;
+}
+.hover-card__title {
+    font-size: 28px;
+
+}
+	.serve-card__title {
+    font-size: 28px;
+}
+	.outreach__title {
+    font-size: 42px;
+
+}
+	.choose-heading h2 {
+    font-size: 42px;
+}
+	.teaching__title {
+    font-size: 42px;
+
+}
+	.next-step h2 {
+   font-size: 42px;
+}
+	.address-list p {
+    font-size: 18px;
+    line-height: 30px;
+}
+	.come__body {
+    margin-top: 40px;
+}
+	.textbox {
+    min-height: 440px;
+}
+}
+
+@media (min-width: 1400px) and (max-width: 1500px) {
+	.step-content p {
+    min-height: 90px;
+    font-size: 18px !important;
+    line-height: 25px !important;
+}
+	.step-content h3 {
+    font-size: 28px !important;
+    line-height: 33px !important;
+    margin-bottom: 0px !important;
+}
+}
+
+
+@media (min-width: 1400px) and (max-width: 1600px) {
+.our-choose .playnow {
+    max-width: 500px;
+}
+/*
+.playnow a {
+    display: unset;
+}
+*/
+.location-image {
+    top: -55px;
+}
+}
+@media (min-width: 1400px) and (max-width: 1800px) {
+		.newlesson {
+    margin-top: 30px;
+}
+	.newmissions {
+    
+    align-items: flex-start;
+}
+	.from-style input {
+    font-size: 18px;
+}
+
+	.hero-contant {
+    max-width: 600px;
+  
+}
+	.profile-icon {
+    width: 140px;
+    min-width: 140px;
+ 
+}
+	.profile-icontext span {
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 100%;
+}
+	.right-image {
+    min-width: 130px;
+}
+	.left-slide p {
+    font-size: 20px;
+    line-height: 33px;
+
+}
+	.visit-menu li a {
+    font-size: 14px;
+    line-height: 22px;
+}
+	.visit-menu li a {
+    padding: 10px 13px;
+
+}
+	.visit-menu {
+    gap: 8px;
+
+}
+h2 {
+    font-size: 65px;
+    line-height: 70px;
+}
+	.hero-contant p {
+    font-size: 20px;
+}
+	h1 {
+    font-size: 65px;
+    line-height: 70px;
+   
+}
+.biblical-contant h2 {
+    max-width: 550px;
+}
+.heading-box {
+    gap: 20px;
+}
+.church-services span {
+    font-size: 44px;
+}
+.church-services h2 {
+    font-size: 46px;
+    line-height: 55px;
+}
+	.story__title {
+    font-size: 50px;
+}
+/*
+.bold-heading {
+    font-size: 82px;
+    line-height: 90px;
+    max-width: 850px;
+}
+*/
+.serve-others p {
+    font-size: 45px;
+}
+.panel-content h2 {
+    font-size: 42px;
+    line-height: 42px;
+}
+.panel-description {
+    font-size: 18px;
+    line-height: 24px;
+        max-width: 255px;
+}
+.slide-arrow a {
+    font-size: 16px;
+    padding: 12px 20px;
+}
+.slide-arrow {
+    right: 32px;
+}
+/*
+.collapsed-title {
+   bottom: 27%;
+}
+*/
+.biblical-contant p {
+    font-size: 20px;
+    line-height: 30px;
+}
+.long-text h3 {
+    font-size: 65px;
+    line-height: 65px;
+}
+.biblical-contant h6 {
+    font-size: 24px;
+}
+
+.solid-contant p {
+    font-size: 20px;
+    line-height: 30px;
+    min-height: 90px;
+}
+.lifelong-heading h2 {
+    font-size: 200px;
+    line-height: 200px;
+}
+.lifelong-heading h3 {
+    font-size: 65px;
+    line-height: 70px;
+    margin-bottom: 0px;
+}
+.lifelong-heading p {
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 750px;
+}
+.image-list {
+    max-width: 345px;
+}
+.worship-inset img {
+    width: 275px;
+    height: 210px;
+
+}
+	.image-bg-church {
+    bottom: -25px;
+    right: 0;
+
+}
+	.biblical-contant {
+    padding-left: 50px;
+}
+.live-show img {
+    width: 390px;
+}
+.lifelong-heading {
+    padding: 60px;
+}
+
+.textbox h4 {
+    font-size: 24px;
+    line-height: 28px;
+    margin: 15px 0px 0px;
+}
+.textbox p {
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+.kids-heading h6 {
+    font-size: 28px;
+    line-height: 32px;
+}
+
+.newlesson {
+    gap: 60px;
+    margin-top: 30px;
+}
+.event-content p {
+    font-size: 22px;
+    line-height: 35px;
+}
+.life-groups {
+    padding: 20px;
+}
+.lifebtn {
+    margin-top: 30px;
+}
+.life-groups h3 {
+    font-size: 28px;
+    line-height: 36px;
+    margin: 0 0 15px;
+}
+.clear-text p {
+    font-size: 20px;
+    line-height: 30px;
+}
+.missions-heading {
+   
+}
+.global-partners h6 {
+    font-size: 20px;
+    line-height: 28px;
+}
+.global-partners p {
+    font-size: 16px;
+    line-height: 24px;
+}
+.main-city {
+    margin-bottom: 20px;
+}
+.partnertext {
+    padding-top: 10px;
+}
+/*
+a.messagebtn {
+    margin-top: 20px;
+}
+*/
+.choose-text p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.step-content p {
+    min-height: 90px;
+    font-size: 20px;
+    line-height:26px;
+}
+.step-number {
+    font-size: 42px;
+}
+
+.member-list p {
+    font-size: 20px;
+    line-height: 30px;
+}
+.hero-prev, .hero-next {
+    width: 48px;
+    height: 48px;
+}
+
+.about-hading {
+    max-width: 850px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+.social-icon a {
+    margin: 0 30px 0 0;
+}
+.card-one {
+    padding: 15px;
+}
+.card-one h3 {
+    font-size: 18px;
+    line-height: 24px;
+}
+.card-one p {
+    font-size: 16px;
+    line-height: 20px;
+}
+.card-one a{
+   font-size: 16px;
+    line-height: 20px; 
+}
+.main-address {
+    margin-bottom: 30px;
+}
+.footer-heading p {
+    max-width: 450px;
+}
+.trusted-section .accordion-button {
+    font-size: 24px;
+    line-height: 32px;
+}
+.address-block {
+    padding: 30px;
+}
+
+p.text-fit {
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 380px;
+}
+.hero-content p {
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 520px;
+}
+.event-badge {
+    font-size: 32px;
+    line-height: 40px;
+}
+.collapsed-title span {
+    font-size: 48px;
+}
+.collapsed-title p {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 10px 0px 0px;
+}
+.heading-pathway {
+    max-width: 700px !important;
+}
+.trusted-section .heading-pathway {
+    max-width: 560px !important;
+}
+	.footer-heading {
+    max-width: 560px;
+}
+	.img-one img, .img-two img, .img-three img{
+		max-width: 400px;
+		border-radius: 20px;
+	}
+
+.great-heading h2 {
+    font-size: 52px;
+    line-height: 62px;
+    margin-bottom: 30px;
+}
+.podcast-contant h3 {
+    font-size: 24px;
+    line-height: 32px;
+}
+.podcast-contant p {
+    font-size: 17px;
+    line-height: 23px;
+}
+.left-slide h2 {
+    font-size: 52px;
+    line-height: 62px;
+}
+.solid-contant {
+    padding: 20px;
+}
+.bluebtnarrow a {
+    padding: 20px 16px;
+    font-size: 12px;
+}
+.profilesection {
+    min-height: 432px;
+}
+.rightheadingarea {
+    text-align: end;
+}
+	.newlesson h2 {
+    font-size: 50px;
+    line-height: 50px;
+}
+	.next-step h2 {
+    font-size: 50px;
+}
+	.hover-card__title {
+    font-size: 30px;
+
+}
+.outreach__title {
+    font-size: 50px;
+
+}
+	.serve-card__title {
+    font-size: 30px;
+}
+	.teaching__title {
+    font-size: 50px;
+
+}
+	.outreach__curve {
+    margin-bottom: -1px;
+}
+	.step-content h3 {
+    font-size: 30px;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
+.trusted-section .heading-pathway h3 {
+    font-size: 30px;
+}
+	.solid-contant h3 {
+    font-size: 30px;
+}
+	.come__body {
+    margin-top: 40px;
+}
+	.crvbottomtotop {
+    margin-top: -1px;
+}
+
+}
+
+@media (min-width: 1600px) and (max-width: 1800px) {
+    .img-profile img {
+    height: 392px;
+    object-fit: cover;
+}
+.profiletext {
+    padding-top: 150px;
+}
+.arrowbtn {
+    bottom: 10%;
+}
+}
+
+@media (min-width: 1200px){
+    .nav-item.dropdown:hover .dropdown-menu{
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu{
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+    }
+.great-heading .listenbtn {
+
+    max-width: 95%;
+}
+}
+@media (min-width: 1300px){
+.inner-container{
+	max-width: 1283px !important;
+}
+.great-heading {
+   
+    max-width: 586px;
+}
+	.biblical-contant p {
+    max-width: 80%;
+}
+}
+
+@media (min-width: 1600px){
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1536px;
+}
+}
+
+@media (min-width: 1800px){
+.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1670px;
+}
+}
+
+@media (max-width: 1800px){
+    .from-style {
+        margin-top: 30px;
+    }	
+}
+@media (min-width: 2000px){
+.union-shape {
+    bottom: -50px;
+}
+.union-image {
+    bottom: -50px;
+}
+.image-union1 {
+    top: -50px;
+}
+.union-shape-image {
+    top: -50px;
+}
+}
+
+
+@media (min-width: 992px) {
+    
+    .dropdown-menu {
+        position: absolute;
+    }
+}
+
+@media (max-width: 1400px){
+    .topbar p {
+    font-size: 14px;
+}
+}
+@media (min-width: 1400px) and (max-width: 1599px) {
+.come__row-title {
+    font-size: 30px;
+    line-height: 38px;
+}
+.life-groups p {
+    font-size: 20px;
+    line-height: 30px;
+}
+/***02-09-2026**/
+.fmk-kids-section .textbox p {
+    margin-bottom: 30px;
+}
+.fmk-kids-section .newlesson {
+    margin-top: 15px !important;
+}
+.fmk-kids-section img.shake {
+    width: 75px !important;
+}
+/***02-09-2026**/
+}
+@media (min-width: 1900px) {
+    .contact-image {
+    bottom: -60px;
+}
+}

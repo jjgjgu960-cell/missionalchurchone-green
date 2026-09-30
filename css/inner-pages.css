@@ -1,0 +1,2028 @@
+/* =========================================================================
+   inner-pages.css — About Us + Plan Your Visit
+   ------------------------------------------------------------------------
+   Pixel-faithful port of the two design exports
+   (firstmckinney-about-us/ and plan-your-visit/), with every inline
+   style="…" and every style-hover="…" attribute converted to a real class
+   plus real CSS pseudo-classes.
+
+   Load order on the page:
+       bootstrap.min.css → style.css → responsive.css
+     → inner-pages.css → inner-pages-responsive.css   (this file, then that)
+
+   This file describes the WIDEST layout and carries no media queries.
+   All breakpoints live in css/inner-pages-responsive.css.
+
+   Every colour, radius, shadow and motion token is declared in :root below.
+   No brand hex appears anywhere else in this file.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Nunito+Sans:wght@700;800&family=Roboto:wght@400;500&display=swap');
+
+/* =========================================================================
+   00  TOKENS
+   Values lifted verbatim from the export sources.
+   ========================================================================= */
+:root {
+  /* brand */
+  --fmk-orange:        #EA9822;   /* primary accent  */
+  --fmk-yellow:        #F3BE1E;   /* highlight       */
+  --fmk-rust:          #B04825;   /* deep accent     */
+  --fmk-navy:          #0B4666;   /* section navy    */
+  --fmk-navy-deep:     #0B2438;   /* hero base       */
+  --fmk-cream:         #F8F2E6;   /* page background */
+  --fmk-ink:           #131313;   /* headings        */
+  --fmk-body:          #333333;   /* body copy       */
+  --fmk-body-soft:     #524C3F;   /* tile copy       */
+  --fmk-white:         #FFFFFF;
+
+  /* translucent derivations */
+  --fmk-glass:              rgba(9, 56, 82, 0.62);
+  --fmk-glass-line:         rgba(255, 255, 255, 0.16);
+  --fmk-white-92:           rgba(255, 255, 255, 0.92);
+  --fmk-white-90:           rgba(255, 255, 255, 0.90);
+  --fmk-white-85:           rgba(255, 255, 255, 0.85);
+  --fmk-white-70:           rgba(255, 255, 255, 0.70);
+  --fmk-white-55:           rgba(255, 255, 255, 0.55);
+  --fmk-white-45:           rgba(255, 255, 255, 0.45);
+  --fmk-white-40:           rgba(255, 255, 255, 0.40);
+  --fmk-white-30:           rgba(255, 255, 255, 0.30);
+  --fmk-white-08:           rgba(255, 255, 255, 0.08);
+  --fmk-white-06:           rgba(255, 255, 255, 0.06);
+  --fmk-navy-line:          rgba(11, 70, 102, 0.35);
+  --fmk-band-orange:        rgba(234, 152, 34, 0.94);
+  --fmk-hero-wash:          linear-gradient(90deg, rgba(4,34,51,.85) 0%, rgba(4,34,51,.6) 48%, rgba(6,38,57,.3) 100%);
+  --fmk-hero-wash-soft:     linear-gradient(90deg, rgba(4,34,51,.82) 0%, rgba(4,34,51,.55) 48%, rgba(6,38,57,.25) 100%);
+  --fmk-navy-wash:          linear-gradient(180deg, rgba(11,70,102,.92) 0%, rgba(11,70,102,.78) 55%, rgba(11,70,102,.9) 100%);
+  --fmk-card-wash:          linear-gradient(to top, rgba(6,26,38,.85) 8%, rgba(6,26,38,.08) 55%);
+  --fmk-card-wash-soft:     linear-gradient(to top, rgba(6,26,38,.72) 8%, rgba(6,26,38,.05) 55%);
+  --fmk-stage-wash:         linear-gradient(180deg, rgba(11,70,102,.3) 0%, transparent 32%, transparent 66%, rgba(11,70,102,.45) 100%);
+  --fmk-navy-90:            rgba(11, 70, 102, .9);
+  --fmk-rust-glow:          rgba(176, 72, 37, .3);
+  /* below 768 the 90deg hero wash leaves the right edge too light for white
+     text, so the gradient turns vertical — see inner-pages-responsive.css */
+  --fmk-hero-wash-phone:    linear-gradient(180deg, rgba(4,34,51,.82) 0%, rgba(4,34,51,.9) 100%);
+  --fmk-hero-wash-phone-b:  linear-gradient(180deg, rgba(4,34,51,.8) 0%, rgba(4,34,51,.9) 100%);
+
+  /* shadows */
+  --fmk-sh-badge:      0 14px 34px rgba(0, 0, 0, .3);
+  --fmk-sh-band:       0 40px 90px rgba(11, 70, 102, .35);
+  --fmk-sh-card:       0 30px 70px rgba(11, 36, 56, .3);
+  --fmk-sh-tile:       0 22px 50px rgba(11, 70, 102, .22);
+  --fmk-sh-tile-warm:  0 18px 44px rgba(122, 66, 7, .22);
+  --fmk-sh-stage:      0 34px 80px rgba(0, 0, 0, .34);
+  --fmk-sh-photo:      0 26px 60px rgba(11, 70, 102, .26);
+  --fmk-sh-photo-sm:   0 18px 44px rgba(11, 70, 102, .3);
+  --fmk-sh-link:       0 16px 40px rgba(11, 70, 102, .22);
+  --fmk-sh-faq:        0 8px 26px rgba(0, 0, 0, .18);
+  --fmk-sh-map:        0 24px 60px rgba(11, 70, 102, .24);
+  --fmk-sh-frame:      0 26px 60px rgba(0, 0, 0, .45);
+
+  /* shell — the export's real measurements */
+  --fmk-shell-max:  1740px;
+  --fmk-shell-pad:  clamp(20px, 6vw, 122px);
+  --fmk-shell-narrow: 1100px;
+
+  /* the site header is position:fixed in style.css — the hero must clear it */
+  --fmk-header-h: 90px;
+
+  /* type */
+  --fmk-font-body: Raleway, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fmk-font-alt:  'Nunito Sans', Arial, sans-serif;
+  --fmk-font-ui:   Roboto, Arial, sans-serif;
+  --fmk-font-hand: Caveat, cursive;
+
+  --fmk-h1:      clamp(30px, 3.2vw, 60px);
+  --fmk-h2:      clamp(30px, 2.9vw, 54px);
+  --fmk-h2-band: clamp(28px, 2.7vw, 52px);
+  --fmk-h2-big:  clamp(32px, 3.3vw, 64px);
+  --fmk-copy:    clamp(15px, 1.12vw, 21px);
+
+  /* motion */
+  --fmk-ease:      cubic-bezier(0.16, 1, 0.3, 1);
+  --fmk-ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --fmk-t-fast:    .25s;
+  --fmk-t-mid:     .35s;
+  --fmk-t-slow:    .5s;
+  --fmk-marquee:   18s;
+
+  /* open height ceiling for a FAQ answer panel (see §16) */
+  --fmk-faq-max:   60rem;
+
+  /* section-level scroll reveal (see §02b). The shift is a token because a
+     fixed 48px slide is fine at 1440 and shoves content around on a phone —
+     inner-pages-responsive.css reduces it, to 0 at the smallest sizes.
+     The duration is only used where scroll-driven timelines are unsupported
+     and the animation falls back to running on the clock. */
+  --fmk-reveal-shift:    48px;
+  --fmk-reveal-dur:      .85s;
+}
+
+/* =========================================================================
+   01  BASE
+   ========================================================================= */
+
+/* `overflow-x: clip` on <html>, never `overflow-x: hidden` on <body>:
+   hidden on one axis computes the other to auto, which turns <body> into a
+   scroll container and kills sticky/scroll-driven effects. clip does not. */
+html.fmk-html { overflow-x: clip; scroll-behavior: smooth; }
+
+/* ------------------------------------------------------------------------
+   style.css gives .main-wrapper `overflow: hidden`. An element with
+   `overflow: hidden` IS a scroll container — so every `animation-timeline:
+   view()` on this page resolved against the wrapper instead of the document.
+   The wrapper never scrolls (the document does), so all those timelines sat
+   frozen at a fixed progress and every reveal rendered already-arrived, with
+   no motion at all.
+
+   `clip` clips exactly like `hidden` but is NOT a scroll container, so the
+   view timelines resolve to the viewport and actually run. Verified: with
+   `hidden` the timeline's scroller reports as DIV.main-wrapper; with `clip`
+   it reports as the root element.
+
+   Scoped to .fmk-shell so index.html is unaffected.
+   ------------------------------------------------------------------------ */
+.main-wrapper.fmk-shell { overflow: clip; }
+
+.inner-page {
+  background: var(--fmk-cream);
+/*  font-family: var(--fmk-font-body);*/
+  color: var(--fmk-ink);
+}
+.inner-page ::selection { background: var(--fmk-orange); color: var(--fmk-white); }
+.inner-page a { text-decoration: none; }
+
+/* the export's shell width, scoped so the shared header/footer keep the
+   main site's own .container measurements */
+/*.inner-page .container {
+  max-width: var(--fmk-shell-max);
+  padding-inline: var(--fmk-shell-pad);
+  width: 100%;
+}*/
+/*.inner-page .container--narrow { max-width: var(--fmk-shell-narrow); padding-inline: clamp(20px, 5vw, 100px); }*/
+/*.inner-page .container--hero   { padding-inline: clamp(20px, 5vw, 96px); }*/
+
+/* one focus treatment for the whole page */
+.inner-page a:focus-visible,
+.inner-page button:focus-visible,
+.inner-page input:focus-visible,
+.inner-page select:focus-visible,
+.inner-page textarea:focus-visible,
+.inner-page [tabindex]:focus-visible {
+  outline: none;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================================
+   02  KEYFRAMES  (complete inventory from both export stylesheets)
+   ========================================================================= */
+@keyframes fmkFloatY { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+@keyframes fmkHIn    { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+@keyframes fmkMarq   { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes fmkRvUp   { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: none; } }
+@keyframes fmkRvFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fmkRvL    { from { opacity: 0; transform: translateX(-90px); } to { opacity: 1; transform: none; } }
+@keyframes fmkRvR    { from { opacity: 0; transform: translateX(90px); } to { opacity: 1; transform: none; } }
+@keyframes fmkDeSat  { from { filter: grayscale(1); } to { filter: grayscale(0); } }
+@keyframes fmkBlurIn { from { opacity: 0; filter: blur(14px); transform: scale(1.05); } to { opacity: 1; filter: blur(0); transform: none; } }
+@keyframes fmkObjPan { from { object-position: 50% 15%; } to { object-position: 50% 75%; } }
+@keyframes fmkSwingP { from { transform: rotate(-2deg); } to { transform: rotate(1.6deg); } }
+/* rotIn resolves to rotate(-2deg): the element keeps its tilt after entry */
+@keyframes fmkRotIn  { from { opacity: 0; transform: translateX(-70px) rotate(-8deg); } to { opacity: 1; transform: rotate(-2deg); } }
+
+
+/* =========================================================================
+   03  SECTION SHELLS
+   ========================================================================= */
+/* `clip`, not `hidden`: `hidden` makes an element a scroll container, which
+   would capture the view() timelines of every reveal inside it. `clip` clips
+   identically without becoming one. Same reason on the four bands below. */
+.fmk-sec { position: relative; overflow: clip; background: var(--fmk-cream); }
+.fmk-sec--navy { background: var(--fmk-navy); }
+/*.fmk-sec--pad     { padding: clamp(60px, 6.5vw, 110px) 0; }
+.fmk-sec--pad-lg  { padding: clamp(64px, 6.8vw, 116px) 0; }
+.fmk-sec--pad-xl  { padding: clamp(70px, 7vw, 120px) 0; }
+/* sections that sit directly under another section's photo overhang */
+/*.fmk-sec--pad-tight { padding: clamp(20px, 2vw, 40px) 0 clamp(60px, 6.5vw, 110px); }
+.fmk-sec--pad-mid   { padding: clamp(30px, 3vw, 56px) 0 clamp(60px, 6.5vw, 110px); }*/
+
+/* the standard two-column split: copy + photo.
+   NOT a Bootstrap row — the design's ratios (1.15 / 0 1 clamp(300px,31vw,580px))
+   are not expressible in twelfths, and forcing them into cols would round the
+   photo column off its measured width. Documented in README. */
+.fmk-split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(28px, 4vw, 80px);
+/*  justify-content: space-between;*/
+}
+.fmk-split--start { align-items: flex-start; }
+.fmk-split--end   { align-items: flex-end; }
+
+.fmk-split__copy  { flex: 1.15 1 440px; min-width: 300px; max-width: 800px; }
+.fmk-split__copy--wide { flex: 1.2 1 440px; max-width: 940px; }
+.fmk-split__media { flex: 0 1 clamp(300px, 31vw, 480px); min-width: 600px; position: relative; }
+
+/* =========================================================================
+   04  SECTION HEADINGS
+   ========================================================================= */
+.fmk-num { display: flex; align-items: center; gap: 14px; }
+.fmk-num__n {
+  font-weight: 700;
+  font-size: clamp(15px, 1.1vw, 20px);
+  color: var(--fmk-rust);
+}
+.fmk-num__rule { height: 2px; width: clamp(34px, 3vw, 56px); background: var(--fmk-orange); }
+.fmk-num--light .fmk-num__n { color: var(--fmk-yellow); }
+.fmk-num--white .fmk-num__n,
+.fmk-num--white .fmk-num__rule { color: var(--fmk-white); background: var(--fmk-white); }
+.fmk-num--white .fmk-num__n { background: none; }
+
+.fmk-h2 {
+    margin: 15px 0px;
+    color: var(--fmk-ink);
+}
+.fmk-h2--band { color: var(--fmk-white); }
+
+.fmk-h2--faq  { margin: 0; line-height: 1.18; color: var(--fmk-white); }
+.fmk-h2 .fmk-accent { color: var(--fmk-orange); }
+.fmk-h2 .fmk-white  { color: var(--fmk-white); }
+
+.fmk-copy {
+    margin: 20px 0px 0px;
+    color: var(--fmk-body);
+    max-width: 900px;
+}
+/*.fmk-copy--wide  { max-width: 760px; }*/
+.fmk-copy--light { color: rgba(255, 255, 255, .93); }
+.fmk-copy--white { color: var(--fmk-white); }
+.fmk-copy--bright{ color: rgba(255, 255, 255, .94); }
+.fmk-copy a {
+  color: var(--fmk-rust);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fmk-copy--light a,
+.fmk-copy--bright a { color: var(--fmk-yellow); }
+.fmk-copy .fmk-todo {
+  font-style: italic;
+  color: var(--fmk-white-70);
+  border-bottom: 1.5px dashed var(--fmk-white-55);
+}
+
+/* =========================================================================
+   05  BUTTONS
+   One base, then families. Every state is a real pseudo-class.
+   ========================================================================= */
+.fmk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+   padding: 14px 24px !important;
+    font-size: 14px;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background var(--fmk-t-fast), color var(--fmk-t-fast),
+              border-color var(--fmk-t-fast), transform var(--fmk-t-fast),
+              box-shadow var(--fmk-t-fast);
+              font-weight: 700;
+}
+
+
+/* the arrow sits at -45° in the source */
+.fmk-btn i { transform: rotate(-45deg); font-size: 11px; }
+
+/* families */
+.fmk-btn--yellow { background: var(--fmk-yellow); color: var(--fmk-ink); gap: 10px; padding: clamp(12px, .9vw, 16px) clamp(20px, 1.6vw, 30px); }
+.fmk-btn--yellow:hover,
+.fmk-btn--yellow:focus-visible { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(0, 0, 0, .35);  }
+
+.fmk-btn--orange { background: var(--fmk-orange); color: var(--fmk-white); }
+.fmk-btn--orange:hover,
+.fmk-btn--orange:focus-visible {transform: translateY(-3px); color: var(--fmk-white); }
+
+/* orange button sitting on navy flips to yellow rather than rust */
+.fmk-btn--orange-lift:hover,
+.fmk-btn--orange-lift:focus-visible { background: var(--fmk-yellow); color: #fff; transform: translateY(-3px); }
+
+.fmk-btn--ghost {
+    border-color: var(--fmk-white-85) !important;
+    color: var(--fmk-white) !important;
+}
+.fmk-btn--ghost:hover,
+.fmk-btn--ghost:focus-visible { transform: translateY(-2px); border-color: var(--fmk-orange); color: var(--fmk-white); }
+
+.fmk-btn--white { background: var(--fmk-white); color: var(--fmk-rust); }
+.fmk-btn--white:hover,
+.fmk-btn--white:focus-visible { background: var(--fmk-navy); color: var(--fmk-white); transform: translateY(-3px); }
+
+/* square-cornered pair used by "Plan Your Visit" and the Join CTA */
+.fmk-btn--sq {
+  border-radius: 8px;
+  gap: 10px;
+/*  font-size: clamp(11px, 0.73vw, 14px);*/
+  padding: clamp(13px, 1.05vw, 20px) clamp(20px, 1.6vw, 31px);
+}
+.fmk-btn--sq i { font-size: clamp(11px, 0.73vw, 14px); }
+.fmk-btn--rust { background: var(--fmk-rust); color: var(--fmk-white) !important; }
+.fmk-btn--rust:hover,
+.fmk-btn--rust:focus-visible {  transform: translateY(-3px); box-shadow: 0 14px 28px var(--fmk-rust-glow); }
+.fmk-btn--rust-outline { border-color: var(--fmk-rust); color: var(--fmk-rust); }
+.fmk-btn--rust-outline:hover,
+.fmk-btn--rust-outline:focus-visible {  border-color: var(--fmk-orange); color: var(--fmk-white); transform: translateY(-3px); }
+
+/* full-width pill inside the contact / form panels */
+.fmk-btn--block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: var(--fmk-font-body);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 15px;
+}
+.fmk-btn--block i { font-size: 12px; }
+
+.fmk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: clamp(12px, 1.2vw, 24px);
+  margin-top: 30px;
+}
+.fmk-actions--tight  { gap: 14px; align-items: center; }
+.fmk-actions--center { justify-content: center; gap: 14px; margin-top: 30px; }
+.fmk-actions--rel    { position: relative; align-items: flex-start; gap: 14px; margin-top: clamp(28px, 2.8vw, 50px); }
+
+/* =========================================================================
+   06  DOODLES
+   ========================================================================= */
+.fmk-doodle {
+  object-fit: contain;
+  pointer-events: none;
+  flex: 0 0 auto;
+  animation: fmkFloatY 3s ease-in-out 0s infinite;
+  width: clamp(44px, 3.4vw, 64px);
+  height: clamp(36px, 2.8vw, 52px);
+  margin-bottom: clamp(8px, 1vw, 20px);
+  transform: scaleX(-1);
+}
+.fmk-doodle--a { animation-duration: 3.5s; animation-delay: -.9s; width: clamp(40px, 3.2vw, 62px); height: clamp(40px, 3.2vw, 62px); margin-bottom: clamp(10px, 1.2vw, 24px); transform: scaleX(-1) rotate(-12deg); }
+.fmk-doodle--b { animation-duration: 3.2s; animation-delay: -1.7s; width: clamp(42px, 3.2vw, 62px); height: clamp(36px, 2.8vw, 54px); transform: scaleX(-1) rotate(8deg); }
+.fmk-doodle--c { height: clamp(38px, 3vw, 56px); }
+.fmk-doodle--d { animation-duration: 3.5s; animation-delay: -.9s; width: clamp(40px, 3.2vw, 62px); height: clamp(40px, 3.2vw, 62px); transform: scaleX(-1) rotate(-8deg); }
+/* the loose doodle in the Connect button row */
+.fmk-doodle--float { width: 50px; height: 44px; align-self: flex-end; margin: 0 0 -14px 2px; }
+/* the doodle pinned inside the Join button row */
+.fmk-doodle--pin { position: absolute; right: 4px; top: 50%; transform: translateY(-50%) scaleX(-1); width: 50px; height: 44px; margin: 0; }
+
+/* =========================================================================
+   07  PAGE HERO
+   ========================================================================= */
+.fmk-hero { position: relative; overflow: clip; background: var(--fmk-navy-deep); }
+.fmk-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: scale(1.08);
+  will-change: transform;
+}
+.fmk-hero--about .fmk-hero__bg {
+  background-image: var(--fmk-hero-wash), url("../images/about-us/01-hero/hero-sanctuary.jpg");
+  background-position: center 40%;
+}
+.fmk-hero--visit .fmk-hero__bg {
+  background-image: var(--fmk-hero-wash-soft), url("../images/plan-your-visit/01-hero/hero-signs.jpg");
+  background-position: center 10%;
+}
+
+.fmk-hero__inner {
+  position: relative;
+  z-index: 2;
+/*  min-height: clamp(480px, 46vw, 800px);*/
+  /* top padding = the export's own + clearance for the site's fixed header */
+  padding: 80px 0px;
+  display: flex;
+  align-items: center;
+}
+.fmk-hero__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(32px, 4.5vw, 90px);
+  width: 100%;
+}
+.fmk-hero__copy  { flex: 1.15 1 480px; min-width: 300px; max-width: 940px; }
+/*.fmk-hero__aside { flex: 0 0 auto; position: relative; align-self: flex-end; margin-left: auto; }*/
+.fmk-hero__aside {
+    flex: 0 0 auto;
+    position: relative;
+    align-self: flex-end;
+    margin-left: auto;
+    min-width: 225px;
+}
+/* entrance stagger, straight from the source's hIn delays */
+.fmk-in    { animation: fmkHIn .8s var(--fmk-ease) .05s both; }
+.fmk-in-1  { animation: fmkHIn .9s var(--fmk-ease) .15s both; }
+.fmk-in-2  { animation: fmkHIn 1s  var(--fmk-ease) .28s both; }
+.fmk-in-3  { animation: fmkHIn 1s  var(--fmk-ease) .42s both; }
+.fmk-in-4  { animation: fmkHIn 1s  var(--fmk-ease) .56s both; }
+.fmk-in-5  { animation: fmkHIn 1s  var(--fmk-ease) .5s  both; }
+
+.fmk-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--fmk-white-85);
+}
+.fmk-crumbs a { color: var(--fmk-white-85); transition: color var(--fmk-t-fast); }
+.fmk-crumbs a:hover,
+.fmk-crumbs a:focus-visible { color: var(--fmk-yellow); }
+.fmk-crumbs__sep  { opacity: .6; }
+.fmk-crumbs__here { color: var(--fmk-yellow); font-weight: 500; }
+
+.fmk-hero__kicker {
+    margin-top: 20px;
+    font-family: "alkaline", sans-serif;
+    color: var(--fmk-white);
+    letter-spacing: .5px;
+}
+.fmk-hero__title {
+  color: var(--fmk-white);
+  line-height: 70px;
+      margin: 10px 0px 20px;
+}
+.fmk-hero__title .fmk-accent { color: var(--fmk-orange); }
+
+/* About's lead is a handwritten yellow line; Plan Your Visit's is plain copy */
+/*.fmk-hero__lead {
+    margin: 22px 0 0;
+    font-family: "alkaline", sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 40px;
+    color: var(--fmk-yellow);
+}*/
+.fmk-hero__lead--plain {
+  font-family: var(--fmk-font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(255, 255, 255, .94);
+  max-width: 640px;
+}
+.fmk-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+/* white badge card, bottom-right of the hero */
+.fmk-badge {
+    background: var(--fmk-white);
+    border-radius: 14px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--fmk-sh-badge);
+}
+.fmk-badge__icon {
+  flex: 0 0 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.fmk-badge__text { display: flex; flex-direction: column; gap: 2px; }
+.fmk-badge__label {
+    letter-spacing: 1.2px;
+    color: var(--fmk-rust);
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 800;
+}
+.fmk-badge__value {
+    color: var(--fmk-ink);
+    white-space: nowrap;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 700;
+}
+.fmk-hero__doodle {
+  animation: fmkFloatY 3s ease-in-out 0s infinite;
+  position: absolute;
+  top: -46px;
+  right: -8px;
+  width: clamp(44px, 3.4vw, 64px);
+  height: clamp(37px, 2.85vw, 54px);
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 3;
+  transform: scaleX(-1);
+}
+
+/* =========================================================================
+   08  "AT A GLANCE" ORANGE BAND
+   Overlaps the hero and runs full-bleed.
+   ========================================================================= */
+.fmk-glance { background: var(--fmk-cream); overflow: visible; position: relative; z-index: 3; }
+.fmk-glance__band {
+  position: relative;
+  overflow: clip;
+  background-image: linear-gradient(var(--fmk-band-orange), var(--fmk-band-orange)),
+                    url("../images/_shared/looking-bg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: var(--fmk-sh-band);
+}
+/* --- About: navy card + white stat tiles + tall photo stage --- */
+.fmk-glance__inner {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(16px, 1.5vw, 24px);
+}
+.fmk-glance__ghost {
+  position: absolute;
+  font-size: 300px;
+  line-height: .8;
+  letter-spacing: -.05em;
+  color: var(--fmk-white-08);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  font-weight: 800;
+  right: 0;
+  margin-top: -130px;
+}
+.inner-pages-about{
+   position: relative;
+}
+.fmk-glance__left {
+  position: relative;
+  z-index: 2;
+  flex: 1.05 1 440px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.5vw, 24px);
+}
+.fmk-glance__card {
+  flex: 1 1 auto;
+  background: var(--fmk-navy);
+  border-radius: 24px;
+  padding: 40px 40px;
+  box-shadow: var(--fmk-sh-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fmk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--fmk-yellow);
+  margin-bottom: 0px;
+}
+.fmk-glance__title {
+    margin: 10px 0px 0px;
+    color: var(--fmk-white);
+    font-weight: 700;
+  /*  font-size: 65px;
+    line-height: 75px;*/
+}
+.fmk-glance__title .fmk-hand {
+      font-family: "alkaline", sans-serif;
+  font-weight: 700;
+  font-size: 1.14em;
+  color: var(--fmk-yellow);
+}
+.fmk-glance__copy {
+  margin-top: 20px;
+  color: var(--fmk-white-90);
+}
+
+.fmk-tiles { display: flex; flex-wrap: wrap; gap: clamp(16px, 1.5vw, 24px); margin-top:25px; }
+.fmk-tile {
+  flex: 1 1 190px;
+  min-width: 180px;
+  background: var(--fmk-white);
+  border-radius: 20px;
+  padding: 25px 25px;
+  box-shadow: var(--fmk-sh-tile);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.fmk-tile__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.fmk-tile__icon--navy { background: var(--fmk-navy); }
+.fmk-tile__value {
+    font-weight: 800;
+    font-size: 65px;
+    line-height: 65px;
+    color: var(--fmk-navy);
+}
+.fmk-tile__kicker {
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--fmk-rust);
+    font-size: 24px;
+    line-height: 32px;
+}
+.fmk-tile__label {
+  font-weight: 600;
+  /*font-size: clamp(12.5px, 0.9vw, 15px);
+  line-height: 1.35;*/
+  color: var(--fmk-body-soft);
+}
+.fmk-glance__right { position: relative; z-index: 2; flex: 1 1 400px; min-width: 300px; align-self: stretch; }
+.fmk-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: clamp(360px, 44vw, 620px);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--fmk-sh-stage);
+}
+.fmk-stage__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+.fmk-stage__img.is-on { opacity: 1; }
+/* the five photos each have their own crop in the source */
+.fmk-stage__img:nth-of-type(1) { object-position: center 30%; }
+.fmk-stage__img:nth-of-type(2) { object-position: center 65%; }
+.fmk-stage__img:nth-of-type(3) { object-position: center 18%; }
+.fmk-stage__img:nth-of-type(4) { object-position: center 26%; }
+.fmk-stage__img:nth-of-type(5) { object-position: center 20%; }
+
+.fmk-stage__wash { position: absolute; inset: 0; background: var(--fmk-stage-wash); pointer-events: none; }
+.fmk-stage__pill {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--fmk-navy-90);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.fmk-stage__pill-icon {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.fmk-stage__pill-sub {
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--fmk-yellow);
+}
+.fmk-stage__pill-main {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--fmk-white);
+}
+
+.fmk-stage__dots {
+  position: absolute;
+  left: clamp(14px, 1.4vw, 22px);
+  right: clamp(14px, 1.4vw, 22px);
+  bottom: clamp(14px, 1.4vw, 22px);
+  display: flex;
+  gap: 6px;
+}
+.fmk-stage__dot {
+  flex: 1;
+  height: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--fmk-white-45);
+  cursor: pointer;
+  transition: background .3s;
+}
+.fmk-stage__dot.is-on { background: var(--fmk-white); }
+.fmk-stage__dot:hover { background: var(--fmk-white-70); }
+
+/* --- Plan Your Visit: copy + rule + two square cards --- */
+.fmk-glance__inner--visit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(28px, 3.4vw, 70px);
+}
+.fmk-glance__lead { flex: 1.5 1 460px; min-width: 300px; }
+.fmk-glance__lead h2 {
+  margin: 0;
+  color: var(--fmk-white);
+  font-weight: 700;
+  font-size: clamp(28px, 2.6vw, 50px);
+  line-height: 1.12;
+}
+.fmk-glance__lead p {
+  margin: clamp(14px, 1.3vw, 22px) 0 0;
+  color: var(--fmk-white);
+  max-width: 62ch;
+}
+.fmk-glance__rule { width: 1px; align-self: stretch; background: var(--fmk-white-40); }
+.fmk-glance__cards { flex: 1.1 1 380px; min-width: 300px; display: flex; flex-wrap: wrap; gap: clamp(14px, 1.2vw, 22px); }
+
+.fmk-factcard {
+  flex: 1 1 200px;
+  aspect-ratio: 1 / 1;
+  background: var(--fmk-cream);
+  border-radius: clamp(14px, 1.2vw, 20px);
+  padding: clamp(20px, 1.8vw, 30px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--fmk-sh-tile-warm);
+}
+.fmk-factcard__label { font-weight: 600; color: var(--fmk-ink); }
+.fmk-factcard__value {
+  margin-top: clamp(12px, 1.1vw, 18px);
+  font-weight: 700;
+  color: var(--fmk-ink);
+  white-space: nowrap;
+}
+.fmk-factcard__note {
+  margin-top: auto;
+  padding-top: clamp(18px, 1.8vw, 30px);
+  color: var(--fmk-body);
+}
+
+.fmk-photocard {
+  flex: 1 1 200px;
+  min-width: 170px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  border-radius: clamp(14px, 1.2vw, 20px);
+  overflow: hidden;
+  box-shadow: var(--fmk-sh-tile-warm);
+}
+.fmk-photocard img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fmkObjPan 16s ease-in-out infinite alternate;
+}
+.fmk-photocard__wash { position: absolute; inset: 0; background: var(--fmk-card-wash-soft); }
+.fmk-photocard__body {
+  position: absolute;
+  left: clamp(18px, 1.6vw, 26px);
+  right: clamp(18px, 1.6vw, 26px);
+  bottom: clamp(16px, 1.5vw, 24px);
+}
+.fmk-photocard__title { font-weight: 700; color: var(--fmk-white); }
+.fmk-photocard__sub {
+  margin-top: clamp(8px, 0.8vw, 12px);
+  color: var(--fmk-white-90);
+}
+
+/* =========================================================================
+   09  PHOTO ARRANGEMENTS
+   ========================================================================= */
+/* main photo with a smaller one overlapping the corner */
+.fmk-figs { position: relative; margin-bottom: clamp(24px, 3vw, 56px); }
+.fmk-figs__main {
+    display: block;
+    width: 100%; 
+    aspect-ratio: 593 / 705;
+    object-fit: cover;
+    border-radius: clamp(14px, 1.3vw, 25px);
+    max-width: 100%;
+}
+.fmk-figs__main--crop { object-position: center 25%; }
+
+/* bottom-left inset, with an offset outline behind it (Discover) */
+.fmk-figs__inset { position: absolute; left: -3%; bottom: -6.5%; width: 46%; }
+.fmk-figs__outline {
+  position: absolute;
+  left: -7%;
+  top: 3%;
+  width: 100%;
+  height: 100%;
+  border: 1.5px solid var(--fmk-orange);
+  border-radius: clamp(12px, 1.1vw, 20px);
+}
+.fmk-figs__inset img {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 271 / 352;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: clamp(12px, 1.1vw, 20px);
+  border: 5px solid var(--fmk-cream);
+  box-sizing: border-box;
+}
+
+/* bottom-right inset, tilted (History) */
+.fmk-figs__inset--right { left: auto; right: -3%; bottom: -6.5%; width: 52%; transform: rotate(2deg); }
+.fmk-figs__inset--right img {
+  aspect-ratio: 4 / 3;
+      object-position: center 30%;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: var(--fmk-sh-photo-sm);
+}
+
+/* single tilted photo (Beliefs / Careers / What to Expect) */
+.fmk-tilt { position: relative; transform: rotate(-2deg); }
+.fmk-tilt--right { transform: rotate(2deg); }
+.fmk-tilt img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center 96%;
+  border-radius: 14px;
+  box-sizing: border-box;
+  box-shadow: var(--fmk-sh-photo);
+}
+ul.fmk-visit-info__list {
+    margin-top: 15px;
+}
+.fmk-tilt--framed img { border-radius: 18px; border: 6px solid var(--fmk-white); }
+.fmk-tilt--crop img { object-position: center 70%; }
+/* rotIn ends on rotate(-2deg), so the tilt is carried by the animation */
+/*.fmk-tilt--rotin { animation: fmkRotIn 1ms linear both; animation-timeline: view(); animation-range: entry 4% entry 42%; }*/
+.fmk-tilt-map img{aspect-ratio: 5 / 4.5; margin-top: 10px;} 
+
+
+/* bordered portrait (Service Times) */
+.fmk-framed img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 51 / 58;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 3px solid var(--fmk-orange);
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: var(--fmk-sh-frame);
+  animation: fmkDeSat 1ms linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 70%;
+}
+.fmk-split__media--framed { flex: 0 1 clamp(280px, 27vw, 500px); min-width: 270px; }
+
+/* soft-focus entry photo (Take Your Next Step) */
+.fmk-blur img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: clamp(18px, 1.6vw, 30px);
+  box-shadow: var(--fmk-sh-map);
+  animation: fmkBlurIn 1ms linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 55%;
+}
+.fmk-split__media--wide { flex: 0 1 clamp(300px, 33vw, 620px); }
+
+/* =========================================================================
+   10  PATHWAY CARDS  (Bootstrap-free auto-fit grid, as in the source)
+   ========================================================================= */
+.fmk-pathway {
+  flex: 1 1 380px;
+  min-width: 290px;
+  max-width: 640px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
+  gap: clamp(14px, 1.3vw, 22px);
+}
+.fmk-path {
+  background: var(--fmk-white-06);
+  border: 1.5px solid var(--fmk-white-30);
+  border-radius: 14px;
+  padding: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.fmk-path__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.fmk-path__step {
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--fmk-yellow);
+}
+.fmk-path__title { font-weight: 700;  color: var(--fmk-white); }
+
+/* =========================================================================
+   11  FACT PILLS  (History figures / Service times)
+   ========================================================================= */
+.fmk-facts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 30px;
+}
+.fmk-facts--inline { margin-top: clamp(20px, 2vw, 34px); }
+.fmk-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1.5px solid var(--fmk-navy-line);
+  border-radius: 14px;
+  padding: 12px 22px;
+}
+.fmk-fact--light { border-color: var(--fmk-white-45); }
+.fmk-fact__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--fmk-rust);
+}
+.fmk-fact__label i { font-size: 11px; }
+.fmk-fact--light .fmk-fact__label { color: var(--fmk-yellow); }
+.fmk-fact__value {
+  font-weight: 800;
+  color: var(--fmk-navy);
+  white-space: nowrap;
+}
+.fmk-fact--light .fmk-fact__value { color: var(--fmk-white); }
+
+/* =========================================================================
+   12  LEADERSHIP / WELCOME  — full-bleed orange band
+   ========================================================================= */
+.fmk-band { position: relative; overflow: clip; background-position: center; background-size: cover; background-repeat: no-repeat; }
+.fmk-band--leadership {
+  background-image: linear-gradient(var(--fmk-band-orange), var(--fmk-band-orange)),
+                    url("../images/about-us/07-leadership/hero-band.jpg");
+}
+.fmk-band--welcome {
+  background-image: linear-gradient(var(--fmk-band-orange), var(--fmk-band-orange)),
+                    url("../images/plan-your-visit/07-welcome/visit-2.jpg");
+}
+/* leadership: the pastor cut-out runs to the band's base, so only the copy
+   column carries bottom padding */
+/*.fmk-band__row      { padding-top: clamp(64px, 6.5vw, 112px); }*/
+.fmk-band__copy     { flex: 1.3 1 460px; min-width: 300px; max-width: 940px; padding-bottom: clamp(64px, 6.5vw, 112px); }
+.fmk-band__aside {
+  flex: 1 1 340px;
+  min-width: 300px;
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(20px, 2.4vw, 40px);
+}
+/* welcome band is padded on both edges */
+/*.fmk-band--even .fmk-band__row  { padding-block: clamp(64px, 6.5vw, 112px); }*/
+.fmk-band--even .fmk-band__copy { padding-bottom: 0; }
+.fmk-band--even .fmk-band__aside {
+  flex: 1 1 320px;
+  min-width: 280px;
+  align-self: auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(16px, 1.6vw, 28px);
+}
+
+.fmk-quote {
+  font-weight: 700;
+    font-family: "alkaline", sans-serif;
+  color: var(--fmk-white);
+  text-align: center;
+/*  padding-top: clamp(20px, 2vw, 40px);*/
+/*font-size: 40px;
+line-height: 45px;*/
+}
+.fmk-quote--lg { font-size: 40px; line-height: 45px; padding-top: 0; }
+
+.fmk-portrait { position: relative; }
+.fmk-portrait img {
+  display: block;
+  width: 100%;
+  max-width: clamp(360px, 38vw, 620px);
+  margin: 0 auto;
+  height: auto;
+  filter: drop-shadow(0 26px 44px rgba(0, 0, 0, .34));
+}
+.fmk-portrait__tag {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: clamp(20px, 2.4vw, 40px);
+  background: var(--fmk-white);
+  border-radius: 14px;
+  padding: 10px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+}
+.fmk-portrait__label {
+  font-weight: 800;
+  color: var(--fmk-rust);
+}
+.fmk-portrait__name {
+  font-weight: 800;
+  color: var(--fmk-ink);
+  white-space: nowrap;
+}
+
+/* the swinging polaroid on the Welcome band */
+.fmk-swing {
+  width: 100%;
+  max-width: 520px;
+  transform-origin: 50% -30%;
+  animation: fmkSwingP 4.5s ease-in-out infinite alternate;
+}
+.fmk-swing img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 16;
+  object-fit: cover;
+  border-radius: clamp(14px, 1.3vw, 24px);
+  border: 5px solid var(--fmk-white);
+  box-sizing: border-box;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, .3);
+}
+
+/* =========================================================================
+   13  BIG IMAGE LINK CARDS  (Life at Missional Church One / Families)
+   ========================================================================= */
+.fmk-cards { display: flex; flex-wrap: wrap; gap: clamp(18px, 2vw, 34px); margin-top: clamp(32px, 3.5vw, 60px); }
+.fmk-card {
+  flex: 1 1 380px;
+  min-width: 290px;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  box-shadow: var(--fmk-sh-link);
+  display: block;
+  transition: transform .4s var(--fmk-ease-out);
+}
+.fmk-card:hover,
+.fmk-card:focus-visible { transform: translateY(-8px); }
+.fmk-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  transition: transform var(--fmk-t-slow) var(--fmk-ease-out), filter .45s;
+}
+.fmk-card img.fmk-card__img--crop { object-position: center 70%; }
+.fmk-card:hover img,
+.fmk-card:focus-visible img { transform: scale(1.06); }
+/* the Student Ministry card desaturates until hovered */
+.fmk-card img.fmk-card__img--gray { filter: grayscale(.85); }
+.fmk-card:hover img.fmk-card__img--gray,
+.fmk-card:focus-visible img.fmk-card__img--gray { filter: grayscale(0); transform: scale(1.05); }
+
+.fmk-card__wash { position: absolute; inset: 0; background: var(--fmk-card-wash); }
+.fmk-card__body {
+  position: absolute;
+  left: clamp(18px, 1.7vw, 30px);
+  right: clamp(18px, 1.7vw, 30px);
+  bottom: clamp(16px, 1.5vw, 26px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.fmk-card__title { color: var(--fmk-white); font-weight: 700;
+    /*font-size: 36px;
+    line-height: 1.1; */}
+.fmk-card__title span { color: var(--fmk-yellow); }
+.fmk-card__go {
+  flex: 0 0 auto;
+  width: clamp(38px, 2.8vw, 50px);
+  height: clamp(38px, 2.8vw, 50px);
+  border-radius: 50%;
+  border: 1.5px solid var(--fmk-white-70);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fmk-white);
+  font-size: clamp(15px, 1.2vw, 22px);
+}
+
+/* the split above the cards: heading left, paragraph right */
+.fmk-lead-split { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(24px, 3.5vw, 70px); }
+.fmk-lead-split__head { flex: 1 1 380px; min-width: 290px; }
+.fmk-lead-split__copy { flex: 1 1 420px; min-width: 300px; max-width: 780px; margin: 0; }
+
+/* =========================================================================
+   14  PHOTO-BACKED NAVY SECTIONS  (Connect / Join Us)
+   ========================================================================= */
+.fmk-photoback { position: relative; overflow: clip; background: var(--fmk-navy); }
+.fmk-photoback__bg { position: absolute; inset: 0; background-size: cover; background-repeat: no-repeat; filter: grayscale(1) brightness(.6); }
+.fmk-photoback--connect .fmk-photoback__bg {
+  background-image: url("../images/about-us/10-connect/outreach-easter.jpg");
+  background-position: center 35%;
+}
+.fmk-photoback--join .fmk-photoback__bg {
+  background-image: url("../images/plan-your-visit/12-join/hero-sanctuary.jpg");
+  background-position: center 40%;
+}
+.fmk-photoback__wash { position: absolute; inset: 0; background: var(--fmk-navy-wash); }
+.fmk-photoback__inner { position: relative; z-index: 2; }
+
+.fmk-wide-split { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 50px;}
+.fmk-wide-split__copy { flex: 1 1 440px; min-width: 300px; max-width: 860px; }
+
+/* frosted panel — used by both the contact card and the visit form */
+.fmk-panel {
+  flex: 1 1 380px;
+  min-width: 300px;
+  max-width: 640px;
+  background: var(--fmk-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--fmk-glass-line);
+  border-radius: 18px;
+  padding: clamp(24px, 2.6vw, 46px);
+  box-sizing: border-box;
+}
+.fmk-panel--form { flex: 1 1 420px; max-width: 720px; }
+.fmk-panel__title { font-weight: 700;  color: var(--fmk-white); }
+
+.fmk-contact { margin: 22px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+.fmk-contact li { display: flex; align-items: flex-start; gap: 14px; }
+.fmk-contact__icon {
+  flex: 0 0 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.fmk-contact__text { display: flex; flex-direction: column; gap: 2px; }
+.fmk-contact__label {
+  font-weight: 800;
+  color: var(--fmk-yellow);
+}
+.fmk-contact__value {color: var(--fmk-white);}
+.fmk-panel .fmk-btn--block {margin-top: 24px;}
+
+/* =========================================================================
+   15  MAP  (Find Our Location)
+   ========================================================================= */
+.fmk-split__media--map { flex: 1 1 clamp(320px, 36vw, 680px); min-width: 300px; margin-bottom: clamp(30px, 3.4vw, 64px); }
+.fmk-map {
+  display: block;
+  border-radius: clamp(16px, 1.5vw, 24px);
+  overflow: hidden;
+  box-shadow: var(--fmk-sh-map);
+  transition: transform .4s;
+}
+.fmk-map:hover,
+.fmk-map:focus-visible { transform: scale(1.02) rotate(-.6deg); }
+.fmk-map img {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 28vw, 500px);
+  object-fit: cover;
+  transition: transform .4s;
+}
+.fmk-map:hover img,
+.fmk-map:focus-visible img { transform: scale(1.04); }
+
+.fmk-map__pin {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: var(--fmk-white);
+  border-radius: 12px;
+  padding: 13px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+  max-width: min(330px, calc(100% - 70px));
+}
+.fmk-map__pin-icon {
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+.fmk-map__pin span { font-family: var(--fmk-font-ui); font-weight: 500; font-size: 13.5px; line-height: 1.5; color: var(--fmk-ink); }
+
+.fmk-map__inset {
+  position: absolute;
+  right: -2%;
+  bottom: -11%;
+  width: 34%;
+  transform: rotate(2deg);
+  animation: fmkFloatY 3.6s ease-in-out -1.4s infinite;
+}
+.fmk-map__inset img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 5px solid var(--fmk-cream);
+  box-sizing: border-box;
+  box-shadow: var(--fmk-sh-photo-sm);
+}
+
+/* =========================================================================
+   16  FAQ
+   ========================================================================= */
+.fmk-faq__inner { display: flex; flex-direction: column; gap: clamp(26px, 2.6vw, 44px); }
+.fmk-faq__sub { margin-top: clamp(10px, 1vw, 18px); font-weight: 700; font-size: clamp(15px, 1.1vw, 20px); color: var(--fmk-white-90); }
+.fmk-faq__tools { display: flex; flex-direction: column; gap: 16px; }
+
+.fmk-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--fmk-white-08);
+  border: 1px solid var(--fmk-white-40);
+  border-radius: 30px;
+  padding: 4px 8px 4px 22px;
+  transition: border-color var(--fmk-t-fast);
+}
+.fmk-search:focus-within { border-color: var(--fmk-orange); }
+.fmk-search > i { color: var(--fmk-yellow); font-size: 14px; flex: 0 0 auto; }
+.fmk-search input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-family: var(--fmk-font-body);
+  font-size: 14.5px;
+  color: var(--fmk-white);
+}
+.fmk-search input::placeholder { color: var(--fmk-white-55); }
+.fmk-search button {
+  flex: 0 0 auto;
+  border: none;
+  cursor: pointer;
+  background: var(--fmk-orange);
+  color: var(--fmk-white);
+  font-family: var(--fmk-font-alt);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 30px;
+  transition: background var(--fmk-t-fast);
+}
+.fmk-search button:hover,
+.fmk-search button:focus-visible { background: var(--fmk-yellow); color: var(--fmk-ink); }
+
+.fmk-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 4px; }
+.fmk-chip {
+  background: transparent;
+  color: var(--fmk-white-85);
+  border: 1.5px solid var(--fmk-white-45);
+  font-family: var(--fmk-font-alt);
+  font-weight: 800;
+  font-size: 10.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background var(--fmk-t-fast), color var(--fmk-t-fast), border-color var(--fmk-t-fast);
+}
+.fmk-chip:hover,
+.fmk-chip:focus-visible { border-color: var(--fmk-yellow); color: var(--fmk-yellow); }
+.fmk-chip.is-on { background: var(--fmk-orange); color: var(--fmk-white); border-color: var(--fmk-orange); }
+
+.fmk-faq__empty {
+  display: none;
+  border: 1.5px dashed var(--fmk-white-40);
+  border-radius: 10px;
+  padding: 22px 26px;
+  font-family: var(--fmk-font-ui);
+  font-size: 14px;
+  color: var(--fmk-white-85);
+}
+.fmk-faq__empty.is-on { display: block; }
+.fmk-faq__empty a,
+.fmk-faq__empty button {
+  color: var(--fmk-yellow);
+  font-weight: 700;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* About's FAQ is an auto-fit grid; Plan Your Visit's is a 2-up flex wrap */
+.fmk-faq__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.fmk-faq__grid--flex { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.fmk-faq__grid--flex .fmk-faq-item { flex: 1 1 calc(50% - 8px); min-width: 280px; }
+
+/* The item is a plain <div> so the collapsing panel is a normal block; the
+   clickable region is a full-bleed <button> inside an <h3>, which keeps the
+   heading outline intact and gives real keyboard support. */
+.fmk-faq-item {
+  border-radius: 10px;
+  background: var(--fmk-white);
+  overflow: hidden;
+  box-shadow: var(--fmk-sh-faq);
+  transition: background var(--fmk-t-mid);
+}
+.fmk-faq-item.is-hidden { display: none; }
+.fmk-faq-item.is-open { background: var(--fmk-orange); }
+
+.fmk-faq-item__h { margin: 0; font-size: inherit; font-weight: inherit; }
+.fmk-faq-item__btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 20px 26px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.fmk-faq-item__cat {
+  display: block;
+  font-family: var(--fmk-font-body);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--fmk-rust);
+  margin-bottom: 8px;
+  transition: color var(--fmk-t-mid);
+}
+.fmk-faq-item.is-open .fmk-faq-item__cat { color: var(--fmk-white-85); }
+
+.fmk-faq-item__head { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 18px; }
+.fmk-faq-item__q {
+  font-weight: 700;
+  font-size: clamp(15px, 1.15vw, 19px);
+  color: var(--fmk-ink);
+  transition: color var(--fmk-t-mid);
+}
+.fmk-faq-item__icon { color: var(--fmk-ink); font-size: 14px; flex: 0 0 auto; transition: color var(--fmk-t-mid); }
+.fmk-faq-item.is-open .fmk-faq-item__q,
+.fmk-faq-item.is-open .fmk-faq-item__icon { color: var(--fmk-white); }
+
+/* Collapsing panel with NO JavaScript height measurement and no inline
+   styles. The 0fr -> 1fr grid-row trick sizes correctly but its transition
+   does not interpolate in current Chromium/Edge (verified in headless: the
+   row sticks at 0px for the whole duration), so this uses a max-height
+   ceiling instead — the same technique the original export used, just moved
+   out of JS and into a class. The ceiling is far above any real answer;
+   raise it if an answer is ever longer than about 40 lines. */
+.fmk-faq-item__panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--fmk-t-slow) cubic-bezier(.4, 0, .2, 1), opacity .4s;
+}
+.fmk-faq-item.is-open .fmk-faq-item__panel { max-height: var(--fmk-faq-max); opacity: 1; }
+.fmk-faq-item__a { min-height: 0; }
+.fmk-faq-item__a > p {
+  margin: 0;
+  padding: 0 26px 22px;
+  font-family: var(--fmk-font-ui);
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, .95);
+  max-width: 980px;
+}
+.fmk-faq-item__a a { color: var(--fmk-white); text-decoration: underline; text-underline-offset: 3px; }
+
+/* =========================================================================
+   17  CENTRED CTA  (Join the Mission / New to Church)
+   ========================================================================= */
+.fmk-cta { text-align: center; }
+.fmk-cta__rule { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.fmk-cta__rule::before,
+.fmk-cta__rule::after { content: ""; height: 2px; width: clamp(34px, 3vw, 56px); background: var(--fmk-orange); }
+.fmk-cta__label {
+  color: var(--fmk-rust);
+  font-family: "alkaline", sans-serif;
+}
+.fmk-cta__label--num { font-family: var(--fmk-font-body); font-weight: 700; font-size: clamp(15px, 1.1vw, 20px); }
+.fmk-cta h2 { margin-top: 10px; font-weight: 700; }
+.fmk-cta h2 .fmk-dark   { color: var(--fmk-ink); }
+.fmk-cta h2 .fmk-accent { color: var(--fmk-orange); }
+.fmk-cta p {
+    margin: 28px auto;
+    max-width: 1300px;
+    color: var(--fmk-body);
+}
+
+/* =========================================================================
+   18  VISIT FORM
+   ========================================================================= */
+.fmk-form__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 18px 26px;
+  margin-top: 24px;
+}
+.fmk-field label { display: block; font-weight: 700; font-size: 14.5px; color: var(--fmk-white); margin-bottom: 8px; }
+.fmk-field input,
+.fmk-field select,
+.fmk-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--fmk-white-06);
+  border: 1px solid var(--fmk-white-55);
+  border-radius: 8px;
+  padding: 13px 14px;
+  font-family: var(--fmk-font-ui);
+  font-size: 14px;
+  color: var(--fmk-white);
+  outline: none;
+  transition: border-color var(--fmk-t-fast);
+}
+.fmk-field input::placeholder,
+.fmk-field textarea::placeholder { color: var(--fmk-white-55); }
+.fmk-field input:hover,
+.fmk-field select:hover,
+.fmk-field textarea:hover { border-color: var(--fmk-white-85); }
+.fmk-field input:focus,
+.fmk-field select:focus,
+.fmk-field textarea:focus { border-color: var(--fmk-orange); }
+.fmk-field select option { color: var(--fmk-ink); }
+.fmk-field textarea { resize: vertical; min-height: 90px; }
+.fmk-field--full { margin-top: 18px; }
+.fmk-form__submit { margin-top: 22px; }
+.fmk-form__submit.is-sent,
+.fmk-form__submit.is-sent:hover { background: var(--fmk-yellow); color: var(--fmk-ink); transform: none; }
+
+/* =========================================================================
+   19  MARQUEE
+   ========================================================================= */
+.fmk-marquee { background: var(--fmk-orange); overflow: hidden; padding: 10px 0; }
+.fmk-marquee__track { display: flex; width: max-content; animation: fmkMarq var(--fmk-marquee) linear infinite; }
+.fmk-marquee__group {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: clamp(28px, 3.3vw, 58px);
+  line-height: 1.25;
+  padding-right: 40px;
+  color: var(--fmk-white);
+}
+.fmk-marquee__group span { padding: 0 18px; }
+.fmk-marquee__group .fmk-marquee__dot { padding: 0; }
+/* alternating words are outlined rather than filled */
+.fmk-marquee__group .fmk-outline { color: transparent; -webkit-text-stroke: 2px var(--fmk-white); }
+
+/* =========================================================================
+   20  TORN-PAPER DIVIDER
+   ========================================================================= */
+.fmk-tear {
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 53px;
+  width: calc(100vw + 40px);
+  object-fit: fill;
+  display: block;
+  pointer-events: none;
+}
+
+/* =========================================================================
+   21  REDUCED MOTION
+   Mirrors the source's blanket rule, but keeps every reveal at its END
+   state so nothing is left invisible or mid-transition.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html.fmk-html { scroll-behavior: auto; }
+
+  .inner-page *,
+  .inner-page *::before,
+  .inner-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* reveals and entrances resolve to "arrived" */
+  .fmk-rv, .fmk-rv-l, .fmk-rv-r, .fmk-rv-fade,
+  .fmk-in, .fmk-in-1, .fmk-in-2, .fmk-in-3, .fmk-in-4, .fmk-in-5,
+  .fmk-reveal,
+  .fmk-blur img, .fmk-framed img {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  /* the two photos whose tilt is carried by an animation keep it as a static
+     transform, so the layout does not shift */
+  .fmk-tilt--rotin { opacity: 1 !important; transform: rotate(-2deg) !important; }
+  .fmk-swing       { transform: rotate(-2deg) !important; }
+  .fmk-hero__bg    { transform: scale(1.08) !important; }
+}
+
+
+.inner-page-btn a::after {
+    background: var( --mco-primary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+/*    border-radius: 10px;*/
+    z-index: -1;
+}
+.inner-page-btn a {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.inner-page-btn a:hover:after {
+  width: 100%;
+}
+
+
+.faq-section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inner-page-trusted::after{
+content: none;
+} 
+.inner-page-trusted .heading-pathway h2 {
+    color: #ffffff;
+    max-width: 950px;
+    margin: 0px;
+}
+.inner-page-trusted .nav-tabs {
+    max-width: 100%;
+/*    margin: 30px 0px;*/
+    border: none !important;
+    transition: none !important;
+    gap: 20px !important;
+ }
+.inner-page-trusted .search-questions {
+    max-width: 850px;
+}
+.inner-page-trusted .nav-tabs .nav-link.active {
+    background: #000;
+    border: none;
+    border-radius: 40px;
+    transition: none !important;
+    font-weight: 600;
+    background: var(--fmk-orange);
+    color: #fff;
+}
+
+.inner-page-trusted .nav-tabs .nav-link{
+transition: none !important;
+}
+.inner-page-trusted .nav-tabs .nav-link {
+    font-size: 16px;
+    font-weight: 600;
+}
+.inner-page-trusted .search-questions .input-group input {
+border-radius: 40px !important;
+padding-left: 50px;
+}
+
+/*css*/
+
+.inner-page-btn a {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.inner-page-btn a:hover:after {
+  width: 100%;
+}
+
+/*.fmk-h2 {
+   font-size: 65px;
+   line-height: 72px;
+}*/
+.fmk-heading{
+ font-size: 65px !important;
+   line-height: 72px !important;  
+}
+ 
+.faq-section-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inner-page-trusted .search-questions {
+    margin: 0 auto;
+}
+.inner-page-trusted .nav-tabs {
+    justify-content: center;
+}
+
+.trusted-section .nav-tabs .nav-link {
+    border: 1px solid #bdbdbd !important;
+    padding: 12px 35px;
+    border-radius: 40px;
+}
+.inner-page-trusted .nav-tabs .nav-link{
+transition: none !important;
+}
+.inner-page-trusted .nav-tabs .nav-link {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/***---new-css---***/
+.inner-page-trusted .search-questions .input-group input {
+    border-radius: 40px !important;
+    padding: 15px 15px 15px 50px;
+}
+.icon-search-about {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    color: #fff;
+}
+.inner-page-trusted .nav-tabs {
+    max-width: 100%;
+/*    margin: 30px 0px 0px;*/
+    border: none !important;
+    transition: none !important;
+    gap: 20px !important;
+ }
+ 
+.inner-page-trusted  .accordion-button {
+    font-size: 24px;
+    line-height: 32px;
+}
+/*.inner-pages-membership .fmk-rv {
+   margin: 20px auto 20px;
+   text-align: center;
+}*/
+.inner-page-border{
+border: none;
+}
+.heading-normal{
+   font-size: 27px;
+   line-height: 35px;
+}
+.heading-sub{
+   font-size: 30px;
+   line-height: 38px;
+}
+.heading-medium{
+font-size: 36px !important;
+line-height: 44px !important;
+}
+.heading-big {
+font-size: 40px;
+line-height: 45px;
+}
+.heading-text-area{
+   font-size: 27px;
+   line-height: 32px;
+/*   font-weight: 600;*/
+}
+.fmk-btn--border:hover, .fmk-btn--border:focus-visible{
+   border: 1.5px solid var( --mco-primary) !important;
+}
+.fmk-hero__doodle {
+   transform: none;
+}
+.fmk-doodle--a {
+    transform: none;
+}
+.fmk-doodle{
+  transform: none; 
+}
+.fmk-doodle{
+   transition: none;
+}
+.inner-page-btnhover:hover{
+color: unset;
+}
+.btn-hover-inner::after{
+   background: var( --mco-primary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    z-index: -1;
+}
+.btn-hover-inner {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.btn-hover-inner:hover:after {
+  width: 100%;
+}
+.inner-pages-tabs {
+    margin: 20px 0px;
+}
+.btn-one-give::after{
+ background: var( --mco-primary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    z-index: -1;
+}
+.btn-one-give{
+     position: relative;
+    z-index: 1;
+    overflow: hidden; 
+}
+.btn-one-give:hover:after {
+  width: 100%;
+}
+.btn-tow-give::after{
+ background: var( --mco-primary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    z-index: -1;
+}
+.btn-tow-give{
+     position: relative;
+    z-index: 1;
+    overflow: hidden; 
+}
+.btn-tow-give:hover:after {
+  width: 100%;
+}
+.blue-btn-about{
+  position: relative;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+}
+.blue-btn-about::after {
+    background: var( --mco-tertiary);
+    width: 0;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.4s ease-in-out;
+    border-radius: 10px;
+    z-index: -1;
+}
+.blue-btn-about:hover:after {
+    width: 100%;
+}
+.fmk-blue-border:hover, .fmk-blue-border:focus-visible{
+   border: 1.5px solid var( --mco-tertiary) !important;
+}
+.top-header-section{
+  padding: 80px 0px 80px;
+}
+.events-text-view {
+    margin: 0;
+    font-family: "alkaline", sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 40px;
+    color: var(--fmk-yellow);
+}
+.sec-search-faq {
+    margin: 36px 0px;
+    gap: 30px;
+}
+.teaching-block{
+    gap: 20px 0px;
+    margin-top: 50px;
+}
+/*.fmk-h2--big  { margin: 0; font-size: var(--fmk-h2-big); line-height: 1.13; }*/
+/* Video Trigger */
+
+.fmk-video-trigger {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.fmk-video-trigger img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Play Icon */
+
+.fmk-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    pointer-events: none;
+}
+
+
+/* Popup */
+
+.fmk-video-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+}
+
+.fmk-video-popup.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Overlay */
+
+.fmk-video-popup__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Popup Content */
+
+.fmk-video-popup__content {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    z-index: 2;
+}
+
+
+/* Video */
+
+.fmk-video-popup__video {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.fmk-video-popup__video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Close Button */
+
+.fmk-video-popup__close {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    border: 0;
+    background: none;
+    color: #fff;
+    font-size: 35px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+
+/* Prevent Background Scroll */
+
+body.fmk-popup-open {
+    overflow: hidden;
+}
+
+
+/* Mobile */
+
+@media (max-width: 767px) {
+
+    .fmk-video-popup__content {
+        width: 92%;
+    }
+
+    .fmk-video-popup__close {
+        right: 0;
+        top: -40px;
+    }
+
+    .fmk-play-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+}
+.inner-page .fj-btn--primary {
+    background: var(--fmk-orange);
+    color: #fff;
+}
+.inner-page .fj-btn--outline {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--fmk-white);
+}
+.inner-page .fj-btn--primary:hover {
+    color: #fff;
+}
+.sv-eyebrow {
+    margin-bottom: 10px;
+}

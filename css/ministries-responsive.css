@@ -1,0 +1,202 @@
+/* =========================================================================
+   ministries-responsive.css — Ministries, every breakpoint
+   -------------------------------------------------------------------------
+   Loads LAST, after ministries.css. That file describes the widest layout
+   and holds no media query; every one of them lives here.
+
+   Breakpoints, max-width and desktop-first, matching the house set:
+       1400 · 1200 · 992 · 768 · 576 · 400
+
+   Bootstrap stacks the .row/.col-* columns on its own. What this file owns
+   is the bespoke work bootstrap knows nothing about: the directory stage,
+   the masonry mosaic, the carousel and rail card widths, the flip cards,
+   and the type that has to step down with them.
+   ========================================================================= */
+
+/* =========================================================================
+   ≤ 1400 — the first step down from the widest layout
+   ========================================================================= */
+@media (max-width: 1400px) {
+  .inner-page .mn-panel { padding: 34px; }
+  .inner-page .mn-panel__title { font-size: 30px; line-height: 38px; }
+  .inner-page .mn-tile__body:not(.mn-tile__body--flat) { padding-top: 260px; }
+  .inner-page .mn-gi__title { font-size: 46px; line-height: 52px; }
+  .inner-page .mn-card { flex-basis: 240px; }
+  .inner-page .mn-lscard { flex-basis: 270px; }
+}
+
+/* =========================================================================
+   ≤ 1200 — the directory stage can no longer hold three columns
+   ========================================================================= */
+@media (max-width: 1200px) {
+  /* panel | photo | rows  →  photo on top, then panel, then the row list */
+  .inner-page .mn-stage { grid-template-columns: 1fr; }
+  .inner-page .mn-stage__photos { min-height: 360px; order: -1; }
+  .inner-page .mn-stage__panels { min-height: 520px; border-right: none; }
+  .inner-page .mn-rows { border-left: none; border-top: 1px solid rgba(11, 70, 102, .1); }
+
+  .inner-page .mn-tile__body:not(.mn-tile__body--flat) { padding-top: 220px; }
+  .inner-page .mn-tile__title { font-size: 28px; line-height: 34px; }
+  .inner-page .mn-gi__title { font-size: 40px; line-height: 46px; }
+  .inner-page .mn-flip__title { font-size: 28px; line-height: 34px; }
+  .inner-page .mn-hand { font-size: 27px; line-height: 34px; }
+}
+
+/* =========================================================================
+   ≤ 992 — the touch boundary.
+   Anything that was hover-only above this point becomes permanently
+   visible here: a touch device has no hover, so hidden copy is lost copy.
+   ========================================================================= */
+@media (max-width: 992px) {
+
+  /* --- flip cards: stop flipping, show both faces stacked --- */
+  .inner-page .mn-flip {
+    aspect-ratio: auto;
+    cursor: default;
+    perspective: none;
+  }
+  .inner-page .mn-flip__inner {
+    height: auto;
+    transform-style: flat;
+  }
+  /* the tap/hover/focus flip is disabled, not just overridden */
+  .inner-page .mn-flip:hover .mn-flip__inner,
+  .inner-page .mn-flip:focus-within .mn-flip__inner,
+  .inner-page .mn-flip.is-flipped .mn-flip__inner { transform: none; }
+
+  .inner-page .mn-flip__face {
+    position: relative;
+    inset: auto;
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+    border-radius: 18px 18px 0 0;
+  }
+  .inner-page .mn-flip__front { min-height: 300px; justify-content: flex-end; }
+  .inner-page .mn-flip__back {
+    transform: none;
+    border-radius: 0 0 18px 18px;
+    overflow: visible;
+    box-shadow: none;
+  }
+  /* the hint told a mouse user to hover; there is nothing to hover now */
+  .inner-page .mn-flip__hint { display: none; }
+
+  /* --- the rest of the step-down --- */
+  /* the columns stack here, so the vertical gutter is now the ONLY thing
+     separating a copy column's button from the next column's photo */
+  .inner-page .mn-split { --bs-gutter-y: 48px; }
+  .inner-page .mn-cards--tight { --bs-gutter-y: 20px; }
+
+  .inner-page .mn-family__copy { position: static; }
+  .inner-page .mn-tile__body:not(.mn-tile__body--flat) { padding-top: 200px; }
+  .inner-page .mn-tile__body--sm { padding-top: 170px; }
+  .inner-page .mn-gi__title { font-size: 34px; line-height: 40px; }
+  .inner-page .mn-panel { padding: 28px; }
+  .inner-page .mn-panel__title { font-size: 26px; line-height: 34px; }
+  .inner-page .mn-stage__panels { min-height: 480px; }
+  .inner-page .mn-rail { padding-top: 30px; }
+  .inner-page .mn-ls__nav { margin-top: 20px; }
+}
+
+/* =========================================================================
+   ≤ 768 — one column everywhere
+   ========================================================================= */
+@media (max-width: 768px) {
+  /* masonry collapses; with one column there is nothing to pin against */
+  .inner-page .mn-mosaic { columns: 1; }
+
+  .inner-page .mn-glance__lede { text-align: left; }
+  .inner-page .mn-glance .fmk-eyebrow,
+  .inner-page .mn-cta__inner .fmk-eyebrow { justify-content: flex-start; }
+  .inner-page .mn-glance,
+  .inner-page .mn-cta__inner { text-align: left; }
+
+  .inner-page .mn-card { flex-basis: 220px; }
+  .inner-page .mn-card__title { font-size: 18px; line-height: 24px; }
+  .inner-page .mn-lscard { flex-basis: 250px; }
+
+  .inner-page .mn-tile__body:not(.mn-tile__body--flat) { padding-top: 180px; }
+  .inner-page .mn-tile__title { font-size: 26px; line-height: 32px; }
+  .inner-page .mn-gi__title { font-size: 30px; line-height: 36px; }
+  .inner-page .mn-hand { font-size: 25px; line-height: 32px; }
+  .inner-page .mn-mtile__title { font-size: 22px; line-height: 28px; }
+  .inner-page .mn-stage__panels { min-height: 560px; }
+
+  .inner-page .mn-split { --bs-gutter-y: 40px; }
+  .inner-page .mn-cards { --bs-gutter-y: 20px; }
+  .inner-page .mn-ls__foot { gap: 20px; }
+  .inner-page .mn-ls__foot .fmk-actions { margin-top: 0; }
+}
+
+/* =========================================================================
+   ≤ 576 — phone
+   ========================================================================= */
+@media (max-width: 576px) {
+  .inner-page .mn-split { --bs-gutter-x: 24px; --bs-gutter-y: 34px; }
+  .inner-page .mn-cards { --bs-gutter-x: 16px; --bs-gutter-y: 16px; }
+  .inner-page .mn-stage { border-radius: 14px; }
+  .inner-page .mn-stage__photos { min-height: 260px; }
+  .inner-page .mn-stage__panels { min-height: 600px; }
+  .inner-page .mn-panel { padding: 22px; }
+  .inner-page .mn-panel__title { font-size: 24px; line-height: 31px; }
+  .inner-page .mn-row { padding: 18px; }
+  .inner-page .mn-row__title { font-size: 16px; line-height: 23px; }
+
+  .inner-page .mn-card { flex-basis: 200px; }
+  .inner-page .mn-lscard { flex-basis: 230px; }
+  .inner-page .mn-rail { --mn-rail-gap: 12px; }
+
+  .inner-page .mn-tile__body:not(.mn-tile__body--flat) { padding: 150px 20px 20px; }
+  .inner-page .mn-tile__body--sm { padding: 140px 20px 20px; }
+  .inner-page .mn-tile__body--flat { padding: 22px; }
+  .inner-page .mn-tile__title { font-size: 23px; line-height: 29px; }
+  .inner-page .mn-mtile__body { padding: 20px; }
+  .inner-page .mn-mtile--rust,
+  .inner-page .mn-mtile--orange { padding: 22px; }
+
+  .inner-page .mn-gi__title { font-size: 26px; line-height: 32px; }
+  .inner-page .mn-gi__num { font-size: 16px; }
+  .inner-page .mn-flip__front { min-height: 250px; }
+  .inner-page .mn-flip__frontbody,
+  .inner-page .mn-flip__back { padding: 22px; }
+  .inner-page .mn-flip__title { font-size: 26px; line-height: 32px; }
+  .inner-page .mn-story { padding: 22px; }
+
+  /* a wrapped button row reads better full width than ragged */
+  .inner-page .mn-cta__inner .fmk-actions .fmk-btn,
+  .inner-page .mn-ls__foot .fmk-btn { width: 100%; justify-content: center; }
+}
+
+/* =========================================================================
+   ≤ 400 — the smallest supported width
+   ========================================================================= */
+@media (max-width: 400px) {
+  .inner-page .mn-card { flex-basis: 180px; }
+  .inner-page .mn-lscard { flex-basis: 210px; }
+  .inner-page .mn-rail { --mn-rail-pad: 16px; }
+
+  .inner-page .mn-jump { font-size: 14px; padding: 9px 16px; }
+  .inner-page .mn-panel { padding: 18px; }
+  .inner-page .mn-panel__title { font-size: 22px; line-height: 29px; }
+  .inner-page .mn-stage__panels { min-height: 640px; }
+  .inner-page .mn-tile__title { font-size: 21px; line-height: 27px; }
+  .inner-page .mn-gi__title { font-size: 23px; line-height: 29px; }
+  .inner-page .mn-hand { font-size: 22px; line-height: 29px; }
+  .inner-page .mn-mtile__flat { font-size: 21px; line-height: 28px; }
+  .inner-page .mn-flip__title { font-size: 23px; line-height: 29px; }
+
+  /* every button goes full width rather than wrapping one word per line */
+  .inner-page .fmk-actions .fmk-btn,
+  .inner-page .fmk-hero__actions .fmk-btn { width: 100%; justify-content: center; }
+}
+
+/* =========================================================================
+   REDUCED MOTION
+   inner-pages.css already flattens the shared components; this covers the
+   two moving parts that belong to this page. Both stay usable: the rail is
+   still natively scrollable, the carousel simply holds still.
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .inner-page .mn-marquee__track { transform: none !important; }
+  .inner-page .mn-rail { scroll-behavior: auto; }
+}
